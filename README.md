@@ -6,7 +6,7 @@ Run node
 ==============
 npm install
 
-node server.js
+node --debug server.js
 
 Debug
 ==============
