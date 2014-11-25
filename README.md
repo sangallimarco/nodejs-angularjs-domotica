@@ -5,6 +5,7 @@ http://scotch.io/tutorials/javascript/build-a-restful-api-using-node-and-express
 Run node
 ==============
 npm install
+
 node server.js
 
 Debug
