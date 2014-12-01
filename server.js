@@ -5,11 +5,14 @@ var mongoose   = require('mongoose');
 mongoose.connect('mongodb://localhost/testapp');
 
 // call the packages we need
-var express    = require('express'); 		// call express
-var app        = express(); 				// define our app using express
+var express = require('express'); 		// call express
+var app = express(); 				// define our app using express
 var bodyParser = require('body-parser');
+var http =	require('http'); 
 
-var Test     = require('./models/test');
+// services and models
+var Test = require('./models/test');
+var weatherService = require('./services/weatherService');
 
 // configure app to use bodyParser()
 // this will let us get the data from a POST
@@ -22,7 +25,7 @@ var port = process.env.PORT || 8888; 		// set our port
 // =============================================================================
 var router = express.Router(); 				// get an instance of the express Router
 
-// test route to make sure everything is working (accessed at GET http://localhost:8080/api)
+// test route to make sure everything is working (accessed at GET http://localhost:8888/api)
 router.get('/', function(req, res) {
 	res.json({ message: 'hooray! welcome to our api!' });	
 });
@@ -56,6 +59,26 @@ router.route('/test')
 		})
 
 	});
+
+// test API
+router.route('/ext')
+	.get(function(req,res){
+		http.get('http://www.myweather2.com/developer/forecast.ashx?uac=.frFFHX1sj&query=w45eq&output=json', function(response){
+			var str = '';
+
+			response.on('data', function (chunk) {
+				str += chunk;
+			});
+
+			response.on('end', function () {
+				var w = new weatherService();
+				w.setData(str);
+				res.json(w.getWeather());
+			});
+		})
+		.end();
+	})
+;
 
 // more routes for our API will happen here
 
