@@ -71,9 +71,8 @@ router.route('/ext')
 			});
 
 			response.on('end', function () {
-				var w = new weatherService();
-				w.setData(str);
-				res.json(w.getWeather());
+				weatherService.setData(str);
+				res.json(weatherService.getWeather());
 			});
 		})
 		.end();

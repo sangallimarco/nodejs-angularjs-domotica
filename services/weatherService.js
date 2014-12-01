@@ -10,4 +10,6 @@ weatherService.prototype = {
 	}
 };
 
-module.exports = weatherService;
+module.exports = (function(){
+	return new weatherService();
+})();
