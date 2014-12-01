@@ -11,3 +11,8 @@ node --debug server.js
 Debug
 ==============
 node-inspector server.js
+
+
+Supervisor
+==============
+npm -g install supervisior
