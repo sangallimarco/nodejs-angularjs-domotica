@@ -8,7 +8,6 @@ mongoose.connect('mongodb://localhost/testapp');
 var express = require('express'); 		// call express
 var app = express(); 				// define our app using express
 var bodyParser = require('body-parser');
-var http =	require('http'); 
 
 // services and models
 var Test = require('./models/test');
@@ -63,19 +62,9 @@ router.route('/test')
 // test API
 router.route('/ext')
 	.get(function(req,res){
-		http.get('http://www.myweather2.com/developer/forecast.ashx?uac=.frFFHX1sj&query=w45eq&output=json', function(response){
-			var str = '';
-
-			response.on('data', function (chunk) {
-				str += chunk;
-			});
-
-			response.on('end', function () {
-				weatherService.setData(str);
-				res.json(weatherService.getWeather());
-			});
+		weatherService.getData(function(response) {
+			res.json(response);
 		})
-		.end();
 	})
 ;
 
