@@ -1,3 +1,5 @@
-angular.module('app', []
-
+var application = angular.module('app', 
+	[
+		'ngResource', 
+	]
 );

@@ -18,35 +18,40 @@ weatherService.prototype = {
 			});
 
 			response.on('end', function () {
-				scope.setData(str);
-				callback(scope.getWeather());
+				var data = scope.setData(str);
+				callback(data);
 			});
 		})
 		.end();
 	},
 	
 	setData: function(d) {
-		this.data = JSON.parse(d);
+		var temp = JSON.parse(d),
+			data = {
+				humidity:0,
+				temp: 0
+			};
 
 		//save data
-		if (this.data.weather) {
-			var current = this.data.weather.curren_weather[0];
-			var w = new Weather({
-				humidity:current.humidity,
-				temp: current.temp
-			}); 
+		if (temp.weather) {
+			var current = temp.weather.curren_weather[0];
 
+			data.humidity = current.humidity;
+			data.temp = current.temp;
+			
+			var w = new Weather(data); 
 			w.save(function(err) {
 				// no actions lazy insert
 			});
+
+			return data;
 		}
-	},
-	
-	getWeather: function() {
-		return this.data.weather;
+
+		return {};
 	},
 	
 	getLast: function(callback){
+		var scope = this;
 		Weather
 			.findOne()
 			.sort({ field: 'asc', _id: -1 })
@@ -55,10 +60,20 @@ weatherService.prototype = {
 				function(err, entity){
 					if (err)
 						res.send(err);
-					callback(entity);
+					callback(
+						scope.formatData(entity[0]) //format data
+					);
 				}
 			);
+	},
+
+	formatData: function(data) {
+		return {
+			humidity: data.humidity,
+			temp: data.temp
+		};
 	}
+
 };
 
 module.exports = (function(){

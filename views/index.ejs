@@ -1,15 +1,26 @@
 <html>
 	<head>
 		<title>Test</title>
+		<link rel='stylesheet' href='/css/app.css' />
 	</head>
 	<body ng-app="app">
 		<div>Test</div>
 		<div ng-controller="index">
 			{{title}}
-		</div>
 			
+			<input type="text" name="" value="" ng-model="input.postcode">
+			
+			<button ng-click="getWeather()">GET</button>
+
+			<div>H: {{data.humidity}}, t: {{data.temp}}</div>
+			<div>H0: {{lastData.humidity}}, t0: {{lastData.temp}}</div>
+		</div>
+
+		
 	</body>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.3/angular.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.3/angular-resource.min.js"></script>
 	<script src="/angular/app.js"></script>
+	<script src="/angular/services/weatherService.js"></script>
 	<script src="/angular/controllers/index.js"></script>
 </html>
