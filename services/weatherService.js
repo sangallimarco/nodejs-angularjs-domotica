@@ -1,12 +1,14 @@
 var http = require('http'); 
+var Weather = require('../models/weather');
 
 function weatherService(){
-	var data = {};
+	this.data = {};
 };
 weatherService.prototype = {
-	getData: function(callback) {
+	
+	getData: function(postcode, callback) {
 		var scope = this;
-		http.get('http://www.myweather2.com/developer/forecast.ashx?uac=.frFFHX1sj&query=w45eq&output=json', function(response){
+		http.get('http://www.myweather2.com/developer/forecast.ashx?uac=.frFFHX1sj&query=' + postcode + '&output=json', function(response){
 			var str = '';
 
 			response.on('data', function (chunk) {
@@ -20,11 +22,40 @@ weatherService.prototype = {
 		})
 		.end();
 	},
+	
 	setData: function(d) {
-		data = JSON.parse(d);
+		this.data = JSON.parse(d);
+
+		//save data
+		if (this.data.weather) {
+			var current = this.data.weather.curren_weather[0];
+			var w = new Weather({
+				humidity:current.humidity,
+				temp: current.temp
+			}); 
+
+			w.save(function(err) {
+				// no actions lazy insert
+			});
+		}
 	},
+	
 	getWeather: function() {
-		return data.weather;
+		return this.data.weather;
+	},
+	
+	getLast: function(callback){
+		Weather
+			.findOne()
+			.sort({ field: 'asc', _id: -1 })
+			.limit(1)
+			.find(
+				function(err, entity){
+					if (err)
+						res.send(err);
+					callback(entity);
+				}
+			);
 	}
 };
 
