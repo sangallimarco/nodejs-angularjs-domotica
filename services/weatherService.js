@@ -1,9 +1,11 @@
 var http = require('http'); 
 var Weather = require('../models/weather');
 
+// prototype
 function weatherService(){
 	this.data = {};
-};
+}
+
 weatherService.prototype = {
 	
 	getData: function(postcode, callback) {
