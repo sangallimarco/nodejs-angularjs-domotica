@@ -4,14 +4,13 @@
 var mongoose   = require('mongoose');
 mongoose.connect('mongodb://localhost/testapp');
 
-// call the packages we need
-var express = require('express'); 		// call express
-var app = express(); 				// define our app using express
+var express = require('express');
 var bodyParser = require('body-parser');
 var path = require('path');
+var compression = require('compression');
 
-// configure app to use bodyParser()
-// this will let us get the data from a POST
+var app = express(); 
+app.use(compression());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.set('view engine', 'ejs');
