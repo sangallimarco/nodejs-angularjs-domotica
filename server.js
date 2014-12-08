@@ -9,19 +9,21 @@ pongular.module('nodejs', ['libs'])
 		'modules/services/*.js', 
 		'modules/controllers/*.js'
 )
-.factory('app', function($express, $mongoose, $bodyParser, $compression, $path) {
-  	var app = $express();
-	$mongoose.connect('mongodb://localhost/testapp');
+.factory('app',
+	function($express, $mongoose, $bodyParser, $compression, $path) {
+		var app = $express();
+		$mongoose.connect('mongodb://localhost/testapp');
 
-	app.use($compression());
-	app.use($bodyParser.urlencoded({ extended: true }));
-	app.use($bodyParser.json());
-	app.set('view engine', 'ejs');
-	app.set('port', process.env.PORT || 3000);
-	app.use($express.static($path.join(__dirname, 'public')));
+		app.use($compression());
+		app.use($bodyParser.urlencoded({ extended: true }));
+		app.use($bodyParser.json());
+		app.set('view engine', 'ejs');
+		app.set('port', process.env.PORT || 3000);
+		app.use($express.static($path.join(__dirname, 'public')));
 
-  	return app;
-})
+		return app;
+	}
+)
 .run(
 	function(app, IndexCtrl, WeatherCtrl, TestCtrl) {
 
@@ -40,5 +42,5 @@ pongular.module('nodejs', ['libs'])
 	}
 );
 
-var injector = pongular.injector(['nodejs']);
+pongular.injector(['nodejs']);
 
