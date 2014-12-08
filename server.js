@@ -1,7 +1,5 @@
 // BASE SETUP
 // =============================================================================
-
-var express = require('express');
 var pongular = require('pongular').pongular;
 
 pongular.module('nodejs', ['libs'])
@@ -14,7 +12,7 @@ pongular.module('nodejs', ['libs'])
 .factory('app', function($express, $mongoose, $bodyParser, $compression, $path) {
   	var app = $express();
 	$mongoose.connect('mongodb://localhost/testapp');
-	
+
 	app.use($compression());
 	app.use($bodyParser.urlencoded({ extended: true }));
 	app.use($bodyParser.json());
