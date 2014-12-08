@@ -7,6 +7,7 @@ Run node
 npm install
 
 cd public
+
 bower install
 
 node --debug server.js
