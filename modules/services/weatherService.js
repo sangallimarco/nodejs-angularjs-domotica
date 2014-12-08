@@ -65,10 +65,14 @@ pongular.module('nodejs').service('WeatherService', function($http, WeatherModel
 	};
 
 	scope.formatData = function(data) {
-		return {
-			humidity: data.humidity,
-			temp: data.temp
-		};
+		if (data instanceof Object) {
+			return {
+				humidity: data.humidity,
+				temp: data.temp
+			};
+		} else {
+			return {};
+		}
 	};
  
 

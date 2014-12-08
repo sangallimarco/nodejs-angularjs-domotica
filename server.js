@@ -1,53 +1,18 @@
 // BASE SETUP
 // =============================================================================
-/*
-
-
-
-var bodyParser = require('body-parser');
-var path = require('path');
-var compression = require('compression');
-var pongular = require('pongular').pongular;
-
-var app = express(); 
-app.use(compression());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-app.set('view engine', 'ejs');
-
-var port = process.env.PORT || 9000; 		// set our port
-
-// ROUTES FOR OUR API
-// =============================================================================
-var router = express.Router();
-require('./routes/weather')(router);
-require('./routes/test')(router);
-require('./routes/default')(router);
-
-// all of our routes will be prefixed with /api
-app.use('/api', router);
-app.use(express.static(path.join(__dirname, 'public')));
-
-// START THE SERVER
-// =============================================================================
-app.listen(port);
-console.log('Magic happens on port ' + port);
-*/
-
 
 var express = require('express');
 var pongular = require('pongular').pongular;
 
-var module = pongular.module('nodejs', []);
-module.uses(
+pongular.module('nodejs', ['libs'])
+.uses(
 		'modules/libs/*.js',
 		'modules/models/*.js', 
 		'modules/services/*.js', 
 		'modules/controllers/*.js'
-	);
-
-pongular.module('nodejs').factory('app', function() {
-  	var app = express();
+)
+.factory('app', function($express) {
+  	var app = $express();
 
   	var mongoose   = require('mongoose');
 	mongoose.connect('mongodb://localhost/testapp');
@@ -64,9 +29,8 @@ pongular.module('nodejs').factory('app', function() {
 	app.use(express.static(path.join(__dirname, 'public')));
 
   	return app;
-});
-
-pongular.module('nodejs').run(
+})
+.run(
 	function(app, IndexCtrl, WeatherCtrl, TestCtrl) {
 
 		app.get('/', IndexCtrl.index);

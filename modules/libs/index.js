@@ -1,16 +1,20 @@
 var pongular = require('pongular').pongular;
-var mongoose = require('mongoose');
-var http = require('http'); 
 
-pongular.module('nodejs').factory('$mongoose', function() {
-	return mongoose;
-});
+pongular.module('libs', [])
 
-pongular.module('nodejs').factory('$http', function() {
-	return http;
-});
+.factory('$mongoose', function() {
+	return require('mongoose');
+})
 
-pongular.module('nodejs').factory('$pongular', function() {
+.factory('$express', function() {
+	return require('express'); 
+})
+
+.factory('$http', function() {
+	return require('http');
+})
+
+.factory('$pongular', function() {
 	return pongular;
 });
 
