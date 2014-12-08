@@ -1,14 +1,13 @@
-var http = require('http'); 
-var Weather = require('../models/weather');
+var pongular = require('pongular').pongular;
+var http = require('http'); //find a better way to inject it
 
-// prototype
-function weatherService(){
-	this.data = {};
-}
+pongular.module('nodejs').service('WeatherService', function(WeatherModel) {
+	var scope = this;
 
-weatherService.prototype = {
-	
-	getData: function(postcode, callback) {
+	scope.data = {};
+
+
+	scope.getData =  function(postcode, callback) {
 		var scope = this;
 		http.get('http://www.myweather2.com/developer/forecast.ashx?uac=.frFFHX1sj&query=' + postcode + '&output=json', function(response){
 			var str = '';
@@ -23,9 +22,9 @@ weatherService.prototype = {
 			});
 		})
 		.end();
-	},
+	};
 	
-	setData: function(d) {
+	scope.setData = function(d) {
 		var temp = JSON.parse(d),
 			data = {
 				humidity:0,
@@ -39,7 +38,7 @@ weatherService.prototype = {
 			data.humidity = current.humidity;
 			data.temp = current.temp;
 			
-			var w = new Weather(data); 
+			var w = new WeatherModel(data); 
 			w.save(function(err) {
 				// no actions lazy insert
 			});
@@ -48,11 +47,10 @@ weatherService.prototype = {
 		}
 
 		return {};
-	},
+	};
 	
-	getLast: function(callback){
-		var scope = this;
-		Weather
+	scope.getLast = function(callback){
+		WeatherModel
 			.findOne()
 			.sort({ field: 'asc', _id: -1 })
 			.limit(1)
@@ -65,17 +63,14 @@ weatherService.prototype = {
 					);
 				}
 			);
-	},
+	};
 
-	formatData: function(data) {
+	scope.formatData = function(data) {
 		return {
 			humidity: data.humidity,
 			temp: data.temp
 		};
-	}
+	};
+ 
 
-};
-
-module.exports = (function(){
-	return new weatherService();
-})();
+});
