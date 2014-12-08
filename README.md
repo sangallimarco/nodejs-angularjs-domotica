@@ -6,13 +6,21 @@ Run node
 ==============
 npm install
 
+cd public
+bower install
+
 node --debug server.js
 
-Debug
+open http://localhost:3000/ on your browser
+
+Debug App
 ==============
 node-inspector server.js
 
 
-Supervisor
+Supervisor (development)
 ==============
 npm -g install supervisior
+
+supervisor server.js
+
