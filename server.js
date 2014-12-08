@@ -39,7 +39,12 @@ var express = require('express');
 var pongular = require('pongular').pongular;
 
 var module = pongular.module('nodejs', []);
-module.uses('modules/models/*.js', 'modules/services/*.js', 'modules/controllers/*.js');
+module.uses(
+		'modules/libs/*.js',
+		'modules/models/*.js', 
+		'modules/services/*.js', 
+		'modules/controllers/*.js'
+	);
 
 pongular.module('nodejs').factory('app', function() {
   	var app = express();

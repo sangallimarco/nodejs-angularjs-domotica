@@ -1,7 +1,6 @@
 var pongular = require('pongular').pongular;
-var http = require('http'); //find a better way to inject it
 
-pongular.module('nodejs').service('WeatherService', function(WeatherModel) {
+pongular.module('nodejs').service('WeatherService', function($http, WeatherModel) {
 	var scope = this;
 
 	scope.data = {};
@@ -9,7 +8,7 @@ pongular.module('nodejs').service('WeatherService', function(WeatherModel) {
 
 	scope.getData =  function(postcode, callback) {
 		var scope = this;
-		http.get('http://www.myweather2.com/developer/forecast.ashx?uac=.frFFHX1sj&query=' + postcode + '&output=json', function(response){
+		$http.get('http://www.myweather2.com/developer/forecast.ashx?uac=.frFFHX1sj&query=' + postcode + '&output=json', function(response){
 			var str = '';
 
 			response.on('data', function (chunk) {
