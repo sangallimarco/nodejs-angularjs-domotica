@@ -14,9 +14,18 @@ pongular.module('libs', [])
 	return require('http');
 })
 
+.factory('$bodyParser', function() {
+	return require('body-parser');
+})
+
+.factory('$path', function() {
+	return require('path');
+})
+
+.factory('$compression', function() {
+	return require('compression');
+})
+
 .factory('$pongular', function() {
 	return pongular;
 });
-
-
-
