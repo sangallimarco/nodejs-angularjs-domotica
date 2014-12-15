@@ -6,8 +6,8 @@ pongular.module('libs', [])
 	return require('mongoose');
 })
 
-.factory('$express', function() {
-	return require('express'); 
+.factory('$expressnode', function() {
+	return require('express.io'); 
 })
 
 .factory('$http', function() {
@@ -24,6 +24,15 @@ pongular.module('libs', [])
 
 .factory('$compression', function() {
 	return require('compression');
+})
+
+.factory('$socket', function(app) {
+	var http = require('http').Server(app);
+	return require('socket.io')(http);
+})
+
+.factory('$q', function() {
+	return require('q');
 })
 
 .factory('$pongular', function() {

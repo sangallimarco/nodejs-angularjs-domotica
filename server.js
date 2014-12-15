@@ -10,17 +10,27 @@ pongular.module('nodejs', ['libs'])
 		'modules/controllers/*.js'
 )
 .factory('app',
-	function($express, $mongoose, $bodyParser, $compression, $path) {
-		var app = $express();
+	function($mongoose, $bodyParser, $expressnode, $path) {
+		
 		$mongoose.connect('mongodb://localhost/testapp');
 
-		app.use($compression());
+		//use express.io
+		var app = $expressnode().http().io();
+
+		app.use($expressnode.compress());
 		app.use($bodyParser.urlencoded({ extended: true }));
 		app.use($bodyParser.json());
 		app.set('view engine', 'ejs');
-		app.set('port', process.env.PORT || 3000);
-		app.use($express.static($path.join(__dirname, 'public')));
-		app.use($express.static($path.join(__dirname, 'bower_components')));
+		app.set('port', process.env.PORT || 5000);
+		app.use($expressnode.static($path.join(__dirname, 'public')));
+		app.use($expressnode.static($path.join(__dirname, 'bower_components')));
+
+		// socket io
+		app.io.route('ready', function(req) {
+			req.io.emit('new', {
+			    message: 'io event from an io route on the server'
+			})
+		})
 
 		return app;
 	}

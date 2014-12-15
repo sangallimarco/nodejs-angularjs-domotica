@@ -1,16 +1,14 @@
-application.controller('index', ['$scope', '$log', 'weatherService',
-	function($scope, $log, weatherService) {
+application.controller('index', ['$scope', '$log', 'weatherService', 'socketIoFactory',
+	function($scope, $log, weatherService, socketIoFactory) {
 		$scope.title = 'Loaded!';
 
 		$scope.data = {
 			humidity: 0,
 			temp: 0
 		};
-		
 		$scope.lastData = {
 
 		};
-
 		$scope.input = {
 			postcode: ''
 		};
@@ -32,6 +30,13 @@ application.controller('index', ['$scope', '$log', 'weatherService',
 			}
 		);
 
+		// https://github.com/btford/angular-socket-io
+		$scope.message = {};
+
+		//socket.io
+		socketIoFactory.on('new', function (obj) {
+			$scope.message = obj;
+		});
 
 	}
 ]);

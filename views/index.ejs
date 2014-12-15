@@ -14,14 +14,22 @@
 
 			<div>H: {{data.humidity}}, t: {{data.temp}}</div>
 			<div>H0: {{lastData.humidity}}, t0: {{lastData.temp}}</div>
+
+			<div>{{message}}</div>
 		</div>
 
 		
 	</body>
 	<script src="/angular/angular.min.js"></script>
 	<script src="/angular-resource/angular-resource.min.js"></script>
+	<!-- socket.io from node.js -->
+	<script src="/socket.io/socket.io.js"></script> 
+	<script src="/angular-socket-io/socket.min.js"></script>
 	
 	<script src="/angular/app.js"></script>
+
 	<script src="/angular/services/weatherService.js"></script>
+	<script src="/angular/services/socketIoFactory.js"></script>
+
 	<script src="/angular/controllers/index.js"></script>
 </html>
