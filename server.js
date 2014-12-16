@@ -22,8 +22,7 @@ pongular.module('nodejs', ['libs'])
 		app.use($bodyParser.json());
 		app.set('view engine', 'ejs');
 		app.set('port', process.env.PORT || 5000);
-		app.use($expressnode.static($path.join(__dirname, 'public')));
-		app.use($expressnode.static($path.join(__dirname, 'bower_components')));
+		app.use('/public/', $expressnode.static($path.join(__dirname, 'public')));
 
 		// socket io
 		app.io.route('ready', function(req) {

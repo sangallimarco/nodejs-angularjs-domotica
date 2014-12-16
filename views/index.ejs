@@ -1,7 +1,7 @@
 <html>
 	<head>
 		<title>Test</title>
-		<link rel='stylesheet' href='/css/app.css' />
+		<link rel='stylesheet' href='/public/css/app.css' />
 	</head>
 	<body ng-app="app">
 		<div>Test</div>
@@ -20,16 +20,18 @@
 
 		
 	</body>
-	<script src="/angular/angular.min.js"></script>
-	<script src="/angular-resource/angular-resource.min.js"></script>
+
 	<!-- socket.io from node.js -->
 	<script src="/socket.io/socket.io.js"></script> 
-	<script src="/angular-socket-io/socket.min.js"></script>
 	
-	<script src="/angular/app.js"></script>
+	<!-- fileblock:js dev -->
+	<script src="public/bower_components/angular/angular.js"></script>
+	<script src="public/bower_components/angular-resource/angular-resource.js"></script>
+	<script src="public/bower_components/angular-socket-io/socket.js"></script>
+	<script src="public/angular/app.js"></script>
+	<script src="public/angular/services/socketIoFactory.js"></script>
+	<script src="public/angular/services/weatherService.js"></script>
+	<script src="public/angular/controllers/index.js"></script>
+	<!-- endfileblock -->
 
-	<script src="/angular/services/weatherService.js"></script>
-	<script src="/angular/services/socketIoFactory.js"></script>
-
-	<script src="/angular/controllers/index.js"></script>
 </html>
