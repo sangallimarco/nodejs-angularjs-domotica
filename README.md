@@ -25,3 +25,6 @@ npm -g install supervisior
 
 supervisor server.js
 
+Dev Environment
+==============
+NODE_ENV='dev' npm start

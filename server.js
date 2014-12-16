@@ -21,6 +21,7 @@ pongular.module('nodejs', ['libs'])
 		app.use($bodyParser.urlencoded({ extended: true }));
 		app.use($bodyParser.json());
 		app.set('view engine', 'ejs');
+		app.set('env', process.argv[2] ? 'dev' : 'prod')
 		app.set('port', process.env.PORT || 5000);
 		app.use('/public/', $expressnode.static($path.join(__dirname, 'public')));
 

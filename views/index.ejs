@@ -3,6 +3,7 @@
 		<title>Test</title>
 		<link rel='stylesheet' href='/public/css/app.css' />
 	</head>
+
 	<body ng-app="app">
 		<div>Test</div>
 		<div ng-controller="index">
@@ -23,18 +24,21 @@
 
 	<!-- socket.io from node.js -->
 	<script src="/socket.io/socket.io.js"></script> 
+
+	<% if (process.env.NODE_ENV !== 'dev') { %>
+		<!-- fileblock:js dist -->
+		<script src="public/dist/app.min.js"></script>
+		<!-- endfileblock -->
+	<% } else { %>
+		<!-- fileblock:js dev -->
+		<script src="public/bower_components/angular/angular.js"></script>
+		<script src="public/bower_components/angular-resource/angular-resource.js"></script>
+		<script src="public/bower_components/angular-socket-io/socket.js"></script>
+		<script src="public/angular/app.js"></script>
+		<script src="public/angular/services/socketIoFactory.js"></script>
+		<script src="public/angular/services/weatherService.js"></script>
+		<script src="public/angular/controllers/index.js"></script>
+		<!-- endfileblock -->
+	<% } %>
 	
-	<!-- fileblock:js dev -->
-	<script src="public/bower_components/angular/angular.js"></script>
-	<script src="public/bower_components/angular-resource/angular-resource.js"></script>
-	<script src="public/bower_components/angular-socket-io/socket.js"></script>
-	<script src="public/angular/app.js"></script>
-	<script src="public/angular/services/socketIoFactory.js"></script>
-	<script src="public/angular/services/weatherService.js"></script>
-	<script src="public/angular/controllers/index.js"></script>
-	<!-- endfileblock -->
-
-	<!-- fileblock:js dist -->
-	<!-- endfileblock -->
-
 </html>

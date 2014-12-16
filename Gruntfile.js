@@ -55,14 +55,25 @@ module.exports = function (grunt) {
 					{
 						src: '<%= config.footer %>',
 						blocks: {
-							'dev': {
+							dev: {
 								src: fileList
 							}
 						}
 					}
 				]
 			},
-			
+			dist: {
+				files: [
+					{
+						src: '<%= config.footer %>',
+						blocks: {
+							dist: {
+								src: '<%= config.dist %>/*.js'
+							}
+						}
+					}
+				]
+			},
 		},
 
 		/**
@@ -102,14 +113,14 @@ module.exports = function (grunt) {
 	// tasks
 	grunt.registerTask('dev', [
 		'jshint',
-		'fileblocks'
+		'fileblocks:dev'
 	]);
 
 	grunt.registerTask('dist', [
 		'jshint',
 		'concat:core',
 		'uglify',
-		// 'fileblocks'
+		'fileblocks:dist'
 	]);
 
 };
