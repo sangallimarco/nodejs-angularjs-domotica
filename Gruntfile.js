@@ -4,16 +4,28 @@ module.exports = function (grunt) {
 	require('time-grunt')(grunt);
 	require('load-grunt-tasks')(grunt);
 
+
+	var fileList = [
+					'public/bower_components/angular/angular.js',
+					'public/bower_components/angular-resource/angular-resource.js',
+					'public/bower_components/angular-socket-io/socket.js',
+					'public/angular/services/*.js',
+					'public/angular/controllers/*.js',
+					'public/angular/app.js'
+				];
+
 	// Project configuration.
 	grunt.initConfig({
 
 		config: {
 			src: 'public/angular',
-			assets: '',
-			bowerjs: 'public/bower_components',
 			footer: 'views/index.ejs',
+			dist: 'public/dist'
 		},
 
+		/**
+		 * JsHint
+		 */
 		jshint: {
 			options: {
 				curly: true,
@@ -31,6 +43,9 @@ module.exports = function (grunt) {
 			]
 		},
 
+		/**
+		 * FileBlocks
+		 */
 		fileblocks: {
 			options: {
 				rebuild: true
@@ -41,17 +56,7 @@ module.exports = function (grunt) {
 						src: '<%= config.footer %>',
 						blocks: {
 							'dev': {
-								src: [
-									'<%= config.bowerjs %>/angular/angular.js',
-									'<%= config.bowerjs %>/angular-resource/angular-resource.js',
-									'/socket.io/socket.io.js', //this is a virtual path
-									'<%= config.bowerjs %>/angular-socket-io/socket.js',
-
-									'<%= config.src %>/app.js',
-									'<%= config.src %>/services/*.js',
-									'<%= config.src %>/controllers/*.js'
-								],
-								//prefix: ''
+								src: fileList
 							}
 						}
 					}
@@ -60,13 +65,51 @@ module.exports = function (grunt) {
 			
 		},
 
+		/**
+		 * Concat
+		 */
+		concat: {
+			options: {
+				separator: ''
+			},
+			core: {
+				src: fileList,
+				dest: '/tmp/app.js'
+			},
+		},
+
+		/**
+		 * Uglify Js
+		 */
+		uglify: {
+			options: {
+				sourceMap: false,
+				preserveComments: false
+			},
+			files: {
+				expand: true,
+				//flatten: true,
+				cwd: '/tmp',
+				src: ['app.js'],
+				dest: '<%= config.dist %>',
+				ext: '.min.js'
+			}
+		},
+
 
 	});
 
 	// tasks
-	grunt.registerTask('dev-js', [
+	grunt.registerTask('dev', [
 		'jshint',
 		'fileblocks'
+	]);
+
+	grunt.registerTask('dist', [
+		'jshint',
+		'concat:core',
+		'uglify',
+		// 'fileblocks'
 	]);
 
 };
