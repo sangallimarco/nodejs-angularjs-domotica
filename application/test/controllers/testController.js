@@ -1,6 +1,7 @@
 var pongular = require('pongular').pongular;
 
-pongular.module('nodejs').factory('TestCtrl', 
+pongular.module('app.test')
+.factory('TestCtrl', 
 	function(TestService) {
 		return {
 			get: function(req, res){

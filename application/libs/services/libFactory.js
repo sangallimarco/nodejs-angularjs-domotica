@@ -1,6 +1,6 @@
 var pongular = require('pongular').pongular;
 
-pongular.module('libs', [])
+pongular.module('app.libs')
 
 .factory('$mongoose', function() {
 	return require('mongoose');

@@ -1,6 +1,7 @@
 var pongular = require('pongular').pongular;
 
-pongular.module('nodejs').factory('WeatherCtrl', 
+pongular.module('app.weather')
+.factory('WeatherCtrl', 
 	function(WeatherService) {
 		return {
 			index: function(req, res){

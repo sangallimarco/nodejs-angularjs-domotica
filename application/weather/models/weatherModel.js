@@ -1,6 +1,7 @@
 var pongular = require('pongular').pongular;
 
-pongular.module('nodejs').factory('WeatherModel', 
+pongular.module('app.weather')
+.factory('WeatherModel', 
 	function($mongoose) {
 		var schema =  new $mongoose.Schema({
 			humidity: Number,

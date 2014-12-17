@@ -1,6 +1,7 @@
 var pongular = require('pongular').pongular;
 
-pongular.module('nodejs').service('TestService', 
+pongular.module('app.test')
+.service('TestService', 
 	function($http, TestModel, $q) {
 		var scope = this;
 

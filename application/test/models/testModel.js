@@ -1,6 +1,7 @@
 var pongular = require('pongular').pongular;
 
-pongular.module('nodejs').factory('TestModel', 
+pongular.module('app.test')
+.factory('TestModel', 
 	function($mongoose) {
 		var schema =  new $mongoose.Schema({
 			name: String,

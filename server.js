@@ -2,12 +2,15 @@
 // =============================================================================
 var pongular = require('pongular').pongular;
 
-pongular.module('nodejs', ['libs'])
+pongular.module('app', [
+	'app.libs',
+	'app.home',
+	'app.test',
+	'app.weather'
+])
 .uses(
-		'modules/libs/*.js',
-		'modules/models/*.js', 
-		'modules/services/*.js', 
-		'modules/controllers/*.js'
+		'application/*/config.js',
+		'application/*/*/*.js'
 )
 .factory('app',
 	function($mongoose, $bodyParser, $expressnode, $path) {
@@ -52,5 +55,8 @@ pongular.module('nodejs', ['libs'])
 	}
 );
 
-pongular.injector(['nodejs']);
+// init app
+pongular.injector([
+	'app'
+]);
 

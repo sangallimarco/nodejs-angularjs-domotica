@@ -1,6 +1,7 @@
 var pongular = require('pongular').pongular;
 
-pongular.module('nodejs').service('WeatherService', 
+pongular.module('app.weather')
+.service('WeatherService', 
 	function($http, WeatherModel) {
 		var scope = this;
 

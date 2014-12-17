@@ -1,6 +1,7 @@
 var pongular = require('pongular').pongular;
 
-pongular.module('nodejs').factory('IndexCtrl', 
+pongular.module('app.home')
+.factory('IndexCtrl', 
 	function() {
 		return {
 			index: function(req, res){
