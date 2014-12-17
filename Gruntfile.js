@@ -9,9 +9,10 @@ module.exports = function (grunt) {
 					'public/bower_components/angular/angular.js',
 					'public/bower_components/angular-resource/angular-resource.js',
 					'public/bower_components/angular-socket-io/socket.js',
-					'public/angular/app.js',
-					'public/angular/services/*.js',
-					'public/angular/controllers/*.js'
+
+					'public/src/*/module.js',
+					'public/src/*/*/*.js',
+					'public/src/app.js'
 				];
 
 	// Project configuration.
