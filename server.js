@@ -16,11 +16,10 @@ pongular.module('nodejs', ['libs'])
 
 		//use express.io
 		var app = $expressnode().http().io();
-
-		app.use($expressnode.compress());
 		app.use($bodyParser.urlencoded({ extended: true }));
 		app.use($bodyParser.json());
 		app.set('view engine', 'ejs');
+		app.use($expressnode.compress({threshold : 10}));
 		app.set('port', process.env.PORT || 5000);
 		app.use('/public/', $expressnode.static($path.join(__dirname, 'public')));
 
