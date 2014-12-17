@@ -5,21 +5,8 @@
 	</head>
 
 	<body ng-app="app">
-		<div>Test</div>
-		<div ng-controller="index">
-			{{title}}
-			
-			<input type="text" name="" value="" ng-model="input.postcode">
-			
-			<button ng-click="getWeather()">GET</button>
-
-			<div>H: {{data.humidity}}, t: {{data.temp}}</div>
-			<div>H0: {{lastData.humidity}}, t0: {{lastData.temp}}</div>
-
-			<div>{{message}}</div>
-		</div>
-
-		
+		<div>Navbar here</div>
+		<div ng-view></div>	
 	</body>
 
 	<!-- socket.io from node.js -->
@@ -32,15 +19,17 @@
 	<% } else { %>
 		<!-- fileblock:js dev -->
 		<script src="public/bower_components/angular/angular.js"></script>
+		<script src="public/bower_components/angular-route/angular-route.js"></script>
 		<script src="public/bower_components/angular-resource/angular-resource.js"></script>
 		<script src="public/bower_components/angular-socket-io/socket.js"></script>
-		<script src="public/src/home/module.js"></script>
-		<script src="public/src/socket/module.js"></script>
-		<script src="public/src/weather/module.js"></script>
-		<script src="public/src/home/controllers/index.js"></script>
-		<script src="public/src/socket/services/socket.js"></script>
-		<script src="public/src/weather/services/api.js"></script>
-		<script src="public/src/weather/services/weather.js"></script>
+		<script src="public/src/home/config.js"></script>
+		<script src="public/src/socket/config.js"></script>
+		<script src="public/src/weather/config.js"></script>
+		<script src="public/src/home/controllers/homeController.js"></script>
+		<script src="public/src/socket/services/socketIoFactory.js"></script>
+		<script src="public/src/weather/controllers/weatherController.js"></script>
+		<script src="public/src/weather/services/weatherApi.js"></script>
+		<script src="public/src/weather/services/weatherService.js"></script>
 		<script src="public/src/app.js"></script>
 		<!-- endfileblock -->
 	<% } %>

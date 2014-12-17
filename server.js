@@ -22,6 +22,7 @@ pongular.module('nodejs', ['libs'])
 		app.use($expressnode.compress({threshold : 10}));
 		app.set('port', process.env.PORT || 5000);
 		app.use('/public/', $expressnode.static($path.join(__dirname, 'public')));
+		app.use('/partials/', $expressnode.static($path.join(__dirname, 'views/partials')));
 
 		// socket io
 		app.io.route('ready', function(req) {

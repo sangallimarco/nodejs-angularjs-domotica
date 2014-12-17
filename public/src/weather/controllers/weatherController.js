@@ -1,5 +1,5 @@
-angular.module('app.home')
-.controller('index', ['$scope', '$log', 'weatherService', 'socketIoFactory',
+angular.module('app.weather')
+.controller('weatherController', ['$scope', '$log', 'weatherService', 'socketIoFactory',
 	function($scope, $log, weatherService, socketIoFactory) {
 		$scope.title = 'Loaded!';
 
