@@ -51,16 +51,17 @@
 
 <!-- list -->
 <div class="row">
-	<div class="col-xs-12" ng-repeat="item in items">
-		<div class="col-xs-4">
-			<div>{{item.name}}</div>
-		</div>
-		<div class="col-xs-4">
-			<div>{{item.surname}}</div>
-		</div>
-		<div class="col-xs-4">
-			<div>{{item.age}}</div>
-		</div>
-	</div>
+	<table class="table table-bordered">
+		<tr>
+			<th>Name</th>
+			<th>Surname</th>
+			<th>Age</th>
+		</tr>
+		<tr ng-repeat="item in items">
+			<td>{{item.name}}</td>
+			<td>{{item.surname}}</td>
+			<td>{{item.age}}</td>
+		</tr>
+	</table>
 </div>
 
