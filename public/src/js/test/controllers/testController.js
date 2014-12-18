@@ -17,6 +17,10 @@ angular.module('app.test')
 		 * Add new item
 		 */
 		$scope.addItem = function(){
+			if (!$scope.form.$valid) {
+				return false;
+			}
+
 			testService.add($scope.data)
 			.then(
 				function(res) {

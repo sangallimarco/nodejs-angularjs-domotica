@@ -1,15 +1,64 @@
-<div>
+<!-- add item -->
+<div class="row">
+
 	<form name="form">
-		<input name="name" ng-model="data.name"/>
-		<input name="surname" ng-model="data.surname"/>
-		<input name="age" ng-model="data.age"/>
+		<form-group label="Name">
+			<input 
+				class="form-control" 
+				type="text" 
+				id="name"				
+				name="name" 
+				ng-model="data.name"
+				required
+				ng-minlength="3"
+			/>
+		</form-group>
+		<form-group label="Surname">
+			<input 
+				class="form-control" 
+				type="text"
+				id="surname"
+				name="surname" 
+				ng-model="data.surname"
+				required
+				ng-minlength="3"
+			/>
+		</form-group>
+		<form-group label="Age">
+			<input 
+				class="form-control" 
+				type="number"
+				id="age"
+				name="age" 
+				ng-model="data.age"
+				required
+			/>
+		</form-group>
 	</form>
-	<button ng-click="addItem()">ADD</button>
+
+	<button 
+		class="btn btn-primary" 
+		ng-click="addItem()">ADD</button>
+	
 </div>
 
-<div ng-repeat="item in items">
-	<div>{{item.name}} , {{item.surname}}, {{item.age}}</div>
+<!-- websocket message -->
+<div class="row">
+	<div class="alert alert-danger">{{message}}</div>
 </div>
 
+<!-- list -->
+<div class="row">
+	<div class="col-xs-12" ng-repeat="item in items">
+		<div class="col-xs-4">
+			<div>{{item.name}}</div>
+		</div>
+		<div class="col-xs-4">
+			<div>{{item.surname}}</div>
+		</div>
+		<div class="col-xs-4">
+			<div>{{item.age}}</div>
+		</div>
+	</div>
+</div>
 
-<div>{{message}}</div>

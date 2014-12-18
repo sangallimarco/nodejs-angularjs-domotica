@@ -1,6 +1,7 @@
 angular.module('app', 
 	[
 		'ngRoute',
+		'app.bootstrap',
 		'app.home',
 		'app.test',
 		'app.weather'
