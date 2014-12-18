@@ -1,9 +1,29 @@
-<input type="text" name="" value="" ng-model="input.postcode">
-			
-<button ng-click="getWeather()">GET</button>
+<!-- add item -->
+<div class="row">
+	<form name="form">
+		<form-group class="col-xs-4" label="Name">
+			<input 
+				class="form-control" 
+				type="text" 
+				id="postcode"				
+				name="postcode" 
+				ng-model="input.postcode"
+				required
+				ng-minlength="4"
+			/>
+		</form-group>
+	</form>
 
-<div>H: {{data.humidity}}, t: {{data.temp}}</div>
-<div>H0: {{lastData.humidity}}, t0: {{lastData.temp}}</div>
+	<div class="col-xs-2">
+		<button class="btn btn-primary" ng-click="getWeather()">GET</button>
+	</div>
+</div>
 
+<div class="row">
+	<div class="alert alert-success">H: {{data.humidity}}, t: {{data.temp}}</div>
+</div>
+<div class="row">
+	<div class="alert alert-danger">H0: {{lastData.humidity}}, t0: {{lastData.temp}}</div>
+</div>
 
 <a href="/#/home">load home</a>

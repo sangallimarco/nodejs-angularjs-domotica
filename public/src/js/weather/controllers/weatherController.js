@@ -15,13 +15,15 @@ angular.module('app.weather')
 		};
 
 		$scope.getWeather = function(){
-			weatherService.getWeather($scope.input.postcode)
-			.then(
-				function(res) {
-					//replace data object
-					$scope.data = res;
-				}
-			);
+			if ($scope.form.$valid) {
+				weatherService.getWeather($scope.input.postcode)
+				.then(
+					function(res) {
+						//replace data object
+						$scope.data = res;
+					}
+				);
+			}
 		};
 
 		weatherService.getLast()
