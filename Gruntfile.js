@@ -11,16 +11,18 @@ module.exports = function (grunt) {
 					'public/bower_components/angular-resource/angular-resource.js',
 					'public/bower_components/angular-socket-io/socket.js',
 
-					'public/src/*/config.js',
-					'public/src/*/*/*.js',
-					'public/src/app.js'
+					'public/src/js/*/config.js',
+					'public/src/js/*/*/*.js',
+					'public/src/js/app.js'
 				];
 
 	// Project configuration.
 	grunt.initConfig({
 
 		config: {
-			src: 'public/angular',
+			src: 'public/src/js',
+			css: 'public/src/css',
+			less: 'public/src/less',
 			footer: 'views/index.ejs',
 			dist: 'public/dist'
 		},
@@ -55,6 +57,9 @@ module.exports = function (grunt) {
 			dev: {
 				files: [
 					{
+						options: {
+							prefix: '/' 
+						},
 						src: '<%= config.footer %>',
 						blocks: {
 							dev: {
@@ -67,6 +72,9 @@ module.exports = function (grunt) {
 			dist: {
 				files: [
 					{
+						options: {
+							prefix: '/' 
+						},
 						src: '<%= config.footer %>',
 						blocks: {
 							dist: {
@@ -109,12 +117,38 @@ module.exports = function (grunt) {
 			}
 		},
 
+		/**
+		 * Less
+		 */
+		less: {
+			dist: {
+				options: {
+					cleancss: true,
+					compress: true,
+					sourceMap: false
+				},
+				files: {
+					"<%= config.dist %>/app.min.css": "<%= config.less %>/app.less",
+				}
+			},
+			dev: {
+				options: {
+					compress: false,
+					sourceMap: false
+				},
+				files: {
+					"<%= config.css %>/app.css": "<%= config.less %>/app.less"
+				}
+			}
+		},
+
 
 	});
 
 	// tasks
 	grunt.registerTask('dev', [
 		'jshint',
+		'less:dev',
 		'fileblocks:dev'
 	]);
 
@@ -122,6 +156,7 @@ module.exports = function (grunt) {
 		'jshint',
 		'concat:core',
 		'uglify',
+		'less:dist',
 		'fileblocks:dist'
 	]);
 
