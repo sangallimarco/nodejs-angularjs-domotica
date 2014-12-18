@@ -2,7 +2,7 @@
 <div class="row">
 
 	<form name="form">
-		<form-group label="Name">
+		<form-group class="col-xs-4" label="Name">
 			<input 
 				class="form-control" 
 				type="text" 
@@ -13,7 +13,7 @@
 				ng-minlength="3"
 			/>
 		</form-group>
-		<form-group label="Surname">
+		<form-group class="col-xs-4" label="Surname">
 			<input 
 				class="form-control" 
 				type="text"
@@ -24,7 +24,7 @@
 				ng-minlength="3"
 			/>
 		</form-group>
-		<form-group label="Age">
+		<form-group class="col-xs-2" label="Age">
 			<input 
 				class="form-control" 
 				type="number"
@@ -36,9 +36,11 @@
 		</form-group>
 	</form>
 
-	<button 
-		class="btn btn-primary" 
-		ng-click="addItem()">ADD</button>
+	<div class="col-xs-2">
+		<button 
+			class="btn btn-primary" 
+			ng-click="addItem()">ADD</button>
+	</div>
 	
 </div>
 

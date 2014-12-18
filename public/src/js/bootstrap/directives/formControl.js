@@ -2,7 +2,7 @@ angular.module('app.bootstrap')
 .directive('formControl', ['$timeout', 
 	function ($timeout) {
 		return {
-			restrict: 'C',
+			restrict: 'AC',
 			scope: {
 				model: '=ngModel'
 			},
