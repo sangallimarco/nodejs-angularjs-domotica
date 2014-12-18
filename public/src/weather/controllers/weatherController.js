@@ -1,6 +1,6 @@
 angular.module('app.weather')
-.controller('weatherController', ['$scope', '$log', 'weatherService', 'socketIoFactory',
-	function($scope, $log, weatherService, socketIoFactory) {
+.controller('weatherController', ['$scope', '$log', 'weatherService',
+	function($scope, $log, weatherService) {
 		$scope.title = 'Loaded!';
 
 		$scope.data = {
@@ -30,14 +30,6 @@ angular.module('app.weather')
 				$scope.lastData = res;
 			}
 		);
-
-		// https://github.com/btford/angular-socket-io
-		$scope.message = {};
-
-		//socket.io
-		socketIoFactory.on('new', function (obj) {
-			$scope.message = obj;
-		});
 
 	}
 ]);

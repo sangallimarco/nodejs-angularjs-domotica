@@ -1,0 +1,15 @@
+<div>
+	<form name="form">
+		<input name="name" ng-model="data.name"/>
+		<input name="surname" ng-model="data.surname"/>
+		<input name="age" ng-model="data.age"/>
+	</form>
+	<button ng-click="addItem()">ADD</button>
+</div>
+
+<div ng-repeat="item in items">
+	<div>{{item.name}} , {{item.surname}}, {{item.age}}</div>
+</div>
+
+
+<div>{{message}}</div>

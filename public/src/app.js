@@ -2,6 +2,7 @@ angular.module('app',
 	[
 		'ngRoute',
 		'app.home',
+		'app.test',
 		'app.weather'
 	]
 )
