@@ -10,6 +10,10 @@ pongular.module('app.libs')
 	return require('express.io'); 
 })
 
+.factory('$express', function() {
+	return require('express'); 
+})
+
 .factory('$http', function() {
 	return require('http');
 })

@@ -38,15 +38,15 @@ pongular.module('app', [
 	}
 )
 .run(
-	function(app, IndexCtrl, WeatherCtrl, TestCtrl) {
+	function(app, HomeRouter, TestRouter, WeatherRouter) {
 
-		app.get('/', IndexCtrl.index);
+		/**
+		 * Routes
+		 */
+		app.use(HomeRouter);
+		app.use(TestRouter);
+		app.use(WeatherRouter);
 		
-		app.get('/api/weather/:postcode?', WeatherCtrl.index);
-
-		app.get('/api/test', TestCtrl.get);
-		app.post('/api/test', TestCtrl.post);
-
 		app.listen(app.get('port'), 
 			function(){
 				console.log("Express server listening on port " + app.get('port'));
