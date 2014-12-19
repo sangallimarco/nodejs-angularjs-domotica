@@ -1,17 +1,22 @@
 angular.module('app', 
 	[
-		'ngRoute',
+		'ui.router',
 		'app.bootstrap',
 		'app.home',
 		'app.test',
 		'app.weather'
 	]
 )
-.config(['$routeProvider',
-	function ($routeProvider) {
-		$routeProvider
-		.otherwise({
-			redirectTo: '/home'
+.config(['$stateProvider', '$urlRouterProvider',
+	function ($stateProvider, $urlRouterProvider) {
+
+		$urlRouterProvider.otherwise("/");
+
+		$stateProvider
+		.state('app', {
+			url:'/',
+			templateUrl: 'partials/app/index.html',
 		});
+
 	}
 ]);

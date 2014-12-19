@@ -4,10 +4,12 @@ angular.module('app.test',
 		'app.socket'
 	]
 )
-.config(['$routeProvider',
-	function ($routeProvider) {
-		$routeProvider
-		.when('/test', {
+.config(['$stateProvider',
+	function ($stateProvider) {
+
+		$stateProvider
+		.state('app.test', {
+			url:'/test',
 			templateUrl: 'partials/test/index.html',
 			controller: 'testController'
 		});

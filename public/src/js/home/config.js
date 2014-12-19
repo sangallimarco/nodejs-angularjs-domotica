@@ -1,12 +1,13 @@
 angular.module('app.home', 
 	[
-		'ngRoute'
+		'ui.router'
 	]
 )
-.config(['$routeProvider',
-	function ($routeProvider) {
-		$routeProvider
-		.when('/home', {
+.config(['$stateProvider',
+	function ($stateProvider) {
+		$stateProvider
+		.state('app.home', {
+			url:'/home',
 			templateUrl: 'partials/home/index.html',
 			controller: 'homeController'
 		});

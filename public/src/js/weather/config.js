@@ -1,13 +1,15 @@
 angular.module('app.weather', 
 	[
 		'ngResource',
+		'ui.router',
 		'app.socket'
 	]
 )
-.config(['$routeProvider',
-	function ($routeProvider) {
-		$routeProvider
-		.when('/weather', {
+.config(['$stateProvider',
+	function ($stateProvider) {
+		$stateProvider
+		.state('app.weather', {
+			url:'/weather',
 			templateUrl: 'partials/weather/index.html',
 			controller: 'weatherController'
 		});

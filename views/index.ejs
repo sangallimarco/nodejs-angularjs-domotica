@@ -11,8 +11,8 @@
 	</head>
 
 	<body ng-app="app">
-		<div>Navbar here</div>
-		<div class="container" ng-view></div>	
+		<!-- state app.x -->
+		<div ui-view></div>	
 	</body>
 
 	<!-- socket.io from node.js -->
@@ -25,7 +25,7 @@
 	<% } else { %>
 		<!-- fileblock:js dev -->
 		<script src="/public/bower_components/angular/angular.js"></script>
-		<script src="/public/bower_components/angular-route/angular-route.js"></script>
+		<script src="/public/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
 		<script src="/public/bower_components/angular-resource/angular-resource.js"></script>
 		<script src="/public/bower_components/angular-socket-io/socket.js"></script>
 		<script src="/public/src/js/bootstrap/config.js"></script>
