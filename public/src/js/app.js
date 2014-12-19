@@ -10,11 +10,11 @@ angular.module('app',
 .config(['$stateProvider', '$urlRouterProvider',
 	function ($stateProvider, $urlRouterProvider) {
 
-		$urlRouterProvider.otherwise("/");
+		$urlRouterProvider.otherwise("/app");
 
 		$stateProvider
 		.state('app', {
-			url:'/',
+			url:'/app',
 			templateUrl: 'partials/app/index.html',
 		});
 
