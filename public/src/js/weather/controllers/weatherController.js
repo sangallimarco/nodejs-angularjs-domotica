@@ -1,6 +1,6 @@
 angular.module('app.weather')
-.controller('weatherController', ['$scope', '$log', 'weatherService',
-	function($scope, $log, weatherService) {
+.controller('weatherController', ['$scope', '$log', 'weatherService', '$stateParams',
+	function($scope, $log, weatherService, $stateParams) {
 		$scope.title = 'Loaded!';
 
 		$scope.data = {
@@ -11,7 +11,7 @@ angular.module('app.weather')
 
 		};
 		$scope.input = {
-			postcode: ''
+			postcode: $stateParams.postcode || ''
 		};
 
 		$scope.getWeather = function(){
@@ -30,6 +30,11 @@ angular.module('app.weather')
 		.then(
 			function(res) {
 				$scope.lastData = res;
+
+				// search is postcode present #/app/weather/w45eq
+				if ($scope.input !== '') {
+					$scope.getWeather();
+				} 
 			}
 		);
 

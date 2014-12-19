@@ -9,7 +9,7 @@ angular.module('app.weather',
 	function ($stateProvider) {
 		$stateProvider
 		.state('app.weather', {
-			url:'/weather',
+			url:'/weather/:postcode',
 			templateUrl: 'partials/weather/index.html',
 			controller: 'weatherController'
 		});
