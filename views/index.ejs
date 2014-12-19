@@ -1,8 +1,9 @@
 <html>
 	<head>
 		<title>Test</title>
-
-		<% if (process.env.NODE_ENV !== 'dev') { %>
+ 		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+ 		
+ 		<% if (process.env.NODE_ENV !== 'dev') { %>
 			<link rel='stylesheet' href='/public/dist/app.min.css' />
 		<% } else { %>
 			<link rel='stylesheet' href='/public/src/css/app.css' />
