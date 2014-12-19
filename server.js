@@ -41,7 +41,7 @@ pongular.module('app', [
 	function(app, HomeRouter, TestRouter, WeatherRouter) {
 
 		/**
-		 * Routes
+		 * Route middlewares
 		 */
 		app.use(HomeRouter);
 		app.use(TestRouter);
