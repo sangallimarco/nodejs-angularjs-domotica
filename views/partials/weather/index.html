@@ -22,6 +22,19 @@
 <div class="row">
 	<div class="alert alert-success">H: {{data.humidity}}, t: {{data.temp}}</div>
 </div>
+
+<!-- list -->
 <div class="row">
-	<div class="alert alert-danger">H0: {{lastData.humidity}}, t0: {{lastData.temp}}</div>
+	<table class="table table-bordered">
+		<tr>
+			<th>Log</th>
+			<th>Hum</th>
+			<th>Temp</th>
+		</tr>
+		<tr ng-repeat="item in items">
+			<td>{{item.created}}</td>
+			<td>{{item.humidity}}</td>
+			<td>{{item.temp}}</td>
+		</tr>
+	</table>
 </div>

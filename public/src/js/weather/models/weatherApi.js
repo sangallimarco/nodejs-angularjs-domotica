@@ -4,15 +4,10 @@ angular.module('app.weather')
 		return $resource(
 			'/api/weather/:postcode',
 			{
-				postcode: null
+				postcode: '@postcode'
 			},
 			{
 				getCurrent: {
-					method: 'GET',
-					params: {
-					}
-				},
-				getLast: {
 					method: 'GET',
 					params: {
 					}

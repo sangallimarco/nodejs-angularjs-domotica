@@ -2,13 +2,20 @@ var pongular = require('pongular').pongular;
 
 pongular.module('app.weather')
 .service('WeatherService', 
-	function($http, WeatherModel) {
+	function($http, WeatherModel, $q) {
 		var scope = this;
 
 		scope.data = {};
 
-		scope.getData =  function(postcode, callback) {
-			var scope = this;
+		/**
+		 * Get Data from API
+		 * @param  String postcode
+		 * @return $q
+		 */
+		scope.getData =  function(postcode) {
+			var scope = this,
+				deferred = $q.defer();
+			
 			$http.get('http://www.myweather2.com/developer/forecast.ashx?uac=.frFFHX1sj&query=' + postcode + '&output=json', function(response){
 				var str = '';
 
@@ -18,12 +25,18 @@ pongular.module('app.weather')
 
 				response.on('end', function () {
 					var data = scope.setData(str);
-					callback(data);
+					deferred.resolve(data);
 				});
 			})
 			.end();
+
+			return deferred.promise;
 		};
 		
+		/**
+		 * Save to db
+		 * @param Object d
+		 */
 		scope.setData = function(d) {
 			var temp = JSON.parse(d),
 				data = {
@@ -35,45 +48,41 @@ pongular.module('app.weather')
 			if (temp.weather) {
 				var current = temp.weather.curren_weather[0];
 
-				data.humidity = current.humidity;
-				data.temp = current.temp;
-				
-				var w = new WeatherModel(data); 
-				w.save(function(err) {
-					// no actions lazy insert
-				});
+				data = {
+					humidity: current.humidity,
+					temp: current.temp,
+					created: new Date()
+				};
 
+				// save to mongo
+				WeatherModel.create(data,
+					function(err){
+						if (err) {
+							console.log(err);
+						}
+					}
+				); 
 				return data;
 			}
 
 			return {};
 		};
 		
-		scope.getLast = function(callback){
-			WeatherModel
-				.findOne()
-				.sort({ field: 'asc', _id: -1 })
-				.limit(1)
-				.find(
-					function(err, entity){
-						if (err)
-							res.send(err);
-						callback(
-							scope.formatData(entity[0]) //format data
-						);
-					}
-				);
-		};
+		/**
+		 * Get all
+		 * @return {Q} [promise]
+		 */
+		scope.getAll = function(limit){
+			// set a default limit if undefined
+			limit = limit || 5;
 
-		scope.formatData = function(data) {
-			if (data instanceof Object) {
-				return {
-					humidity: data.humidity,
-					temp: data.temp
-				};
-			} else {
-				return {};
-			}
+			var promise = WeatherModel
+				.find()
+				.sort({ created: -1})
+				.limit(limit)
+				.exec();
+
+			return promise;
 		};
 
 	}

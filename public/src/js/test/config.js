@@ -1,6 +1,7 @@
 angular.module('app.test', 
 	[
 		'ngResource',
+		'ui.router',
 		'app.socket'
 	]
 )

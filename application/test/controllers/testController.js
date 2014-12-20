@@ -24,7 +24,7 @@ pongular.module('app.test')
 				.then(
 					function(ret) {
 						//Socket.io send immediately
-						req.io.emit('new', doc);
+						req.io.emit('test.new', doc);
 						// return object
 						res.status(200).json(doc);
 					},

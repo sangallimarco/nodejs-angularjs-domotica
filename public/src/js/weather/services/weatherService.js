@@ -7,19 +7,17 @@ angular.module('app.weather')
 			.$promise
 			.then(
 				function (res) {
-					$log.info(res);
 					return res;
 				}
 			);
 			return promise;
 		};
 
-		this.getLast = function(postcode) {
-			var promise = weatherApi.getLast()
+		this.getAll = function(limit) {
+			var promise = weatherApi.query({limit:10})
 			.$promise
 			.then(
 				function (res) {
-					$log.info(res);
 					return res;
 				}
 			);

@@ -1,15 +1,13 @@
 angular.module('app.weather')
-.controller('weatherController', ['$scope', '$log', 'weatherService', '$stateParams',
-	function($scope, $log, weatherService, $stateParams) {
+.controller('weatherController', ['$scope', '$log', 'weatherService', '$stateParams', 'socketIoFactory',
+	function($scope, $log, weatherService, $stateParams, socketIoFactory) {
 		$scope.title = 'Loaded!';
 
 		$scope.data = {
 			humidity: 0,
 			temp: 0
 		};
-		$scope.lastData = {
-
-		};
+		$scope.items = [];
 		$scope.input = {
 			postcode: $stateParams.postcode || ''
 		};
@@ -26,17 +24,23 @@ angular.module('app.weather')
 			}
 		};
 
-		weatherService.getLast()
+		weatherService.getAll()
 		.then(
 			function(res) {
-				$scope.lastData = res;
+				$scope.items = res;
 
-				// search is postcode present #/app/weather/w45eq
+				// search if postcode #/app/weather/w45eq
 				if ($scope.input !== '') {
 					$scope.getWeather();
 				} 
 			}
 		);
+
+		//socket.io
+		socketIoFactory.on('weather.new', function (obj) {
+			// prepend to list
+			$scope.items.unshift(obj);
+		});
 
 	}
 ]);

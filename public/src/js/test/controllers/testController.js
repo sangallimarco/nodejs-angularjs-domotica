@@ -51,7 +51,7 @@ angular.module('app.test')
 		$scope.message = {};
 
 		//socket.io
-		socketIoFactory.on('new', function (obj) {
+		socketIoFactory.on('test.new', function (obj) {
 			$scope.message = obj;
 			// prepend to list
 			$scope.items.unshift(obj);
