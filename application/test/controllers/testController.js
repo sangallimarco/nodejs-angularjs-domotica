@@ -20,7 +20,7 @@ pongular.module('app.test')
 				};
 				
 				//send immediately
-				req.io.broadcast('new', doc);
+				req.io.emit('new', doc);
 				
 				res.json({status: true});
 
@@ -28,7 +28,7 @@ pongular.module('app.test')
 				TestService.save(doc)
 				.then(
 					function(ret){
-						req.io.broadcast('save', doc);
+						req.io.emit('save', doc);
 					}
 				); 
 			}
