@@ -109,7 +109,7 @@ module.exports = function (grunt) {
 				preserveComments: false
 			},
 			files: {
-				// expand: true,
+				expand: true,
 				// flatten: true,
 				cwd: '/tmp',
 				src: ['app.js'],
