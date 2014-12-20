@@ -6,7 +6,14 @@ pongular.module('app.test')
 		var schema =  new $mongoose.Schema({
 			name: String,
 			surname: String,
-			age: Number
+			age: {
+				type: Number, 
+				max: 100 
+			},
+			created: {
+				type: Date, 
+				default: Date.now 
+			}
 		});
 
 		return $mongoose.model('Test', schema);

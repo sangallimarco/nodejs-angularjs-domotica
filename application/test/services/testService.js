@@ -5,8 +5,11 @@ pongular.module('app.test')
 	function($http, TestModel, $q) {
 		var scope = this;
 
-		scope.getAll = function () {
-			var promise = TestModel.find().exec();
+		scope.getAll = function (limit) {
+			var promise = TestModel.find()
+							.sort({created: -1})
+							.limit(limit)
+							.exec();
 			return promise;
 		};
 

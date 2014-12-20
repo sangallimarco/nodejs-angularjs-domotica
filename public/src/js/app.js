@@ -7,8 +7,12 @@ angular.module('app',
 		'app.weather'
 	]
 )
-.config(['$stateProvider', '$urlRouterProvider',
-	function ($stateProvider, $urlRouterProvider) {
+.config(['$compileProvider', '$logProvider', '$stateProvider', '$urlRouterProvider',
+	function ($compileProvider, $logProvider, $stateProvider, $urlRouterProvider) {
+
+		// dev/production
+		$compileProvider.debugInfoEnabled(true);
+		$logProvider.debugEnabled(true);
 
 		$urlRouterProvider.otherwise("/app");
 

@@ -6,7 +6,7 @@ pongular.module('app.test')
 		return {
 			get: function(req, res){
 				// req.query contains query params
-				TestService.getAll().then(
+				TestService.getAll(5).then(
 					function(result) {
 						res.json(result);
 					}
@@ -19,16 +19,19 @@ pongular.module('app.test')
 					age: req.body.age
 				};
 				
-				//send immediately
-				req.io.emit('new', doc);
-				
-				res.json({status: true});
-
 				// using Q
 				TestService.save(doc)
 				.then(
-					function(ret){
-						req.io.emit('save', doc);
+					function(ret) {
+						//Socket.io send immediately
+						req.io.emit('new', doc);
+						// return object
+						res.status(200).json(doc);
+					},
+					function(ret) {
+						res.status(500).json({
+							error: 'Validation Error'
+						});
 					}
 				); 
 			}

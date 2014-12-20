@@ -109,8 +109,8 @@ module.exports = function (grunt) {
 				preserveComments: false
 			},
 			files: {
-				expand: true,
-				//flatten: true,
+				// expand: true,
+				// flatten: true,
 				cwd: '/tmp',
 				src: ['app.js'],
 				dest: '<%= config.dist %>',

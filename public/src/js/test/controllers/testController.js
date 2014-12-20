@@ -12,19 +12,24 @@ angular.module('app.test')
 			postcode: ''
 		};
 		$scope.items = [];
+		$scope.error = null;
 
 		/**
 		 * Add new item
 		 */
 		$scope.addItem = function(){
 			if (!$scope.form.$valid) {
+				$scope.error = 'Check form';
 				return false;
 			}
 
 			testService.add($scope.data)
 			.then(
-				function(res) {
-					// $scope.getList();
+				function(obj) {
+					$scope.error = null;
+				},
+				function(err) {
+					$scope.error = err.data.error;
 				}
 			);
 		};
@@ -48,6 +53,8 @@ angular.module('app.test')
 		//socket.io
 		socketIoFactory.on('new', function (obj) {
 			$scope.message = obj;
+			// prepend to list
+			$scope.items.unshift(obj);
 		});
 
 	}

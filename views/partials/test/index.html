@@ -1,5 +1,6 @@
 <!-- add item -->
 <div class="row">
+	<div ng-show="error" class="alert alert-danger">{{error}}</div>
 
 	<form name="form">
 		<form-group class="col-xs-4" label="Name">
@@ -46,7 +47,7 @@
 
 <!-- websocket message -->
 <div class="row">
-	<div class="alert alert-danger">{{message}}</div>
+	<div class="alert alert-warning">{{message}}</div>
 </div>
 
 <!-- list -->
