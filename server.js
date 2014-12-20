@@ -30,18 +30,11 @@ pongular.module('app', [
 		app.use('/partials/', $express.static($path.join(__dirname, 'views/partials')));
 
 		// socket.io middleware
-		app.use(SocketIo.io(server));
-
-		// socket io
-		/*app.io.route('ready', function(req) {
-			req.io.emit('new', {
-			    message: 'io event from an io route on the server'
-			})
-		})*/
+		app.use(SocketIo.create(server));
 
 		server.listen(app.get('port'), 
 			function(){
-				console.log("Express server listening on port " + app.get('port'));
+				console.log('Express server listening on port ' + app.get('port'));
 			}
 		);
 	
@@ -49,7 +42,7 @@ pongular.module('app', [
 	}
 )
 .run(
-	function(app, HomeRouter, TestRouter, WeatherRouter) {
+	function(app, HomeRouter, TestRouter, WeatherRouter, SocketIo) {
 		
 		/**
 		 * Route middlewares
@@ -57,6 +50,15 @@ pongular.module('app', [
 		app.use(HomeRouter);
 		app.use(TestRouter);
 		app.use(WeatherRouter);
+
+		/**
+		 * Socket.io connection
+		 */
+		SocketIo.get().on('connection', 
+			function(socket) {
+				console.log('SocketIo Client connected!')
+			}
+		);
 
 	}
 );

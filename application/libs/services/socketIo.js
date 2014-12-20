@@ -3,15 +3,20 @@ var pongular = require('pongular').pongular;
 pongular.module('app.libs')
 .factory('SocketIo', 
 	function($http, $socket) {
+		var ioSocket = null;
+
 		return {
-			io: function (server) {
-				var ioSocket = $socket(server);
+			create: function (server) {
+				ioSocket = $socket(server);
 
 				// inject io into request
 				return function (req, res, next) {
 					req.io = ioSocket;
 					next();
 				};
+			},
+			get: function () {
+				return ioSocket;
 			}
 
 		};
