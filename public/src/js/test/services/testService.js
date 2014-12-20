@@ -7,7 +7,6 @@ angular.module('app.test')
 			.$promise
 			.then(
 				function (res) {
-					$log.info(res);
 					return res;
 				}
 			);
@@ -24,7 +23,6 @@ angular.module('app.test')
 			var promise = resource.$save()
 			.then(
 				function (res) {
-					$log.info(res);
 					return res;
 				}
 			);
