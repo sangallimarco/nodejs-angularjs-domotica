@@ -10,7 +10,7 @@ pongular.module('app.gpio')
 			};
 
 		scope.validateOutput = function (pin, status) {
-			return allowed.output.indexOf(pin) !== -1 && allowed.status.indexOf(pin) !== -1;
+			return allowed.output.indexOf(pin) !== -1 && allowed.status.indexOf(status) !== -1;
 		};
 
 		scope.get = function (pin, status) {
