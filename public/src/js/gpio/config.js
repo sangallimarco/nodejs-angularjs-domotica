@@ -11,7 +11,7 @@ angular.module('app.gpio',
 		$stateProvider
 		.state('app.gpio', {
 			url:'/gpio',
-			templateUrl: 'partials/test/gpio.html',
+			templateUrl: 'partials/gpio/index.html',
 			controller: 'gpioController'
 		});
 	}
