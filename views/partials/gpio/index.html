@@ -1,0 +1,14 @@
+<!-- add item -->
+<div class="row">
+	<div ng-show="error" class="alert alert-danger">{{error}}</div>
+
+	<div class="col-xs-24" ng-repeat="item in switches">
+		<switch-button
+			label="{{item.label}}"
+			pin="{{item.pin}}"
+			status="item.status"
+			callback="setPin"
+		></switch-button>
+	</div>
+	
+</div>

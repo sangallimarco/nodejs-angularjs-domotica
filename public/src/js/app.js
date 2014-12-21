@@ -4,7 +4,8 @@ angular.module('app',
 		'app.bootstrap',
 		'app.home',
 		'app.test',
-		'app.weather'
+		'app.weather',
+		'app.gpio'
 	]
 )
 .config(['$compileProvider', '$logProvider', '$stateProvider', '$urlRouterProvider',
