@@ -1,6 +1,6 @@
 {
 	"app": {
-		"port": 5000,
+		"port": 8000,
 		"mongodb": "mongodb://localhost/testapp"
 	},
 	"weather": {

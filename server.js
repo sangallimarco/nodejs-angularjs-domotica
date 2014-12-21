@@ -21,7 +21,7 @@ pongular.module('app', [
 		var app = $express(),
 			server = $http.Server(app);
 
-		app.use($bodyParser.urlencoded({ extended: true }));
+		app.use($bodyParser.urlencoded({extended: true}));
 		app.use($bodyParser.json());
 		app.set('view engine', 'ejs');
 		app.use($compression({threshold : 10}));
