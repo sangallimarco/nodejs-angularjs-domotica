@@ -1,6 +1,6 @@
 angular.module('app.gpio')
 .controller('gpioController', ['$scope', '$log', 'gpioService', 'socketIoFactory',
-	function($scope, $log, testService, socketIoFactory) {
+	function($scope, $log, gpioService, socketIoFactory) {
 		$scope.title = 'Loaded!';
 
 		// refactor in order to get real statuses
