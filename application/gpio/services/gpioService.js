@@ -20,6 +20,9 @@ pongular.module('app.gpio')
 		scope.set = function (pin, status) {
 			var deferred = $q.defer();
 
+			pin = parseInt(pin);
+			status = parseInt(status);
+
 			if (scope.validateOutput(pin, status)) {
 				$gpio.open(pin, "output", 
 					function(err) {   
