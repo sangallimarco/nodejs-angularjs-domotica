@@ -1,4 +1,4 @@
-angular.module('app.test', 
+angular.module('app.gpio', 
 	[
 		'ngResource',
 		'ui.router',
