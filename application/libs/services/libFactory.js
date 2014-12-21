@@ -38,6 +38,9 @@ pongular.module('app.libs')
 	return require('config');
 })
 
+.factory('$gpio', function() {
+	return require('pi-gpio');
+})
 
 .factory('$pongular', function() {
 	return pongular;
