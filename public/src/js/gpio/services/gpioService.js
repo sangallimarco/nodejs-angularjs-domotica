@@ -9,7 +9,7 @@ angular.module('app.gpio')
 			var promise = gpioApi.query({
 				pin: pin, 
 				status: status
-			}).$promise
+			}).$promise;
 	
 			return promise;
 		};

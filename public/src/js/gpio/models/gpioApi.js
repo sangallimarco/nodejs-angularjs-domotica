@@ -4,7 +4,7 @@ angular.module('app.gpio')
 		return $resource(
 			'/api/gpio/:direction/:pin/:status',
 			{
-				direction: 'out'
+				direction: 'out',
 				pin: '@pin',
 				status: '@status'
 			}
