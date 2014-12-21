@@ -5,9 +5,15 @@ pongular.module('app.gpio')
 	function(GpioService) {
 		return {
 			set: function(req, res){
-				GpioService.set(req.params.pin, req.params.status).then(
+				var pin = req.params.pin,
+					status = req.params.status;
+					
+				GpioService.set(pin, status).then(
 					function (ret) {
-						res.status(200).json({status: true});
+						res.status(200).json({
+							pin: pin,
+							status: status
+						});
 					}
 				);
 				

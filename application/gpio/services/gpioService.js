@@ -17,8 +17,7 @@ pongular.module('app.gpio')
 						deferred.reject(new Error());
 					} else {
 						$gpio.write(pin, status, function() {
-							$gpio.close(pin);
-
+							$gpio.close(pin);							
 							deferred.resolve();
 						});
 					} 		
