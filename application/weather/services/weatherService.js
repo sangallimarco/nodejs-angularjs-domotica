@@ -2,7 +2,7 @@ var pongular = require('pongular').pongular;
 
 pongular.module('app.weather')
 .service('WeatherService', 
-	function($http, WeatherModel, $q) {
+	function($http, WeatherModel, $q, $config) {
 		var scope = this;
 
 		scope.data = {};
@@ -16,7 +16,7 @@ pongular.module('app.weather')
 			var scope = this,
 				deferred = $q.defer();
 			
-			$http.get('http://www.myweather2.com/developer/forecast.ashx?uac=.frFFHX1sj&query=' + postcode + '&output=json', function(response){
+			$http.get('http://www.myweather2.com/developer/forecast.ashx?uac=' + $config.get('weather.key') + '&query=' + postcode + '&output=json', function(response){
 				var str = '';
 
 				response.on('data', function (chunk) {

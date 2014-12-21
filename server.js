@@ -13,9 +13,9 @@ pongular.module('app', [
 		'application/*/*/*.js'
 )
 .factory('app',
-	function($mongoose, $bodyParser, $express, $http, $path, $compression, SocketIo) {
+	function($mongoose, $bodyParser, $express, $http, $path, $compression, SocketIo, $config) {
 		
-		$mongoose.connect('mongodb://localhost/testapp');
+		$mongoose.connect($config.get('app.mongodb'));
 
 		//use express.io
 		var app = $express(),
@@ -25,7 +25,7 @@ pongular.module('app', [
 		app.use($bodyParser.json());
 		app.set('view engine', 'ejs');
 		app.use($compression({threshold : 10}));
-		app.set('port', process.env.PORT || 5000);
+		app.set('port', process.env.PORT || $config.get('app.port'));
 		app.use('/public/', $express.static($path.join(__dirname, 'public')));
 		app.use('/partials/', $express.static($path.join(__dirname, 'views/partials')));
 

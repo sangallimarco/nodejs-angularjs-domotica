@@ -12,7 +12,7 @@ pongular.module('app.libs')
 				// inject io into request
 				return function (req, res, next) {
 					req.io = ioSocket;
-					next();
+					return next();
 				};
 			},
 			get: function () {

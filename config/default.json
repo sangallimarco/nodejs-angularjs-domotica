@@ -1,0 +1,9 @@
+{
+	"app": {
+		"port": 5000,
+		"mongodb": "mongodb://localhost/testapp"
+	},
+	"weather": {
+		"key": ".frFFHX1sj"
+	}
+}

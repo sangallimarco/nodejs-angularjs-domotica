@@ -34,6 +34,11 @@ pongular.module('app.libs')
 	return require('q');
 })
 
+.factory('$config', function() {
+	return require('config');
+})
+
+
 .factory('$pongular', function() {
 	return pongular;
 });
