@@ -20,7 +20,7 @@ angular.module('app.gpio')
 				pin: pin,
 				status: status
 			})
-			.$promise;;
+			.$promise;
 	
 			return promise;
 		};
