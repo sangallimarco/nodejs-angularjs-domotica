@@ -41,7 +41,7 @@ pongular.module('app.gpio')
 			return deferred.promise;
 		};
 
-		scope.post = function (pin, status) {
+		scope.set = function (pin, status) {
 			var deferred = $q.defer();
 
 			pin = parseInt(pin);
