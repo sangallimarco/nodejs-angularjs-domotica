@@ -1,12 +1,13 @@
 angular.module('app.gpio')
 .service('gpioService', ['$log', 'gpioApi', 
 	function($log, gpioApi){
-		
+
 		this.get = function(pin) {
 
 			var promise = gpioApi.get({
 				pin: pin
-			});
+			})
+			.$promise;
 	
 			return promise;
 		};
@@ -18,7 +19,8 @@ angular.module('app.gpio')
 			var promise = gpioApi.set({
 				pin: pin,
 				status: status
-			});
+			})
+			.$promise;;
 	
 			return promise;
 		};
