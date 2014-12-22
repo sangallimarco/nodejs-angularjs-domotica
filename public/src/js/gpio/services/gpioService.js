@@ -1,6 +1,7 @@
 angular.module('app.gpio')
 .service('gpioService', ['$log', 'gpioApi', 
 	function($log, gpioApi){
+		
 		this.get = function(pin) {
 
 			var promise = gpioApi.get({
