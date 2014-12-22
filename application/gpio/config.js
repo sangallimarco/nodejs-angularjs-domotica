@@ -3,7 +3,8 @@ pongular.module('app.gpio', [])
 .factory('GpioRouter', 
 	function($express, GpioCtrl) {
 		return $express.Router()
-			.get('/api/gpio/out/:pin/:status/', GpioCtrl.set)
+			.post('/api/gpio/:pin', GpioCtrl.post)
+			.get('/api/gpio/:pin', GpioCtrl.get)
 		;
 	}
 );

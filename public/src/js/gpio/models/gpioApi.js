@@ -2,11 +2,14 @@ angular.module('app.gpio')
 .factory('gpioApi', ['$resource', 
 	function($resource){
 		return $resource(
-			'/api/gpio/:direction/:pin/:status',
+			'/api/gpio/:pin',
 			{
-				direction: 'out',
 				pin: '@pin',
-				status: '@status'
+			},
+			{
+				set: {
+					method: 'POST'
+				}
 			}
 		);
 	}

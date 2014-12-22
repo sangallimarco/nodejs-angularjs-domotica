@@ -13,11 +13,33 @@ pongular.module('app.gpio')
 			return allowed.output.indexOf(pin) !== -1 && allowed.status.indexOf(status) !== -1;
 		};
 
-		scope.get = function (pin, status) {
+		scope.get = function (pin) {
+			var deferred = $q.defer();
 
+			pin = parseInt(pin);
+			status = parseInt(status);
+
+			if (scope.validateOutput(pin, status)) {
+				$gpio.open(pin, "output", 
+					function(err) {   
+						if (err) {
+							deferred.reject(new Error());
+						} else {
+							$gpio.read(pin, value, function() {
+								$gpio.close(pin);							
+								deferred.resolve(value);
+							});
+						} 		
+					}
+				); 
+			} else {
+				deferred.reject(new Error());
+			}
+			
+			return deferred.promise;
 		};
 
-		scope.set = function (pin, status) {
+		scope.post = function (pin, status) {
 			var deferred = $q.defer();
 
 			pin = parseInt(pin);
