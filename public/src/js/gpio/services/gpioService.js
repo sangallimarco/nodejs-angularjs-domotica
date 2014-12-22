@@ -3,12 +3,7 @@ angular.module('app.gpio')
 	function($log, gpioApi){
 
 		this.get = function(pin) {
-
-			var promise = gpioApi.get({
-				pin: pin
-			})
-			.$promise;
-	
+			var promise = gpioApi.get({pin: pin}).$promise;
 			return promise;
 		};
 
@@ -16,15 +11,7 @@ angular.module('app.gpio')
 			// convert to int
 			status = status ? 1 : 0;
 
-			var promise = gpioApi.set({
-					pin: pin
-				},
-				{
-					status: status
-				}
-			})
-			.$promise;
-	
+			var promise = gpioApi.set({pin: pin},{status: status}).$promise;
 			return promise;
 		};
 
