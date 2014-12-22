@@ -3,7 +3,7 @@
 		<title>Test</title>
  		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
  		
- 		<% if (process.env.NODE_ENV !== 'dev') { %>
+ 		<% if (process.env.NODE_ENV !== 'development') { %>
 			<link rel='stylesheet' href='/public/dist/app.min.css' />
 		<% } else { %>
 			<link rel='stylesheet' href='/public/src/css/app.css' />
@@ -19,7 +19,7 @@
 	<!-- socket.io from node.js -->
 	<script src="/socket.io/socket.io.js"></script> 
 
-	<% if (process.env.NODE_ENV !== 'dev') { %>
+	<% if (process.env.NODE_ENV !== 'development') { %>
 		<!-- fileblock:js dist -->
 		<script src="/public/dist/app.min.js"></script>
 		<!-- endfileblock -->
