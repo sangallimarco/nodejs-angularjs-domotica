@@ -17,8 +17,11 @@ angular.module('app.gpio')
 			status = status ? 1 : 0;
 
 			var promise = gpioApi.set({
-				pin: pin,
-				status: status
+					pin: pin
+				},
+				{
+					status: status
+				}
 			})
 			.$promise;
 	

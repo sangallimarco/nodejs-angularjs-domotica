@@ -4,6 +4,7 @@ angular.module('app.gpio')
 		return $resource(
 			'/api/gpio/:pin',
 			{
+				pin: '@pin'
 			},
 			{
 				set: {
