@@ -53,6 +53,7 @@ pongular.module('app.gpio')
 			// if not exported yet
 			if (!pins[pin].exp) {
 				$gpio.open(pin, mode, function(err) {
+					console.log('using open, pin:' + pin + ' mode:' + mode);
 					if (!err) {
 						pins[pin].exp = true;
 						pins[pin].mode = mode;
@@ -61,6 +62,7 @@ pongular.module('app.gpio')
 				});
 			} else if (pins[pin].mode !== mode){
 				$gpio.setDirection(pin, mode, function(err) {
+					console.log('using setDirection, pin:' + pin + ' mode:' + mode);
 					if (!err) {
 						pins[pin].mode = mode;
 					} 
