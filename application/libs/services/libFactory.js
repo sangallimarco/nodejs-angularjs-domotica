@@ -42,6 +42,10 @@ pongular.module('app.libs')
 	return require('rpi-gpio');
 })
 
+.factory('$events', function() {
+	return require("events").EventEmitter;
+})
+
 .factory('$pongular', function() {
 	return pongular;
 });
