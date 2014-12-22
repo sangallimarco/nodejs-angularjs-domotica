@@ -8,7 +8,7 @@ pongular.module('app.gpio')
 			get: function(req, res){
 				var pin = req.params.pin;
 
-				GpioService.get(pin).then(
+				GpioService.read(pin).then(
 					function (status) {
 						res.status(200).json({
 							pin: pin,

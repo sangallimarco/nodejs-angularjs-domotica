@@ -39,7 +39,7 @@ pongular.module('app.libs')
 })
 
 .factory('$gpio', function() {
-	return require('pi-gpio');
+	return require('rpi-gpio');
 })
 
 .factory('$pongular', function() {
