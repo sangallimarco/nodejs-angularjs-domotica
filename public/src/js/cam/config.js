@@ -1,4 +1,4 @@
-angular.module('app.gpio', 
+angular.module('app.cam', 
 	[
 		'ngResource',
 		'ui.router',
