@@ -42,6 +42,10 @@ pongular.module('app.libs')
 	return require('config');
 })
 
+.factory('$childProcess', function() {
+	return require('child_process');
+})
+
 .factory('$gpio', function() {
 	return require('rpi-gpio');
 })

@@ -2,7 +2,7 @@ var pongular = require('pongular').pongular;
 
 pongular.module('app.cam')
 .factory('CamService', 
-	function($fs, $config) {
+	function($fs, $config, $childProcess) {
 		var file = $config.get('cam.file'),
 			proc = null;
 
@@ -10,7 +10,7 @@ pongular.module('app.cam')
 			start: function (io) {
 				if (!proc) {
 					var args = ["-w", "640", "-h", "480", "-o", file, "-t", "999999999", "-tl", "100"];
-					proc = spawn('raspistill', args);
+					proc = $childProcess.spawn('raspistill', args);
 
 					console.log('Watching for changes...');
 				
