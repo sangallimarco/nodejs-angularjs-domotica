@@ -15,7 +15,7 @@ pongular.module('app.cam')
 					console.log('Watching for changes...');
 				
 					// watch file and send over websocket
-					fs.watchFile(file, function(current, previous) {
+					$fs.watchFile(file, function(current, previous) {
 	  					io.emit('cam.stream', {
 	  						src: file + '?_t=' + (Math.random() * 100000)
 	  					});
@@ -24,7 +24,7 @@ pongular.module('app.cam')
 			},
 			stop: function () {
 				if (proc) {
-					fs.unwatchFile(file);
+					$fs.unwatchFile(file);
 					proc.kill();
 				}
 			}
