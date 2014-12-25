@@ -5,7 +5,8 @@ angular.module('app',
 		'app.home',
 		'app.test',
 		'app.weather',
-		'app.gpio'
+		'app.gpio',
+		'app.cam'
 	]
 )
 .config(['$compileProvider', '$logProvider', '$stateProvider', '$urlRouterProvider',

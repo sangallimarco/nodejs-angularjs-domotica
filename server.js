@@ -7,7 +7,8 @@ pongular.module('app', [
 	'app.home',
 	'app.test',
 	'app.weather',
-	'app.gpio'
+	'app.gpio',
+	'app.cam'
 ])
 .uses(
 		'application/*/config.js',
@@ -43,7 +44,7 @@ pongular.module('app', [
 	}
 )
 .run(
-	function(app, HomeRouter, TestRouter, WeatherRouter, GpioRouter, SocketIo) {
+	function(app, HomeRouter, TestRouter, WeatherRouter, GpioRouter, CamRouter, SocketIo) {
 		
 		/**
 		 * Route middlewares
@@ -52,6 +53,7 @@ pongular.module('app', [
 		app.use(TestRouter);
 		app.use(WeatherRouter);
 		app.use(GpioRouter);
+		app.use(CamRouter);
 
 		/**
 		 * Socket.io connection
