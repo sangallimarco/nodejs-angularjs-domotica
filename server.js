@@ -28,6 +28,7 @@ pongular.module('app', [
 		app.set('view engine', 'ejs');
 		app.use($compression({threshold : 10}));
 		app.set('port', process.env.PORT || $config.get('app.port'));
+		app.use('/tmp/', $express.static('/tmp'));
 		app.use('/public/', $express.static($path.join(__dirname, 'public')));
 		app.use('/partials/', $express.static($path.join(__dirname, 'views/partials')));
 
