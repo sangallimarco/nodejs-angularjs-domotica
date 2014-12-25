@@ -19,7 +19,7 @@ pongular.module('app.cam')
 	  					io.emit('cam.stream', {
 	  						src: file + '?_t=' + (Math.random() * 100000)
 	  					});
-	  				}
+	  				});
   				}
 			},
 			stop: function () {
