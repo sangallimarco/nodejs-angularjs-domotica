@@ -45,7 +45,7 @@ pongular.module('app', [
 	}
 )
 .run(
-	function(app, HomeRouter, TestRouter, WeatherRouter, GpioRouter, CamRouter, SocketIo) {
+	function(app, HomeRouter, TestRouter, WeatherRouter, GpioRouter, CamRouter, SocketIo, CamService) {
 		
 		/**
 		 * Route middlewares
@@ -64,6 +64,11 @@ pongular.module('app', [
 				console.log('SocketIo Client connected!')
 			}
 		);
+
+		// stop camera on exit
+		app.on('exit', function() {
+			CamService.stop();
+		});
 
 	}
 );
