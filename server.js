@@ -21,7 +21,7 @@ pongular.module('app', [
 
 		//use express.io
 		var app = $express(),
-			server = $http.Server(app);
+			server = $http.createServer(app);
 
 		app.use($bodyParser.urlencoded({extended: true}));
 		app.use($bodyParser.json());
