@@ -1,10 +1,10 @@
 var pongular = require('pongular').pongular;
 pongular.module('app.cam', [])
 .factory('CamRouter', 
-	function($express, CamCtrl, CamService, SocketIo, $events) {
+	function($express, CamCtrl, CamService, $events) {
 
 		// activate cam
-		CamService.start(SocketIo.get());
+		CamService.start();
 
 		return $express.Router()
 			.get('/api/cam', CamCtrl.get)
