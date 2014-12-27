@@ -12,12 +12,12 @@ pongular.module('app.libs')
 
 				ioSocket.on('connection', 
 					function(socket) {
-						
+
 						clients[socket.id] = socket;
 
 						socket.on('disconnect', function() {
     						delete clients[socket.id];
-    					}
+    					});
 					}
 				);
 
