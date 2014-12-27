@@ -14,6 +14,7 @@ pongular.module('app.libs')
 					function(socket) {
 
 						clients[socket.id] = socket;
+						console.log(clients);
 
 						socket.on('disconnect', function() {
     						delete clients[socket.id];
@@ -32,7 +33,7 @@ pongular.module('app.libs')
 			},
 			broadcast: function (namespace, obj) {
 				if (clients.length){
-					forEach(clients, function (client) {
+					clients.forEach(function (client) {
 						client.emit(namespace, obj);
 					});
 				}
