@@ -19,7 +19,7 @@ pongular.module('app.libs')
 				return ioSocket;
 			},
 			broadcast: function (namespace, obj) {
-				console.log(engine.clientsCount);
+				console.log(ioSocket.engine.clientsCount);
 				if (ioSocket.engine.clientsCount) {
 					ioSocket.emit(namespace, obj);
 				}
