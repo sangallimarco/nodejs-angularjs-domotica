@@ -4,9 +4,21 @@ angular.module('app.cam')
 		$scope.title = 'Loaded!';
 		$scope.src = null;
 
+		var canLoad = true;
+
 		//socket.io
 		socketIoFactory.on('cam.stream', function (obj) {
-			$scope.src = obj.src;
+			// load only if image has been loaded
+			if (canLoad) {
+				canLoad = false;
+
+				var img = new Image();
+				img.src = obj.src;
+				img.onload = function () {
+					$scope.src = obj.src;
+					canLoad = true;
+				};
+			}
 		});	
 
 	}
