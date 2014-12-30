@@ -1,6 +1,6 @@
 angular.module('app.cam')
-.controller('camController', ['$scope', '$log', 'socketIoFactory',
-	function($scope, $log, socketIoFactory) {
+.controller('camController', ['$scope', '$log', 'socketIoFactory', 'camService',
+	function($scope, $log, socketIoFactory, camService) {
 		$scope.title = 'Loaded!';
 		$scope.src = null;
 
@@ -12,12 +12,10 @@ angular.module('app.cam')
 			if (canLoad) {
 				canLoad = false;
 
-				var img = new Image();
-				img.src = obj.src;
-				img.onload = function () {
+				camService.loadImage(obj.src, function(){
 					$scope.src = obj.src;
 					canLoad = true;
-				};
+				});
 			}
 		});	
 
