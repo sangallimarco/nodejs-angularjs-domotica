@@ -19,7 +19,8 @@ pongular.module('app.cam')
 						q: 10
 					});
 
-					proc.on("read", function(err, filename){
+					// take a look to documentation
+					proc.on("change", function(err, filename){
 						var postfix = new Date().getTime(); 
 						if (!err) {
 							SocketIo.broadcast('cam.stream', {
