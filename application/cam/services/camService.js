@@ -20,8 +20,10 @@ pongular.module('app.cam')
 					});
 
 					proc.on("read", function(err, filename){
+						var postfix = parseInt(Math.random() * 10000); 
+
 						SocketIo.broadcast('cam.stream', {
-	  						src: file
+	  						src: file + '?t=' + postfix
 	  					});
 					});
 
