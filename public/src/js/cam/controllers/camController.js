@@ -6,7 +6,7 @@ angular.module('app.cam')
 
 		//socket.io
 		socketIoFactory.on('cam.stream', function (obj) {
-			$scope.src = obj.src;
+			$scope.src = obj.src + (new Date().getTime());
 		});	
 
 	}
