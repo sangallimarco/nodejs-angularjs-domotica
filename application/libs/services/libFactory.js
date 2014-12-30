@@ -42,6 +42,10 @@ pongular.module('app.libs')
 	return require('config');
 })
 
+.factory('$raspicam', function() {
+	return require('raspicam');
+})
+
 .factory('$childProcess', function() {
 	return require('child_process');
 })
