@@ -3,6 +3,7 @@ angular.module('app.cam')
 	function($scope, $log, socketIoFactory, camService) {
 		$scope.title = 'Loaded!';
 		$scope.src = null;
+		$scope.timestamp = null;
 
 		var canLoad = true;
 
@@ -14,6 +15,7 @@ angular.module('app.cam')
 
 				camService.loadImage(obj.src, function(){
 					$scope.src = obj.src;
+					$scope.timestamp = new Date().getTime();
 					canLoad = true;
 				});
 			}
