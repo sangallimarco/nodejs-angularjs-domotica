@@ -15,16 +15,17 @@ pongular.module('app.cam')
 						w: 640, 
 						h: 480, 
 						t: 9999999999,
-						tl: 10000,
+						tl: 1000,
 						q: 10
 					});
 
 					proc.on("read", function(err, filename){
 						var postfix = new Date().getTime(); 
-
-						SocketIo.broadcast('cam.stream', {
-	  						src: file + '?t=' + postfix
-	  					});
+						if (!err) {
+							SocketIo.broadcast('cam.stream', {
+		  						src: file + '?t=' + postfix
+		  					});
+						}
 					});
 
 					proc.start();
