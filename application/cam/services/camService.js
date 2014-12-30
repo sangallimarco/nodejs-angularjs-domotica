@@ -14,7 +14,7 @@ pongular.module('app.cam')
 						mode: 'timelapse',
 						w: 640, 
 						h: 480, 
-						t: 5,
+						t: 9999999999,
 						tl: 1000,
 						q: 10
 					});
