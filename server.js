@@ -25,10 +25,9 @@ pongular.module('app', [
 							keepAlive: 1
 						}
 					}
-				},
-			
+				}
 			);
-		db.on('error',console.error.bind(console, 'connection error:'));
+		db.connection.on('error',console.error.bind(console, 'connection error:'));
 
 		//use express.io
 		var app = $express(),
