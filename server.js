@@ -17,24 +17,18 @@ pongular.module('app', [
 .factory('app',
 	function($mongoose, $bodyParser, $express, $http, $path, $compression, SocketIo, $config) {
 		
-		$mongoose.connect(
+		var db = $mongoose.connect(
 			$config.get('app.mongodb'), 
-			{
-				server: {
-					socketOptions: {
-						keepAlive: 1
+				{
+					server: {
+						socketOptions: {
+							keepAlive: 1
+						}
 					}
-				}
-			},
-			function(err,db){
-				if (err) {
-					console.dir(err); 
-				}
-				db.on('close', function () {
-					console.log('Error...close');
-				});
-			}
-		);
+				},
+			
+			);
+		db.on('error',console.error.bind(console, 'connection error:'));
 
 		//use express.io
 		var app = $express(),
