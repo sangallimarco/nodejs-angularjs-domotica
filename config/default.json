@@ -7,6 +7,8 @@
 		"key": ".frFFHX1sj"
 	},
 	"cam": {
-		"file": "/tmp/cam.jpg"
+		"file": "/tmp/cam.jpg",
+		"quality": 50,
+		"timelapse": 1000
 	}
 }

@@ -15,8 +15,8 @@ pongular.module('app.cam')
 						w: 640, 
 						h: 480, 
 						t: 9999999999,
-						tl: 1000,
-						q: 10
+						tl: $config.get('cam.timelapse'),
+						q: $config.get('cam.quality')
 					});
 
 					// take a look to documentation
