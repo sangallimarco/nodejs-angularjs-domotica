@@ -1,6 +1,6 @@
 var pongular = require('pongular').pongular;
 pongular.module('app.gpio', [])
-.factory('GpioRouter', 
+.factory('GpioRouter',
 	function($express, GpioCtrl, SocketIo, $events) {
 
 		// listen for pins changes
@@ -13,6 +13,7 @@ pongular.module('app.gpio', [])
 		return $express.Router()
 			.post('/api/gpio/:pin', GpioCtrl.post)
 			.get('/api/gpio/:pin', GpioCtrl.get)
+			.get('/api/gpio', GpioCtrl.status)
 		;
 	}
 );

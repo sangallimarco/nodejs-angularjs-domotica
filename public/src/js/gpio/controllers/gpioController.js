@@ -11,19 +11,8 @@ angular.module('app.gpio')
 		$scope.error = null;
 
 		/**
-		 * Set pin
+		 * Init pins
 		 */
-		$scope.setPin = function(pin, status){
-			gpioService.set(pin, status)
-			.then(
-				function(obj) {
-					$scope.error = null;
-				},
-				function(err) {
-					$scope.error = err.data.error;
-				}
-			);
-		};
-
+		gpioService.initStatus($scope.switches);
 	}
 ]);

@@ -2,7 +2,7 @@ var pongular = require('pongular').pongular;
 
 // https://www.npmjs.com/package/rpi-gpio
 pongular.module('app.gpio')
-.factory('GpioService', 
+.factory('GpioService',
 	function($http, $q, $gpio) {
 		var scope = this,
 			available = {
@@ -23,7 +23,7 @@ pongular.module('app.gpio')
 		$gpio.destroy();
 
 		/**
-		 * Set pin direction 
+		 * Set pin direction
 		 */
 		function usePin(pin, mode, callback) {
 			// if not exported yet
@@ -33,7 +33,7 @@ pongular.module('app.gpio')
 					if (!err) {
 						pins[pin].exp = true;
 						pins[pin].mode = mode;
-					} 
+					}
 					callback(err);
 				});
 			} else {
@@ -55,25 +55,28 @@ pongular.module('app.gpio')
 				pin = parseInt(pin);
 
 				if (validatePin(pin)) {
-					usePin(pin, $gpio.DIR_IN, 
-						function(err) {   
+					usePin(pin, $gpio.DIR_IN,
+						function(err) {
 							if (err) {
 								deferred.reject(new Error());
 							} else {
-								$gpio.read(pin, function(err, value) {							
+								$gpio.read(pin, function(err, value) {
 									deferred.resolve(value);
 								});
-							} 		
+							}
 						}
-					); 
+					);
 				} else {
 					deferred.reject(new Error());
 				}
-				
+
 				return deferred.promise;
 			},
 			get: function (pin) {
 				return pins[pin].status;
+			},
+			status: function () {
+				return pins;
 			},
 			set: function (pin, status) {
 				var deferred = $q.defer();
@@ -82,23 +85,23 @@ pongular.module('app.gpio')
 				status = parseInt(status) ? true : false; // convert to boolean
 
 				if (validatePin(pin)) {
-					usePin(pin, $gpio.DIR_OUT, 
-						function(err) {   
+					usePin(pin, $gpio.DIR_OUT,
+						function(err) {
 							if (err) {
 								console.log('unable to export pin:' + pin);
 								deferred.reject(new Error());
 							} else {
 								$gpio.write(pin, status, function(err) {
-									pins[pin].status = status;					
+									pins[pin].status = status;
 									deferred.resolve();
 								});
-							} 		
+							}
 						}
-					); 
+					);
 				} else {
 					deferred.reject(new Error());
 				}
-				
+
 				return deferred.promise;
 			}
 		};

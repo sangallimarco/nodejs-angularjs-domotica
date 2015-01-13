@@ -1,10 +1,15 @@
 var pongular = require('pongular').pongular;
 
 pongular.module('app.gpio')
-.factory('GpioCtrl', 
+.factory('GpioCtrl',
 	function(GpioService) {
 
 		return {
+			status: function(req, res){
+				res.status(200).json(
+					GpioService.status()
+				);
+			},
 			get: function(req, res){
 				var pin = req.params.pin;
 
@@ -39,7 +44,7 @@ pongular.module('app.gpio')
 						});
 					}
 				);
-				
+
 			}
 		};
 	}
