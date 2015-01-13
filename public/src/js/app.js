@@ -1,6 +1,7 @@
-angular.module('app', 
+angular.module('app',
 	[
 		'ui.router',
+		'mgcrea.ngStrap',
 		'app.bootstrap',
 		'app.home',
 		'app.test',

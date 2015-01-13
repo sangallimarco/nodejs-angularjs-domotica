@@ -11,6 +11,7 @@ module.exports = function (grunt) {
 					'public/bower_components/angular-ui-router/release/angular-ui-router.js',
 					'public/bower_components/angular-resource/angular-resource.js',
 					'public/bower_components/angular-socket-io/socket.js',
+					'public/bower_components/angular-strap/dist/angular-strap.js',
 
 					'public/src/js/*/config.js',
 					'public/src/js/*/*/*.js',
@@ -59,7 +60,7 @@ module.exports = function (grunt) {
 				files: [
 					{
 						options: {
-							prefix: '/' 
+							prefix: '/'
 						},
 						src: '<%= config.footer %>',
 						blocks: {
@@ -74,7 +75,7 @@ module.exports = function (grunt) {
 				files: [
 					{
 						options: {
-							prefix: '/' 
+							prefix: '/'
 						},
 						src: '<%= config.footer %>',
 						blocks: {
