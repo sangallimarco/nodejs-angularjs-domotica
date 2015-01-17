@@ -7,7 +7,7 @@ pongular.module('app.libs')
 })
 
 .factory('$express', function() {
-	return require('express'); 
+	return require('express');
 })
 
 .factory('$http', function() {

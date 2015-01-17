@@ -1,7 +1,7 @@
 var pongular = require('pongular').pongular;
 
 pongular.module('app.home')
-.factory('HomeCtrl', 
+.factory('HomeCtrl',
 	function() {
 		return {
 			get: function(req, res){

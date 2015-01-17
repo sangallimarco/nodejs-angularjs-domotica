@@ -17,6 +17,7 @@
     "grunt": "^0.4.5",
     "mongoose": "~3.6.13",
     "node-config": "0.0.2",
+    "passport": "^0.2.1",
     "pongular": "0.0.5",
     "q": "~1.1.2",
     "socket.io": "^1.2.1"

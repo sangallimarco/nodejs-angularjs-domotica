@@ -4,6 +4,7 @@ var pongular = require('pongular').pongular;
 
 pongular.module('app', [
 	'app.libs',
+	'app.auth',
 	'app.home',
 	'app.test',
 	'app.weather'
@@ -13,8 +14,8 @@ pongular.module('app', [
 		'application/*/*/*.js'
 )
 .factory('app',
-	function($mongoose, $bodyParser, $express, $http, $path, $compression, SocketIo, $config) {
-		
+	function($mongoose, $bodyParser, $express, $http, $path, $compression, SocketIo, $config, Auth) {
+
 		$mongoose.connect($config.get('app.mongodb'));
 
 		//use express.io
@@ -32,18 +33,21 @@ pongular.module('app', [
 		// socket.io middleware
 		app.use(SocketIo.create(server));
 
-		server.listen(app.get('port'), 
+		// auth
+		app.use(Auth.bind());
+
+		server.listen(app.get('port'),
 			function(){
 				console.log('Express server listening on port ' + app.get('port'));
 			}
 		);
-	
+
 		return app;
 	}
 )
 .run(
 	function(app, HomeRouter, TestRouter, WeatherRouter, SocketIo) {
-		
+
 		/**
 		 * Route middlewares
 		 */
@@ -54,9 +58,9 @@ pongular.module('app', [
 		/**
 		 * Socket.io connection
 		 */
-		SocketIo.get().on('connection', 
+		SocketIo.get().on('connection',
 			function(socket) {
-				console.log('SocketIo Client connected!')
+				console.log('SocketIo Client connected!');
 			}
 		);
 
@@ -67,4 +71,3 @@ pongular.module('app', [
 pongular.injector([
 	'app'
 ]);
-
