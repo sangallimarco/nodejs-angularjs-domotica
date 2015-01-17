@@ -13,11 +13,6 @@ pongular.module('app.test')
 								res.status(200).json(result);
 							}
 						);
-					},
-					function(){
-						res.status(500).json({
-							error: 'Validation Error'
-						});
 					}
 				);
 			},

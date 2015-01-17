@@ -29,7 +29,16 @@ pongular.module('app.auth')
             bind: function () {
                 return function (req, res, next) {
                     req.auth = function() {
-                        return check(req.params.hash);
+                        return check(req.params.hash).then(
+                            function(result){
+                                return result;
+                            },
+                            function(){
+                                res.status(500).json({
+                                    error: 'Validation Error'
+                                });
+                            }
+                        );
                     };
                     return next();
                 };
