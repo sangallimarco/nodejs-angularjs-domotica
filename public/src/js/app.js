@@ -4,6 +4,7 @@ angular.module('app',
 		'ui.router',
 		'app.auth',
 		'app.bootstrap',
+		'app.navigation',
 		'app.home',
 		'app.test',
 		'app.weather'
@@ -22,6 +23,7 @@ angular.module('app',
 		.state('app', {
 			url:'/app',
 			templateUrl: 'partials/app/index.html',
+			controller: 'navigationController'
 		});
 
 	}
