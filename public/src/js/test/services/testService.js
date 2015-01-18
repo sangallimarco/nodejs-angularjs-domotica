@@ -16,7 +16,6 @@ angular.module('app.test')
 		this.add = function(item) {
 			var resource =  new testApi();
 
-			resource.hash = authService.getHash();
 			resource.name = item.name;
 			resource.surname = item.surname;
 			resource.age = item.age;

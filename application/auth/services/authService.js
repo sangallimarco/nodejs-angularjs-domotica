@@ -8,10 +8,16 @@ pongular.module('app.auth')
         function check(hash){
             var deferred = $q.defer();
 
-            UserModel.find({hash: hash}).exec()
+            UserModel.findOne(
+                {
+                    hash: hash
+                },
+                'hash'
+            )
+            .exec()
             .then(
                 function(res){
-                    if (res.length !== 1) {
+                    if (!res) {
                         deferred.reject(res);
                     } else {
                         deferred.resolve(res);
@@ -44,7 +50,13 @@ pongular.module('app.auth')
                 };
             },
             login: function(name, password){
-                return UserModel.findOne({name: name, password: password}).exec();
+                return UserModel.findOne(
+                    {
+                        name: name,
+                        password: password
+                    },
+                    'name hash'
+                ).exec();
             }
         };
     }

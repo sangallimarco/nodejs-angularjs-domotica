@@ -1,6 +1,6 @@
 angular.module('app.home')
-.controller('homeController', ['$scope', '$log',
-	function($scope, $log) {
-		$scope.title = 'This is a placeholder';
+.controller('homeController', ['$scope', '$log', 'authService',
+	function($scope, $log, authService) {
+		$scope.user = authService.getUser();
 	}
 ]);
