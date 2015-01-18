@@ -1,10 +1,10 @@
 angular.module('app.test')
-.factory('testApi', ['$resource',
-	function($resource){
+.factory('testApi', ['$resource', 'authService',
+	function($resource, authService){
 		return $resource(
 			'/api/:hash/test/:id',
 			{
-				hash: 1234,
+				hash: authService.getHash(),
 				id: '@id'
 			}
 		);
