@@ -1,6 +1,8 @@
-angular.module('app', 
+angular.module('app',
 	[
+		'ngStorage',
 		'ui.router',
+		'app.auth',
 		'app.bootstrap',
 		'app.home',
 		'app.test',

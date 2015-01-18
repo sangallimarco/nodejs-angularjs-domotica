@@ -1,9 +1,10 @@
 angular.module('app.test')
-.factory('testApi', ['$resource', 
+.factory('testApi', ['$resource',
 	function($resource){
 		return $resource(
-			'/api/test/:id',
+			'/api/:hash/test/:id',
 			{
+				hash: 1234,
 				id: '@id'
 			}
 		);

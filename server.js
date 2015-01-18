@@ -46,11 +46,12 @@ pongular.module('app', [
 	}
 )
 .run(
-	function(app, HomeRouter, TestRouter, WeatherRouter, SocketIo) {
+	function(app, AuthRouter, HomeRouter, TestRouter, WeatherRouter, SocketIo) {
 
 		/**
 		 * Route middlewares
 		 */
+		app.use(AuthRouter);
 		app.use(HomeRouter);
 		app.use(TestRouter);
 		app.use(WeatherRouter);

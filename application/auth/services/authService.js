@@ -42,6 +42,9 @@ pongular.module('app.auth')
                     };
                     return next();
                 };
+            },
+            login: function(name, password){
+                return UserModel.findOne({name: name, password: password}).exec();
             }
         };
     }
