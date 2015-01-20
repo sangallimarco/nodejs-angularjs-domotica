@@ -11,7 +11,7 @@ pongular.module('app.gpio')
 				);
 			},
 			get: function(req, res){
-				var pin = req.params.pin;
+				var pin = parseInt(req.params.pin);
 
 				GpioService.read(pin).then(
 					function (status) {
@@ -28,8 +28,9 @@ pongular.module('app.gpio')
 				);
 			},
 			post: function(req, res){
+				console.log(req.body.status);
 				var pin = parseInt(req.params.pin),
-					status = req.body.status === 'true' ? true : false ;
+					status = req.body.status;
 
 				GpioService.set(pin, status).then(
 					function (ret) {
