@@ -9,7 +9,6 @@ pongular.module('app.cam')
 		return {
 			start: function () {
 				if (!proc) {
-					return;
 					proc = new $raspicam({
 						output: file,
 						mode: 'timelapse',
