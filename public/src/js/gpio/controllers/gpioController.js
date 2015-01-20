@@ -5,8 +5,8 @@ angular.module('app.gpio')
 
 		// refactor in order to get real statuses
 		$scope.switches = [
-			{label: '11', pin:11, status:0},
-			{label: '12', pin:12, status:0}
+			{label: '11', pin:11, status:false},
+			{label: '12', pin:12, status:false}
 		];
 		$scope.error = null;
 

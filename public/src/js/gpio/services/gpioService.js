@@ -16,7 +16,7 @@ angular.module('app.gpio')
 			var promise = gpioApi.get({pin: null}).$promise.then(
 				function(res) {
 					angular.forEach(opins, function(p){
-						p.status = parseInt(res[p.pin].status);
+						p.status = res[p.pin].status;
 					});
 				}
 			);

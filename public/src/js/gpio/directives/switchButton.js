@@ -8,8 +8,7 @@ angular.module('app.gpio')
 			scope: {
 				label: '@',
 				pin: '@',
-				status: '=',
-				callback: '=' // use reference to function
+				status: '='
 			},
 			link: function (scope, element, attrs) {
 

@@ -28,7 +28,6 @@ pongular.module('app.gpio')
 				);
 			},
 			post: function(req, res){
-				console.log(req.body.status);
 				var pin = parseInt(req.params.pin),
 					status = req.body.status;
 
