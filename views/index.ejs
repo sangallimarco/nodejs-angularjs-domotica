@@ -2,7 +2,7 @@
 	<head>
 		<title>Test</title>
  		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
- 		
+
  		<% if (process.env.NODE_ENV !== 'development') { %>
 			<link rel='stylesheet' href='/public/dist/app.min.css' />
 		<% } else { %>
@@ -13,11 +13,11 @@
 
 	<body ng-app="app">
 		<!-- state app.x -->
-		<div ui-view></div>	
+		<div ui-view></div>
 	</body>
 
 	<!-- socket.io from node.js -->
-	<script src="/socket.io/socket.io.js"></script> 
+	<script src="/socket.io/socket.io.js"></script>
 
 	<% if (process.env.NODE_ENV !== 'development') { %>
 		<!-- fileblock:js dist -->
@@ -26,17 +26,23 @@
 	<% } else { %>
 		<!-- fileblock:js dev -->
 		<script src="/public/bower_components/angular/angular.js"></script>
+		<script src="/public/bower_components/ngstorage/ngstorage.js"></script>
 		<script src="/public/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
 		<script src="/public/bower_components/angular-resource/angular-resource.js"></script>
 		<script src="/public/bower_components/angular-socket-io/socket.js"></script>
 		<script src="/public/bower_components/angular-strap/dist/angular-strap.js"></script>
+		<script src="/public/src/js/auth/config.js"></script>
 		<script src="/public/src/js/bootstrap/config.js"></script>
 		<script src="/public/src/js/cam/config.js"></script>
 		<script src="/public/src/js/gpio/config.js"></script>
 		<script src="/public/src/js/home/config.js"></script>
+		<script src="/public/src/js/navigation/config.js"></script>
 		<script src="/public/src/js/socket/config.js"></script>
 		<script src="/public/src/js/test/config.js"></script>
 		<script src="/public/src/js/weather/config.js"></script>
+		<script src="/public/src/js/auth/controllers/authController.js"></script>
+		<script src="/public/src/js/auth/models/authApi.js"></script>
+		<script src="/public/src/js/auth/services/authService.js"></script>
 		<script src="/public/src/js/bootstrap/directives/formControl.js"></script>
 		<script src="/public/src/js/bootstrap/directives/formGroup.js"></script>
 		<script src="/public/src/js/cam/controllers/camController.js"></script>
@@ -46,6 +52,7 @@
 		<script src="/public/src/js/gpio/models/gpioApi.js"></script>
 		<script src="/public/src/js/gpio/services/gpioService.js"></script>
 		<script src="/public/src/js/home/controllers/homeController.js"></script>
+		<script src="/public/src/js/navigation/controllers/navigationController.js"></script>
 		<script src="/public/src/js/socket/services/socketIoFactory.js"></script>
 		<script src="/public/src/js/test/controllers/testController.js"></script>
 		<script src="/public/src/js/test/models/testApi.js"></script>
@@ -56,5 +63,5 @@
 		<script src="/public/src/js/app.js"></script>
 		<!-- endfileblock -->
 	<% } %>
-	
+
 </html>

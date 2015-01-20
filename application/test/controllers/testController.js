@@ -1,14 +1,18 @@
 var pongular = require('pongular').pongular;
 
 pongular.module('app.test')
-.factory('TestCtrl', 
+.factory('TestCtrl',
 	function(TestService) {
 		return {
 			get: function(req, res){
 				// req.query contains query params
-				TestService.getAll(5).then(
-					function(result) {
-						res.json(result);
+				req.auth().then(
+					function(){
+						TestService.getAll(5).then(
+							function(result) {
+								res.status(200).json(result);
+							}
+						);
 					}
 				);
 			},
@@ -18,7 +22,7 @@ pongular.module('app.test')
 					surname: req.body.surname,
 					age: req.body.age
 				};
-				
+
 				// using Q
 				TestService.save(doc)
 				.then(
@@ -33,7 +37,7 @@ pongular.module('app.test')
 							error: 'Validation Error'
 						});
 					}
-				); 
+				);
 			}
 		};
 	}

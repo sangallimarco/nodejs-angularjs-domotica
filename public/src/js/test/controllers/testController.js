@@ -1,7 +1,10 @@
 angular.module('app.test')
-.controller('testController', ['$scope', '$log', 'testService', 'socketIoFactory',
-	function($scope, $log, testService, socketIoFactory) {
+.controller('testController', ['$scope', '$log', 'testService', 'socketIoFactory', 'authService',
+	function($scope, $log, testService, socketIoFactory, authService) {
 		$scope.title = 'Loaded!';
+
+		// force login or redirect to state login
+		authService.loginRequired();
 
 		$scope.data = {
 			name: '',
@@ -13,6 +16,9 @@ angular.module('app.test')
 		};
 		$scope.items = [];
 		$scope.error = null;
+
+
+
 
 		/**
 		 * Add new item

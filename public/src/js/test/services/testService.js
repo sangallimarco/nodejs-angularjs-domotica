@@ -1,6 +1,6 @@
 angular.module('app.test')
-.service('testService', ['$log', 'testApi', 
-	function($log, testApi){
+.service('testService', ['$log', 'testApi', 'authService',
+	function($log, testApi, authService){
 
 		this.getAll = function() {
 			var promise = testApi.query()
@@ -19,7 +19,7 @@ angular.module('app.test')
 			resource.name = item.name;
 			resource.surname = item.surname;
 			resource.age = item.age;
-			
+
 			var promise = resource.$save()
 			.then(
 				function (res) {

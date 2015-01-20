@@ -4,6 +4,7 @@ var pongular = require('pongular').pongular;
 
 pongular.module('app', [
 	'app.libs',
+	'app.auth',
 	'app.home',
 	'app.test',
 	'app.weather',
@@ -15,19 +16,19 @@ pongular.module('app', [
 		'application/*/*/*.js'
 )
 .factory('app',
-	function($mongoose, $bodyParser, $express, $http, $path, $compression, SocketIo, $config) {
-		
+	function($mongoose, $bodyParser, $express, $http, $path, $compression, SocketIo, $config, Auth) {
+
 		var db = $mongoose.connect(
-			$config.get('app.mongodb'), 
-				{
-					server: {
-						socketOptions: {
-							keepAlive: 1
-						}
-					}
+			$config.get('app.mongodb'),
+		{
+			server: {
+				socketOptions: {
+					keepAlive: 1
 				}
-			);
-		db.connection.on('error',console.error.bind(console, 'connection error:'));
+			}
+		}
+	);
+	db.connection.on('error',console.error.bind(console, 'connection error:'));
 
 		//use express.io
 		var app = $express(),
@@ -45,21 +46,25 @@ pongular.module('app', [
 		// socket.io middleware
 		app.use(SocketIo.create(server));
 
-		server.listen(app.get('port'), 
+		// auth
+		app.use(Auth.bind());
+
+		server.listen(app.get('port'),
 			function(){
 				console.log('Express server listening on port ' + app.get('port'));
 			}
 		);
-	
+
 		return app;
 	}
 )
 .run(
-	function(app, HomeRouter, TestRouter, WeatherRouter, GpioRouter, CamRouter, SocketIo, CamService) {
-		
+	function(app, AuthRouter, HomeRouter, TestRouter, WeatherRouter, GpioRouter, CamRouter, SocketIo, CamService) {
+
 		/**
 		 * Route middlewares
 		 */
+		app.use(AuthRouter);
 		app.use(HomeRouter);
 		app.use(TestRouter);
 		app.use(WeatherRouter);
@@ -69,9 +74,9 @@ pongular.module('app', [
 		/**
 		 * Socket.io connection
 		 */
-		SocketIo.get().on('connection', 
+		SocketIo.get().on('connection',
 			function(socket) {
-				console.log('SocketIo Client connected!')
+				console.log('SocketIo Client connected!');
 			}
 		);
 
@@ -87,4 +92,3 @@ pongular.module('app', [
 pongular.injector([
 	'app'
 ]);
-
