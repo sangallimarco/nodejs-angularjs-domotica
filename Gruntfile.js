@@ -7,7 +7,7 @@ module.exports = function (grunt) {
 
 	var fileList = [
 					'public/bower_components/angular/angular.js',
-					'public/bower_components/ngstorage/ngstorage.js',
+					'public/bower_components/ngstorage/ngStorage.js',
 					'public/bower_components/angular-ui-router/release/angular-ui-router.js',
 					'public/bower_components/angular-resource/angular-resource.js',
 					'public/bower_components/angular-socket-io/socket.js',
