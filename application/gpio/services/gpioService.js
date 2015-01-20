@@ -14,7 +14,7 @@ pongular.module('app.gpio')
 		// create pins
 		available.output.forEach(function(pin){
 			pins[pin] = {
-				status: 0, // output status
+				status: false, // output status
 				mode: null
 			};
 		});
@@ -37,7 +37,7 @@ pongular.module('app.gpio')
 					callback(err);
 				});
 			} else {
-				callback(null)
+				callback(null);
 			}
 		}
 

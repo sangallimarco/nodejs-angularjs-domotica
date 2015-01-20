@@ -8,9 +8,6 @@ angular.module('app.gpio')
 		};
 
 		this.set = function(pin, status) {
-			// convert to int
-			status = status ? 1 : 0;
-
 			var promise = gpioApi.set({pin: pin},{status: status}).$promise;
 			return promise;
 		};
