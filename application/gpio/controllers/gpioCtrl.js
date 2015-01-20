@@ -28,8 +28,8 @@ pongular.module('app.gpio')
 				);
 			},
 			post: function(req, res){
-				var pin = req.params.pin,
-					status = req.body.status;
+				var pin = parseInt(req.params.pin),
+					status = req.body.status === 'true' ? true : false ;
 
 				GpioService.set(pin, status).then(
 					function (ret) {

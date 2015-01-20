@@ -52,8 +52,6 @@ pongular.module('app.gpio')
 			read: function (pin) {
 				var deferred = $q.defer();
 
-				pin = parseInt(pin);
-
 				if (validatePin(pin)) {
 					usePin(pin, $gpio.DIR_IN,
 						function(err) {
@@ -82,7 +80,6 @@ pongular.module('app.gpio')
 				var deferred = $q.defer();
 
 				pin = parseInt(pin);
-				status = parseInt(status) ? true : false; // convert to boolean
 
 				if (validatePin(pin)) {
 					usePin(pin, $gpio.DIR_OUT,
