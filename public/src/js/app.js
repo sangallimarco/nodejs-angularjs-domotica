@@ -2,7 +2,7 @@ angular.module('app',
 	[
 		'ngStorage',
 		'ui.router',
-		'mgcrea.ngStrap',
+		'ui.bootstrap',
 		'app.auth',
 		'app.bootstrap',
 		'app.navigation',
