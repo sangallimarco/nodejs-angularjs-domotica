@@ -29,6 +29,7 @@ pongular.module('app', [
 		app.set('port', process.env.PORT || $config.get('app.port'));
 		app.use('/public/', $express.static($path.join(__dirname, 'public')));
 		app.use('/partials/', $express.static($path.join(__dirname, 'views/partials')));
+		app.use('/fonts/', $express.static($path.join(__dirname, 'public/bower_components/bootstrap/fonts')));
 
 		// socket.io middleware
 		app.use(SocketIo.create(server));
