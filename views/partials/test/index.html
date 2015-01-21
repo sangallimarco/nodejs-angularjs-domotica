@@ -3,46 +3,47 @@
 	<div ng-show="error" class="alert alert-danger">{{error}}</div>
 
 	<form name="form">
-		<form-group class="col-xs-4" label="Name">
-			<input 
-				class="form-control" 
-				type="text" 
-				id="name"				
-				name="name" 
+		<form-group class="col-xs-6 col-sm-4" label="Name">
+			<input
+				class="form-control"
+				type="text"
+				id="name"
+				name="name"
 				ng-model="data.name"
 				required
 				ng-minlength="3"
 			/>
 		</form-group>
-		<form-group class="col-xs-4" label="Surname">
-			<input 
-				class="form-control" 
+		<form-group class="col-xs-6  col-sm-4" label="Surname">
+			<input
+				class="form-control"
 				type="text"
 				id="surname"
-				name="surname" 
+				name="surname"
 				ng-model="data.surname"
 				required
 				ng-minlength="3"
 			/>
 		</form-group>
-		<form-group class="col-xs-2" label="Age">
-			<input 
-				class="form-control" 
+		<form-group class="col-xs-6  col-sm-2" label="Age">
+			<input
+				class="form-control"
 				type="number"
 				id="age"
-				name="age" 
+				name="age"
 				ng-model="data.age"
 				required
 			/>
 		</form-group>
 	</form>
 
-	<div class="col-xs-2">
-		<button 
-			class="btn btn-primary" 
-			ng-click="addItem()">ADD</button>
+	<div class="col-xs-6  col-sm-2">
+		<label>Add</label>
+		<button
+			class="btn btn-primary btn-block"
+			ng-click="addItem()"><i class="glyphicon glyphicon-saved"></i></button>
 	</div>
-	
+
 </div>
 
 <!-- websocket message -->
@@ -65,4 +66,3 @@
 		</tr>
 	</table>
 </div>
-
