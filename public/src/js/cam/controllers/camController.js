@@ -1,6 +1,6 @@
 angular.module('app.cam')
-.controller('camController', ['$scope', '$log', 'socketIoFactory', 'camService',
-	function($scope, $log, socketIoFactory, camService) {
+.controller('camController', ['$scope', '$log', '$window', 'socketIoFactory', 'camService',
+	function($scope, $log, $window, socketIoFactory, camService) {
 		$scope.title = 'Loaded!';
 		$scope.src = null;
 		$scope.timestamp = null;
@@ -19,7 +19,11 @@ angular.module('app.cam')
 					canLoad = true;
 				});
 			}
-		});	
+		});
 
+		// open image in another tab
+		$scope.downloadImage = function () {
+			$window.open($scope.src,'_blank');
+		};
 	}
 ]);
