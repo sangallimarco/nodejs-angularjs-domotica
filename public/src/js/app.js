@@ -2,6 +2,7 @@ angular.module('app',
 	[
 		'ngStorage',
 		'ui.router',
+		'ui.bootstrap',
 		'app.auth',
 		'app.bootstrap',
 		'app.navigation',
