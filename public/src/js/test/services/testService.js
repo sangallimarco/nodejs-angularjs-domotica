@@ -8,6 +8,10 @@ angular.module('app.test')
 			.then(
 				function (res) {
 					return res;
+				},
+				function (res) {
+					authService.check(res);
+					return res;
 				}
 			);
 			return promise;
@@ -23,6 +27,10 @@ angular.module('app.test')
 			var promise = resource.$save()
 			.then(
 				function (res) {
+					return res;
+				},
+				function (res) {
+					authService.check(res);
 					return res;
 				}
 			);

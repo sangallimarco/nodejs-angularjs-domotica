@@ -13,8 +13,8 @@ angular.module('app',
 		'app.cam'
 	]
 )
-.config(['$compileProvider', '$logProvider', '$stateProvider', '$urlRouterProvider',
-	function ($compileProvider, $logProvider, $stateProvider, $urlRouterProvider) {
+.config(['$compileProvider', '$logProvider', '$stateProvider', '$urlRouterProvider', '$httpProvider',
+	function ($compileProvider, $logProvider, $stateProvider, $urlRouterProvider, $httpProvider) {
 
 		// dev/production
 		$compileProvider.debugInfoEnabled(true);
@@ -28,6 +28,8 @@ angular.module('app',
 			templateUrl: 'partials/app/index.html',
 			controller: 'navigationController'
 		});
+
+		$httpProvider.interceptors.push('authInterceptor');
 
 	}
 ]);

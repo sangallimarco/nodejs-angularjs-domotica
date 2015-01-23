@@ -6,13 +6,9 @@ pongular.module('app.test')
 		return {
 			get: function(req, res){
 				// req.query contains query params
-				req.auth().then(
-					function(){
-						TestService.getAll(5).then(
-							function(result) {
-								res.status(200).json(result);
-							}
-						);
+				TestService.getAll(5).then(
+					function(result) {
+						res.status(200).json(result);
 					}
 				);
 			},

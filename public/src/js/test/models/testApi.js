@@ -3,11 +3,8 @@ angular.module('app.test')
 	function($resource, authService){
 
 		return $resource(
-			'/api/:hash/test/:id',
+			'/api/test/:id',
 			{
-				hash: function(){
-					return authService.getHash();
-				},
 				id: '@id'
 			}
 		);

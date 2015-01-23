@@ -1,7 +1,8 @@
 {
 	"app": {
 		"port": 8000,
-		"mongodb": "mongodb://localhost/testapp"
+		"mongodb": "mongodb://localhost/testapp",
+		"secret": "thisIsASecret!"
 	},
 	"weather": {
 		"key": ".frFFHX1sj"
