@@ -64,13 +64,17 @@ pongular.module('app.auth')
                             deferred.reject(res);
                         }
 
-                        var token =  $jwt.sign(ret,
-                                                    priv,
-                                                    {
-                                                        expiresInMinutes: 1,
-                                                        algorithm: 'RS256'
-                                                    }
-                                                );
+                        var data = ret.toObject(),
+                            token =  $jwt.sign({
+                                                username: data.name,
+                                                hash: data.hash
+                                            },
+                                            priv,
+                                            {
+                                                expiresInMinutes: 2*60,
+                                                algorithm: 'RS256'
+                                            }
+                                        );
                         deferred.resolve({token: token});
                     },
                     function(res) {
