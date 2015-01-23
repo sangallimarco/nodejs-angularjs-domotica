@@ -2,7 +2,7 @@ var pongular = require('pongular').pongular;
 
 pongular.module('app.auth')
 .factory('Auth',
-    function(UserModel, $q) {
+    function(UserModel, $q, $jwt, $config) {
         var self = this;
 
         function check(hash){
@@ -50,13 +50,36 @@ pongular.module('app.auth')
                 };
             },
             login: function(name, password){
-                return UserModel.findOne(
+
+                var deferred = $q.defer();
+
+                UserModel.findOne(
                     {
                         name: name,
                         password: password
                     },
                     'name hash'
-                ).exec();
+                ).exec()
+                .then(
+                    function (ret) {
+                        if (!ret) {
+                            deferred.reject(res);
+                        }
+
+                        var token =  $jwt.sign(ret,
+                                                $config.get('app.secret'),
+                                                    {
+                                                        expiresInMinutes: 60*5
+                                                    }
+                                                );
+                        deferred.resolve({token: token});
+                    },
+                    function(res) {
+                        deferred.reject(res);
+                    }
+                );
+
+                return deferred.promise;
             }
         };
     }

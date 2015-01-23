@@ -12,6 +12,7 @@ module.exports = function (grunt) {
 					'public/bower_components/angular-ui-router/release/angular-ui-router.js',
 					'public/bower_components/angular-resource/angular-resource.js',
 					'public/bower_components/angular-socket-io/socket.js',
+					'public/bower_components/angular-jwt/dist/angular-jwt.js',
 
 					'public/src/js/*/config.js',
 					'public/src/js/*/*/*.js',

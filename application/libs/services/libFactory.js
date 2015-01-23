@@ -38,6 +38,13 @@ pongular.module('app.libs')
 	return require('config');
 })
 
+.factory('$expressJwt', function() {
+	return require('express-jwt');
+})
+
+.factory('$jwt', function() {
+	return require('jsonwebtoken');
+})
 
 .factory('$pongular', function() {
 	return pongular;

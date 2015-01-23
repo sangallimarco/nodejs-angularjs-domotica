@@ -1,6 +1,6 @@
 angular.module('app.auth')
-.service('authService', ['$log', 'authApi', '$localStorage', '$state',
-    function($log, authApi, $localStorage, $state){
+.service('authService', ['$log', 'authApi', '$localStorage', '$state', 'jwtHelper',
+    function($log, authApi, $localStorage, $state, jwtHelper){
 
         this.login = function(name, password) {
 
@@ -11,7 +11,7 @@ angular.module('app.auth')
             var promise = user.$save();
             promise.then(
                 function(res) {
-                    $localStorage.user = res;
+                    $localStorage.token = res.token;
                     return res;
                 }
             );
@@ -20,31 +20,31 @@ angular.module('app.auth')
         };
 
         // used from APIs
-        this.getHash = function(){
-            if (!$localStorage.user) {
+        this.getToken = function(){
+            if (!$localStorage.token) {
                 this.logout();
                 return null;
             }
-            return $localStorage.user.hash;
+            return $localStorage.token;
         };
 
         this.getUser = function(){
-            if (!$localStorage.user) {
+            if (!$localStorage.token) {
                 this.logout();
                 return null;
             }
-            return $localStorage.user;
+            return jwtHelper.decodeToken($localStorage.token);
         };
 
         // test if a hash is already stored
         this.loginRequired = function(){
-            if (!this.getHash()) {
+            if (!this.getToken()) {
                 this.logout();
             }
         };
 
         this.logout = function(){
-            delete $localStorage.user;
+            delete $localStorage.token;
             $state.go('app.auth');
         };
 
