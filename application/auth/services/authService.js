@@ -2,8 +2,10 @@ var pongular = require('pongular').pongular;
 
 pongular.module('app.auth')
 .factory('Auth',
-    function(UserModel, $q, $jwt, $config, $expressJwt) {
-        var self = this;
+    function(UserModel, $q, $jwt, $config, $expressJwt, $fs) {
+        var self = this,
+            pub = $fs.readFileSync('./certs/pub.pem');
+            priv = $fs.readFileSync('./certs/priv.pem');
 
         function check(hash){
             var deferred = $q.defer();
@@ -33,20 +35,16 @@ pongular.module('app.auth')
 
         return {
             interceptor: function () {
-                return $expressJwt(
-                    {
-                        secret: $config.get('app.secret')
-                    }
-                );
-            },
-            errorHandler: function () {
-                return function (err, req, res, next) {
-                    if (err.name === 'UnauthorizedError'){
-                        res.status(401).json({
-                            error: 'Invalid Token!'
-                        });
-                    }
-                    return next();
+                return function (req, res, next) {
+                    $jwt.verify(req.headers.authorization, pub, function (err, decoded) {
+                        if (err) {
+                            res.status(401).json({
+                                error: 'Invalid Token!'
+                            });
+                        } else {
+                            return next();
+                        }
+                    });
                 };
             },
             login: function(name, password){
@@ -67,9 +65,10 @@ pongular.module('app.auth')
                         }
 
                         var token =  $jwt.sign(ret,
-                                                $config.get('app.secret'),
+                                                    priv,
                                                     {
-                                                        expiresInMinutes: 60*5
+                                                        expiresInMinutes: 1,
+                                                        algorithm: 'RS256'
                                                     }
                                                 );
                         deferred.resolve({token: token});

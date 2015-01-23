@@ -6,13 +6,13 @@ function ($rootScope, $q, $localStorage) {
             config.headers = config.headers || {};
             var token = $localStorage.token;
             if (token) {
-                config.headers.Authorization = 'Bearer ' + token;
+                config.headers.Authorization = token;
             }
             return config;
         },
         response: function (response) {
             if (response.status === 401) {
-                // 
+                //
             }
             return response || $q.when(response);
         }

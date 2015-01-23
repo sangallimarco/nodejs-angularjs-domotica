@@ -33,7 +33,7 @@ pongular.module('app', [
 
 		// JWT
 		app.use('/api', Auth.interceptor());
-		app.use('/api', Auth.errorHandler());
+		// app.use('/api', Auth.errorHandler());
 
 		// socket.io middleware
 		app.use(SocketIo.create(server));

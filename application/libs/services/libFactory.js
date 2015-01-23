@@ -46,6 +46,10 @@ pongular.module('app.libs')
 	return require('jsonwebtoken');
 })
 
+.factory('$fs', function() {
+	return require('fs');
+})
+
 .factory('$pongular', function() {
 	return pongular;
 });
