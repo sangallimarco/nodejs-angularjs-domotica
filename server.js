@@ -14,7 +14,7 @@ pongular.module('app', [
 		'application/*/*/*.js'
 )
 .factory('app',
-	function($mongoose, $bodyParser, $express, $http, $path, $compression, SocketIo, $config, $expressJwt) {
+	function($mongoose, $bodyParser, $express, $http, $path, $compression, SocketIo, $config, Auth) {
 
 		$mongoose.connect($config.get('app.mongodb'));
 
@@ -32,7 +32,8 @@ pongular.module('app', [
 		app.use('/fonts/', $express.static($path.join(__dirname, 'public/bower_components/bootstrap/fonts')));
 
 		// JWT
-		app.use('/api', $expressJwt({secret: $config.get('app.secret')}));
+		app.use('/api', Auth.interceptor());
+		app.use('/api', Auth.errorHandler());
 
 		// socket.io middleware
 		app.use(SocketIo.create(server));
