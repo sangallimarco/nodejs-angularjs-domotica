@@ -8,6 +8,9 @@ angular.module('app.test')
 			.then(
 				function (res) {
 					return res;
+				},
+				function (res) {
+					authService.check(res);
 				}
 			);
 			return promise;
@@ -24,6 +27,9 @@ angular.module('app.test')
 			.then(
 				function (res) {
 					return res;
+				},
+				function (res) {
+					authService.check(res);
 				}
 			);
 			return promise;

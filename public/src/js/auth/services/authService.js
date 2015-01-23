@@ -36,9 +36,9 @@ angular.module('app.auth')
             return jwtHelper.decodeToken($localStorage.token);
         };
 
-        // test if a hash is already stored
-        this.loginRequired = function(){
-            if (!this.getToken()) {
+        // test if a hash is already stored or is invalid
+        this.check = function(response){
+            if (!this.getToken() || response.status === 401) {
                 this.logout();
             }
         };

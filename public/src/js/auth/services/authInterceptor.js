@@ -12,7 +12,7 @@ function ($rootScope, $q, $localStorage) {
         },
         response: function (response) {
             if (response.status === 401) {
-                // $state.go('app.auth');
+                // 
             }
             return response || $q.when(response);
         }
