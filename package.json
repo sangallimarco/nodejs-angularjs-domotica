@@ -2,11 +2,6 @@
   "name": "node-api",
   "main": "server.js",
   "private": true,
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
-    "postinstall": "bower install && grunt dist"
-  },
   "dependencies": {
     "body-parser": "~1.0.1",
     "bower": "1.3.12",
