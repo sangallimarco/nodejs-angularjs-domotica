@@ -2,7 +2,7 @@ var pongular = require('pongular').pongular;
 
 pongular.module('app.auth')
 .factory('Auth',
-    function(UserModel, $q, $jwt, $config) {
+    function(UserModel, $q, $jwt, $config, $expressJwt) {
         var self = this;
 
         function check(hash){
@@ -32,20 +32,20 @@ pongular.module('app.auth')
         }
 
         return {
-            bind: function () {
-                return function (req, res, next) {
-                    req.auth = function() {
-                        return check(req.params.hash).then(
-                            function(result){
-                                return result;
-                            },
-                            function(){
-                                res.status(500).json({
-                                    error: 'Validation Error'
-                                });
-                            }
-                        );
-                    };
+            interceptor: function () {
+                return $expressJwt(
+                    {
+                        secret: $config.get('app.secret')
+                    }
+                );
+            },
+            errorHandler: function () {
+                return function (err, req, res, next) {
+                    if (err.name === 'UnauthorizedError'){
+                        res.status(401).json({
+                            error: 'Invalid Token!'
+                        });
+                    }
                     return next();
                 };
             },
