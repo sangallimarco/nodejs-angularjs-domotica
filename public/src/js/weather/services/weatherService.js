@@ -11,6 +11,7 @@ angular.module('app.weather')
 				},
 				function (res) {
 					authService.check(res);
+					return res;
 				}
 			);
 			return promise;
@@ -25,6 +26,7 @@ angular.module('app.weather')
 				},
 				function (res) {
 					authService.check(res);
+					return res;
 				}
 			);
 			return promise;

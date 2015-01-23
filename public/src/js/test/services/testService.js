@@ -11,6 +11,7 @@ angular.module('app.test')
 				},
 				function (res) {
 					authService.check(res);
+					return res;
 				}
 			);
 			return promise;
@@ -30,6 +31,7 @@ angular.module('app.test')
 				},
 				function (res) {
 					authService.check(res);
+					return res;
 				}
 			);
 			return promise;
