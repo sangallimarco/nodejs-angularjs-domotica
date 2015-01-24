@@ -32,12 +32,13 @@ angular.module('app.weather')
 				// search if postcode #/app/weather/w45eq
 				if ($scope.input !== '') {
 					$scope.getWeather();
-				} 
+				}
 			}
 		);
 
 		//socket.io
-		socketIoFactory.on('weather.new', function (obj) {
+		socketIoFactory
+		.addListener('weather.new', function (obj) {
 			// prepend to list
 			$scope.items.unshift(obj);
 		});

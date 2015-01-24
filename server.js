@@ -42,7 +42,7 @@ pongular.module('app', [
 		app.use('/tmp/', $express.static('/tmp'));
 		app.use('/public/', $express.static($path.join(__dirname, 'public')));
 		app.use('/partials/', $express.static($path.join(__dirname, 'views/partials')));
-		app.use('/fonts/', $express.static($path.join(__dirname, 'public/bower_components/bootstrap/fonts')));
+		app.use('/fonts/', $express.static($path.join(__dirname, 'public/bower_components/bootstrap-less/fonts')));
 
 		// JWT
 		app.use('/api', Auth.interceptor());
