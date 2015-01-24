@@ -37,8 +37,7 @@ angular.module('app.weather')
 		);
 
 		//socket.io
-		socketIoFactory
-		.addListener('weather.new', function (obj) {
+		socketIoFactory.on('weather.new', function (obj) {
 			// prepend to list
 			$scope.items.unshift(obj);
 		});
