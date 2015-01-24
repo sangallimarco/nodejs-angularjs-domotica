@@ -32,7 +32,7 @@ angular.module('app.weather')
 				// search if postcode #/app/weather/w45eq
 				if ($scope.input !== '') {
 					$scope.getWeather();
-				} 
+				}
 			}
 		);
 

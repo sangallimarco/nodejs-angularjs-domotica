@@ -1,6 +1,6 @@
 angular.module('app.test')
-.controller('testController', ['$scope', '$log', 'testService', 'socketIoFactory',
-	function($scope, $log, testService, socketIoFactory) {
+.controller('testController', ['$scope', '$log', 'testService', 'socketIoFactory', '$rootScope',
+	function($scope, $log, testService, socketIoFactory, $rootScope) {
 		$scope.title = 'Loaded!';
 
 		$scope.data = {

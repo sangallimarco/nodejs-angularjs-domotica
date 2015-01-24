@@ -1,4 +1,4 @@
-angular.module('app.test', 
+angular.module('app.test',
 	[
 		'ngResource',
 		'ui.router',
