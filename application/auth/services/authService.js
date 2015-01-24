@@ -5,32 +5,6 @@ pongular.module('app.auth')
     function(UserModel, $q, $jwt, $config, $expressJwt) {
         var self = this;
 
-        function check(hash){
-            var deferred = $q.defer();
-
-            UserModel.findOne(
-                {
-                    hash: hash
-                },
-                'hash'
-            )
-            .exec()
-            .then(
-                function(res){
-                    if (!res) {
-                        deferred.reject(res);
-                    } else {
-                        deferred.resolve(res);
-                    }
-                },
-                function(res) {
-                    deferred.reject(res);
-                }
-            );
-
-            return deferred.promise;
-        }
-
         return {
             interceptor: function () {
                 return $expressJwt(
@@ -66,12 +40,16 @@ pongular.module('app.auth')
                             deferred.reject(res);
                         }
 
-                        var token =  $jwt.sign(ret,
+                        var data = ret.toObject(),
+                            token =  $jwt.sign({
+                                                    username: data.name,
+                                                    hash: data.hash
+                                                },
                                                 $config.get('app.secret'),
-                                                    {
-                                                        expiresInMinutes: 60*5
-                                                    }
-                                                );
+                                                {
+                                                    expiresInMinutes: 2*60
+                                                }
+                                            );
                         deferred.resolve({token: token});
                     },
                     function(res) {
