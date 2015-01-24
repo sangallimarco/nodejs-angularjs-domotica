@@ -10,7 +10,7 @@ angular.module('app.socket')
 		$rootScope.$on('$stateChangeStart', function(event){
 			angular.forEach(events, function (evt) {
 				socket.removeListener(evt);
-			})
+			});
 		});
 
 		factory.getSocket = function () {
