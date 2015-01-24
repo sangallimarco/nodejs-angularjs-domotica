@@ -16,7 +16,7 @@ angular.module('app.socket')
 		factory.getSocket = function () {
 			return socket;
 		};
-		factory.addListener = function (event, callback) {
+		factory.on = function (event, callback) {
 			socket.on(event, callback);
 			events.push(event);
 		};
