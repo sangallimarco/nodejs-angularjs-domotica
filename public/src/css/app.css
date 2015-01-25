@@ -5276,3 +5276,45 @@ button.close {
     display: none !important;
   }
 }
+.switch {
+  background: #ffffff;
+  border: 1px solid #ecf0f1;
+  position: relative;
+  display: inline-block;
+  box-sizing: content-box;
+  overflow: visible;
+  width: 52px;
+  height: 30px;
+  padding: 0px;
+  margin: 0px;
+  border-radius: 20px;
+  cursor: pointer;
+  box-shadow: #dfdfdf 0px 0px 0px 0px inset;
+  transition: 0.3s ease-out all;
+  -webkit-transition: 0.3s ease-out all;
+}
+.switch small {
+  background: #fff;
+  border-radius: 100%;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  transition: 0.3s ease-out all;
+  -webkit-transition: 0.3s ease-out all;
+}
+.switch.checked {
+  background: #e74c3c;
+  border-color: #e74c3c;
+}
+.switch.checked small {
+  left: 22px;
+}
+.switch-label {
+  font-size: 15px;
+  top: -10px;
+  left: 10px;
+  position: relative;
+}

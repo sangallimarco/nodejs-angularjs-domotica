@@ -2,7 +2,12 @@ angular.module('app.gpio')
 .directive('switchButton', ['gpioService',
 	function (gpioService) {
 		return {
-			template: '<div><div class="btn-group" role="group"> <button type="button" ng-class="{active: !status, \'btn-danger\':!status}" class="btn" ng-click="toggle(false)">Off</button> <button type="button" class="btn" ng-class="{active: status, \'btn-success\': status}" ng-click="toggle(true)">On</button></div> <span>{{label}}</span> </div>',
+			template: '<label>'+
+							'<div class="switch" ng-class="{checked: status}" ng-click="toggle()">'+
+								'<small></small>'+
+							'</div>'+
+							'<span class="switch-label">{{label}}</span>'+
+						'</label>',
 			replace: true,
 			restrict: 'E',
 			scope: {
@@ -12,9 +17,9 @@ angular.module('app.gpio')
 			},
 			link: function (scope, element, attrs) {
 
-				scope.toggle = function (status) {
-					var ostatus = status;
-					scope.status = status;
+				scope.toggle = function () {
+					var ostatus = scope.status;
+					scope.status = !scope.status;
 
 					gpioService.set(scope.pin, scope.status)
 					.then(
