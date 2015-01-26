@@ -4,15 +4,20 @@ angular.module('app.gpio')
 		$scope.title = 'Loaded!';
 
 		// refactor in order to get real statuses
-		$scope.switches = [
-			{label: '11', pin:11, status:false},
-			{label: '12', pin:12, status:false}
-		];
+		$scope.switches = {};
+		gpioService.initPin($scope.switches, 11, 'Pin 11');
+		gpioService.initPin($scope.switches, 12, 'Pin 12');
+
 		$scope.error = null;
 
 		/**
 		 * Init pins
 		 */
 		gpioService.initStatus($scope.switches);
+
+		//socket.io
+		socketIoFactory.on('gpio.changed', function (obj) {
+			$scope.switches[obj.pin].status = obj.status;
+		});
 	}
 ]);

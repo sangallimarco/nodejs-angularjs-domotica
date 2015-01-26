@@ -1,6 +1,6 @@
 angular.module('app.gpio')
-.service('gpioService', ['$log', 'gpioApi', 'authService',
-	function($log, gpioApi, authService){
+.service('gpioService', ['$log', 'gpioApi', 'authService', '$q',
+	function($log, gpioApi, authService, $q){
 
 		this.get = function(pin) {
 			var promise = gpioApi.get({pin: pin})
@@ -11,7 +11,7 @@ angular.module('app.gpio')
 				},
 				function (res) {
 					authService.check(res);
-					return res;
+					return $q.reject(res);
 				}
 			);
 			return promise;
@@ -26,10 +26,14 @@ angular.module('app.gpio')
 				},
 				function (res) {
 					authService.check(res);
-					return res;
+					return $q.reject(res);
 				}
 			);
 			return promise;
+		};
+
+		this.initPin = function (pins, pin, label) {
+			pins[pin] = {label: label, status: false};
 		};
 
 		this.initStatus = function (opins) {
@@ -37,13 +41,13 @@ angular.module('app.gpio')
 			.$promise
 			.then(
 				function(res) {
-					angular.forEach(opins, function(p){
-						p.status = res[p.pin].status;
+					angular.forEach(opins, function(data, p){
+						data.status = res[p].status;
 					});
 				},
 				function (res) {
 					authService.check(res);
-					return res;
+					return $q.reject(res);
 				}
 			);
 			return promise;

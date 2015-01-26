@@ -2,11 +2,11 @@
 <div class="row">
 	<div ng-show="error" class="alert alert-danger">{{error}}</div>
 
-	<div class="col-xs-24" ng-repeat="item in switches">
+	<div class="col-xs-24" ng-repeat="(pin, data) in switches">
 		<switch-button
-			label="{{item.label}}"
-			pin="{{item.pin}}"
-			status="item.status"
+			label="{{data.label}}"
+			pin="{{pin}}"
+			status="data.status"
 		></switch-button>
 	</div>
 

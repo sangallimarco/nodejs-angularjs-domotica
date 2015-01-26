@@ -15,10 +15,14 @@ pongular.module('app.gpio')
 
 				GpioService.read(pin).then(
 					function (status) {
-						res.status(200).json({
+						var data = {
 							pin: pin,
 							status: status
-						});
+						};
+
+						//Socket.io send immediately
+						req.io.emit('gpio.changed', data);
+						res.status(200);
 					},
 					function (ret) {
 						res.status(500).json({
@@ -33,10 +37,14 @@ pongular.module('app.gpio')
 
 				GpioService.set(pin, status).then(
 					function (ret) {
-						res.status(200).json({
+						var data = {
 							pin: pin,
 							status: status
-						});
+						};
+
+						//Socket.io send immediately
+						req.io.emit('gpio.changed', data);
+						res.status(200);
 					},
 					function (ret) {
 						res.status(500).json({
