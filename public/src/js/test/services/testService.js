@@ -1,6 +1,6 @@
 angular.module('app.test')
-.service('testService', ['$log', 'testApi', 'authService',
-	function($log, testApi, authService){
+.service('testService', ['$log', 'testApi', 'authService', '$q',
+	function($log, testApi, authService, $q){
 
 		this.getAll = function() {
 			var promise = testApi.query()
@@ -11,7 +11,7 @@ angular.module('app.test')
 				},
 				function (res) {
 					authService.check(res);
-					return res;
+					return $q.reject(res);
 				}
 			);
 			return promise;
@@ -31,7 +31,7 @@ angular.module('app.test')
 				},
 				function (res) {
 					authService.check(res);
-					return res;
+					return $q.reject(res);
 				}
 			);
 			return promise;

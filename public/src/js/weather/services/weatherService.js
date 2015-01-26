@@ -1,6 +1,6 @@
 angular.module('app.weather')
-.service('weatherService', ['$log', 'weatherApi', 'authService',
-	function($log, weatherApi, authService){
+.service('weatherService', ['$log', 'weatherApi', 'authService', '$q',
+	function($log, weatherApi, authService, $q){
 
 		this.getWeather = function(postcode) {
 			var promise = weatherApi.getCurrent({postcode: postcode})
@@ -11,7 +11,7 @@ angular.module('app.weather')
 				},
 				function (res) {
 					authService.check(res);
-					return res;
+					return $q.reject(res);
 				}
 			);
 			return promise;
@@ -26,7 +26,7 @@ angular.module('app.weather')
 				},
 				function (res) {
 					authService.check(res);
-					return res;
+					return $q.reject(res);
 				}
 			);
 			return promise;
