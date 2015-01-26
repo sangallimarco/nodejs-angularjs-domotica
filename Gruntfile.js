@@ -5,7 +5,12 @@ module.exports = function (grunt) {
 	require('load-grunt-tasks')(grunt);
 
 
-	var fileList = [
+	var srcJs = [
+			'public/src/js/*/config.js',
+			'public/src/js/*/*/*.js',
+			'public/src/js/app.js'
+		],
+		fileList = [
 					'public/bower_components/angular/angular.js',
 					'public/bower_components/ngstorage/ngstorage.js',
 					'public/bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
@@ -13,11 +18,7 @@ module.exports = function (grunt) {
 					'public/bower_components/angular-resource/angular-resource.js',
 					'public/bower_components/angular-socket-io/socket.js',
 					'public/bower_components/angular-jwt/dist/angular-jwt.js',
-
-					'public/src/js/*/config.js',
-					'public/src/js/*/*/*.js',
-					'public/src/js/app.js'
-				];
+		].concat(srcJs);
 
 	// Project configuration.
 	grunt.initConfig({
@@ -131,7 +132,7 @@ module.exports = function (grunt) {
 					sourceMap: false
 				},
 				files: {
-					"<%= config.dist %>/app.min.css": "<%= config.less %>/app.less",
+					"<%= config.dist %>/app.min.css": "<%= config.less %>/app.less"
 				}
 			},
 			dev: {
@@ -145,6 +146,30 @@ module.exports = function (grunt) {
 			}
 		},
 
+		/**
+		 * annotate
+		 */
+		ngAnnotate: {
+			options: {
+				singleQuotes: true
+			},
+			dev: {
+				options: {
+					add: false,
+					remove: true
+				},
+				files: [{
+					expand: true,
+					src: srcJs
+				}]
+			},
+			dist: {
+				files: {
+					'/tmp/app.js': '/tmp/app.js'
+				}
+			}
+		}
+
 
 	});
 
@@ -155,9 +180,14 @@ module.exports = function (grunt) {
 		'fileblocks:dev'
 	]);
 
+	grunt.registerTask('clean', [
+		'ngAnnotate:dev'
+	]);
+
 	grunt.registerTask('dist', [
 		'jshint',
 		'concat:core',
+		'ngAnnotate:dist',
 		'uglify',
 		'less:dist',
 		'fileblocks:dist'
