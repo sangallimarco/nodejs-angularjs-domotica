@@ -19,7 +19,8 @@
     "q": "~1.1.2",
     "raspicam": "^0.2.13",
     "rpi-gpio": "^0.5.1",
-    "socket.io": "^1.2.1"
+    "socket.io": "^1.2.1",
+    "socketio-jwt": "^2.3.5"
   },
   "engines": {
     "node": "0.10.x"

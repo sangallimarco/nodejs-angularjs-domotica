@@ -1,6 +1,6 @@
 angular.module('app.auth')
-.service('authService', ['$log', 'authApi', '$localStorage', '$state', 'jwtHelper',
-    function($log, authApi, $localStorage, $state, jwtHelper){
+.service('authService', ['$rootScope', 'authApi', '$localStorage', '$state', 'jwtHelper',
+    function($rootScope, authApi, $localStorage, $state, jwtHelper){
 
         this.login = function(name, password) {
 
@@ -12,6 +12,7 @@ angular.module('app.auth')
             promise.then(
                 function(res) {
                     $localStorage.token = res.token;
+                    $rootScope.$broadcast('$authChanged', res);
                     return res;
                 }
             );

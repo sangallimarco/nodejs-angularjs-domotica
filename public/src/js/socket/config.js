@@ -1,5 +1,6 @@
-angular.module('app.socket', 
+angular.module('app.socket',
 	[
-		'btford.socket-io'
+		'btford.socket-io',
+		'app.auth'
 	]
 );

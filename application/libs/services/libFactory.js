@@ -66,6 +66,11 @@ pongular.module('app.libs')
 	return require('jsonwebtoken');
 })
 
+.factory('$socketJwt', function() {
+	return require("socketio-jwt");
+})
+
+
 .factory('$pongular', function() {
 	return pongular;
 });
