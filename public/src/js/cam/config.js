@@ -5,8 +5,7 @@ angular.module('app.cam',
 		'app.socket'
 	]
 )
-.config(['$stateProvider',
-	function ($stateProvider) {
+.config(function ($stateProvider) {
 
 		$stateProvider
 		.state('app.cam', {
@@ -14,5 +13,4 @@ angular.module('app.cam',
 			templateUrl: 'partials/cam/index.html',
 			controller: 'camController'
 		});
-	}
-]);
+	});

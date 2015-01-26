@@ -1,6 +1,5 @@
 angular.module('app.auth')
-.service('authService', ['$rootScope', 'authApi', '$localStorage', '$state', 'jwtHelper',
-    function($rootScope, authApi, $localStorage, $state, jwtHelper){
+.service('authService', function($rootScope, authApi, $localStorage, $state, jwtHelper){
 
         this.login = function(name, password) {
 
@@ -49,5 +48,4 @@ angular.module('app.auth')
             $state.go('app.auth');
         };
 
-    }
-]);
+    });

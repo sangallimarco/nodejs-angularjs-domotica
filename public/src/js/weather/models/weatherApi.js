@@ -1,6 +1,5 @@
 angular.module('app.weather')
-.factory('weatherApi', ['$resource', 
-	function($resource){
+.factory('weatherApi', function($resource){
 		return $resource(
 			'/api/weather/:postcode',
 			{
@@ -14,5 +13,4 @@ angular.module('app.weather')
 				}
 			}
 		);
-	}
-]);
+	});

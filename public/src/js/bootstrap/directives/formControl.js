@@ -1,6 +1,5 @@
 angular.module('app.bootstrap')
-.directive('formControl', ['$timeout', 
-	function ($timeout) {
+.directive('formControl', function ($timeout) {
 		return {
 			restrict: 'AC',
 			scope: {
@@ -78,5 +77,4 @@ angular.module('app.bootstrap')
 				});
 			}
 		};
-	}
-]);
+	});

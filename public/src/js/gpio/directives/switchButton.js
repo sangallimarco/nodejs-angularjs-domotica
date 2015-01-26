@@ -1,6 +1,5 @@
 angular.module('app.gpio')
-.directive('switchButton', ['gpioService',
-	function (gpioService) {
+.directive('switchButton', function (gpioService) {
 		return {
 			template: '<label>'+
 							'<div class="switch" ng-class="{checked: status}" ng-click="toggle()">'+
@@ -35,5 +34,4 @@ angular.module('app.gpio')
 
 			}
 		};
-	}
-]);
+	});

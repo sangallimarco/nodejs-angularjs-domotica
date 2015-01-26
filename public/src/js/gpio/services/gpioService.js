@@ -1,6 +1,5 @@
 angular.module('app.gpio')
-.service('gpioService', ['$log', 'gpioApi', 'authService', '$q',
-	function($log, gpioApi, authService, $q){
+.service('gpioService', function($log, gpioApi, authService, $q){
 
 		this.get = function(pin) {
 			var promise = gpioApi.get({pin: pin})
@@ -53,5 +52,4 @@ angular.module('app.gpio')
 			return promise;
 		};
 
-	}
-]);
+	});

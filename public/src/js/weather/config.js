@@ -5,13 +5,11 @@ angular.module('app.weather',
 		'app.socket'
 	]
 )
-.config(['$stateProvider',
-	function ($stateProvider) {
+.config(function ($stateProvider) {
 		$stateProvider
 		.state('app.weather', {
 			url:'/weather/:postcode',
 			templateUrl: 'partials/weather/index.html',
 			controller: 'weatherController'
 		});
-	}
-]);
+	});

@@ -1,6 +1,5 @@
 angular.module('app.weather')
-.controller('weatherController', ['$scope', '$log', 'weatherService', '$stateParams', 'socketIoFactory',
-	function($scope, $log, weatherService, $stateParams, socketIoFactory) {
+.controller('weatherController', function($scope, $log, weatherService, $stateParams, socketIoFactory) {
 		$scope.title = 'Loaded!';
 
 		$scope.data = {
@@ -42,5 +41,4 @@ angular.module('app.weather')
 			$scope.items.unshift(obj);
 		});
 
-	}
-]);
+	});

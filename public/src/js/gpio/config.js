@@ -5,8 +5,7 @@ angular.module('app.gpio',
 		'app.socket'
 	]
 )
-.config(['$stateProvider',
-	function ($stateProvider) {
+.config(function ($stateProvider) {
 
 		$stateProvider
 		.state('app.gpio', {
@@ -14,5 +13,4 @@ angular.module('app.gpio',
 			templateUrl: 'partials/gpio/index.html',
 			controller: 'gpioController'
 		});
-	}
-]);
+	});

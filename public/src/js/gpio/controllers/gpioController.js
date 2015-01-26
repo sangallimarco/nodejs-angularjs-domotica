@@ -1,6 +1,5 @@
 angular.module('app.gpio')
-.controller('gpioController', ['$scope', '$log', 'gpioService', 'socketIoFactory',
-	function($scope, $log, gpioService, socketIoFactory) {
+.controller('gpioController', function($scope, $log, gpioService, socketIoFactory) {
 		$scope.title = 'Loaded!';
 
 		// refactor in order to get real statuses
@@ -19,5 +18,4 @@ angular.module('app.gpio')
 		socketIoFactory.on('gpio.changed', function (obj) {
 			$scope.switches[obj.pin].status = obj.status;
 		});
-	}
-]);
+	});

@@ -1,6 +1,5 @@
 angular.module('app.cam')
-.controller('camController', ['$scope', '$log', '$window', 'socketIoFactory', 'camService',
-	function($scope, $log, $window, socketIoFactory, camService) {
+.controller('camController', function($scope, $log, $window, socketIoFactory, camService) {
 		$scope.title = 'Loaded!';
 		$scope.src = null;
 		$scope.timestamp = null;
@@ -25,5 +24,4 @@ angular.module('app.cam')
 		$scope.downloadImage = function () {
 			$window.open($scope.src,'_blank');
 		};
-	}
-]);
+	});

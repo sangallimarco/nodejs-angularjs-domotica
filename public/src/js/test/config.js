@@ -5,8 +5,7 @@ angular.module('app.test',
 		'app.socket'
 	]
 )
-.config(['$stateProvider',
-	function ($stateProvider) {
+.config(function ($stateProvider) {
 
 		$stateProvider
 		.state('app.test', {
@@ -14,5 +13,4 @@ angular.module('app.test',
 			templateUrl: 'partials/test/index.html',
 			controller: 'testController'
 		});
-	}
-]);
+	});

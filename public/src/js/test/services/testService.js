@@ -1,6 +1,5 @@
 angular.module('app.test')
-.service('testService', ['$log', 'testApi', 'authService', '$q',
-	function($log, testApi, authService, $q){
+.service('testService', function($log, testApi, authService, $q){
 
 		this.getAll = function() {
 			var promise = testApi.query()
@@ -37,5 +36,4 @@ angular.module('app.test')
 			return promise;
 		};
 
-	}
-]);
+	});

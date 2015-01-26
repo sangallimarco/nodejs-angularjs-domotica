@@ -1,6 +1,5 @@
 angular.module('app.auth')
-.factory('authInterceptor', ['$rootScope','$q','$localStorage',
-function ($rootScope, $q, $localStorage) {
+.factory('authInterceptor', function ($rootScope, $q, $localStorage) {
     return {
         request: function (config) {
             config.headers = config.headers || {};
@@ -17,6 +16,5 @@ function ($rootScope, $q, $localStorage) {
             return response || $q.when(response);
         }
     };
-}
-])
+})
 ;

@@ -1,6 +1,5 @@
 angular.module('app.gpio')
-.factory('gpioApi', ['$resource',
-	function($resource){
+.factory('gpioApi', function($resource){
 		return $resource(
 			'/api/gpio/:pin',
 			{
@@ -12,5 +11,4 @@ angular.module('app.gpio')
 				}
 			}
 		);
-	}
-]);
+	});

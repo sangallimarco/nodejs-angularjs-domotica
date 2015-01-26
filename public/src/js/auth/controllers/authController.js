@@ -1,6 +1,5 @@
 angular.module('app.auth')
-.controller('authController', ['$scope', '$log', 'authService', '$state',
-function($scope, $log, authService, $state) {
+.controller('authController', function($scope, $log, authService, $state) {
 
     $scope.data = {
         username: '',
@@ -17,5 +16,4 @@ function($scope, $log, authService, $state) {
             }
         );
     };
-}
-]);
+});

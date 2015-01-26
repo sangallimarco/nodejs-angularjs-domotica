@@ -1,6 +1,5 @@
 angular.module('app.test')
-.factory('testApi', ['$resource', 'authService',
-	function($resource, authService){
+.factory('testApi', function($resource, authService){
 
 		return $resource(
 			'/api/test/:id',
@@ -8,5 +7,4 @@ angular.module('app.test')
 				id: '@id'
 			}
 		);
-	}
-]);
+	});
