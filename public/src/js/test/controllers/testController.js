@@ -1,6 +1,5 @@
 angular.module('app.test')
-.controller('testController', ['$scope', '$log', 'testService', 'socketIoFactory',
-	function($scope, $log, testService, socketIoFactory) {
+.controller('testController', function($scope, $log, testService, socketIoFactory) {
 		$scope.title = 'Loaded!';
 
 		$scope.data = {
@@ -57,5 +56,4 @@ angular.module('app.test')
 			$scope.items.unshift(obj);
 		});
 
-	}
-]);
+	});

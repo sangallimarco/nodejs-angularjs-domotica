@@ -3,8 +3,7 @@ angular.module('app.home',
 		'ui.router'
 	]
 )
-.config(['$stateProvider',
-	function ($stateProvider) {
+.config(function ($stateProvider) {
 		$stateProvider
 		.state('app.home', {
 			url:'/home',
@@ -12,4 +11,4 @@ angular.module('app.home',
 			controller: 'homeController'
 		});
 	}
-]);
+);

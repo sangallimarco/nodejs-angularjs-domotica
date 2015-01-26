@@ -4,13 +4,11 @@ angular.module('app.auth',
                     'angular-jwt'
                 ]
 )
-.config(['$stateProvider',
-    function ($stateProvider) {
-        $stateProvider
-        .state('app.auth', {
-            url:'/auth',
-            templateUrl: 'partials/auth/index.html',
-            controller: 'authController'
-        });
-    }
-]);
+.config(function ($stateProvider) {
+    $stateProvider
+    .state('app.auth', {
+        url:'/auth',
+        templateUrl: 'partials/auth/index.html',
+        controller: 'authController'
+    });
+});

@@ -1,6 +1,6 @@
 angular.module('app.home')
-.controller('homeController', ['$scope', '$log', 'authService',
+.controller('homeController',
 	function($scope, $log, authService) {
 		$scope.user = authService.getUser();
 	}
-]);
+);

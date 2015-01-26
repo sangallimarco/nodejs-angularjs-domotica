@@ -11,8 +11,7 @@ angular.module('app',
 		'app.weather'
 	]
 )
-.config(['$compileProvider', '$logProvider', '$stateProvider', '$urlRouterProvider', '$httpProvider',
-	function ($compileProvider, $logProvider, $stateProvider, $urlRouterProvider, $httpProvider) {
+.config(function ($compileProvider, $logProvider, $stateProvider, $urlRouterProvider, $httpProvider) {
 
 		// dev/production
 		$compileProvider.debugInfoEnabled(true);
@@ -29,5 +28,4 @@ angular.module('app',
 
 		$httpProvider.interceptors.push('authInterceptor');
 
-	}
-]);
+	});
