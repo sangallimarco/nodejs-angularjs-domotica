@@ -22,7 +22,7 @@ pongular.module('app.gpio')
 
 						//Socket.io send immediately
 						req.io.emit('gpio.changed', data);
-						res.status(200);
+						res.status(200).json(data);
 					},
 					function (ret) {
 						res.status(500).json({
@@ -44,7 +44,7 @@ pongular.module('app.gpio')
 
 						//Socket.io send immediately
 						req.io.emit('gpio.changed', data);
-						res.status(200);
+						res.status(200).json(data);
 					},
 					function (ret) {
 						res.status(500).json({
