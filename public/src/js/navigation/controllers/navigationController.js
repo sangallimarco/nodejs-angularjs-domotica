@@ -1,5 +1,5 @@
 angular.module('app.navigation')
-.controller('navigationController', function($scope, $log, state) {
+.controller('navigationController', function($scope, $log, $state) {
         
         $scope.showNav = true;
 
