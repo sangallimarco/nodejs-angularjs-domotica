@@ -22,7 +22,8 @@
     "passport": "^0.2.1",
     "pongular": "0.0.5",
     "q": "~1.1.2",
-    "socket.io": "^1.2.1"
+    "socket.io": "^1.2.1",
+    "socketio-jwt": "^2.3.5"
   },
   "engines": {
     "node": "0.10.x"
