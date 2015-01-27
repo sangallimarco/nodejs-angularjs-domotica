@@ -1,6 +1,7 @@
 <!-- Fixed navbar -->
 <nav class="navbar navbar-default" role="navigation">
 	<div class="container">
+
 		<div class="navbar-header">
 			<button
 				type="button"
@@ -15,15 +16,15 @@
 			</button>
 			<a class="navbar-brand" href="#">NodeJs + AngularJs</a>
 		</div>
-		<div collapse="showNav" id="navbar" class="navbar-collapse">
-			<ul class="nav navbar-nav">
-				<li ui-sref-active="active"><a ui-sref="app.home">Home</a></li>
-				<li ui-sref-active="active"><a ui-sref="app.weather">Weather</a></li>
-				<li ui-sref-active="active"><a ui-sref="app.test">Test</a></li>
-				<li ui-sref-active="active"><a ui-sref="app.gpio">Gpio</a></li>
-				<li ui-sref-active="active"><a ui-sref="app.cam">Cam</a></li>
-			</ul>
-		</div><!--/.nav-collapse -->
+
+		<navigation-container collapsed="showNav">
+			<navigation-item state="app.home" label="Home"></navigation-item>
+			<navigation-item state="app.weather" label="Weather"></navigation-item>
+			<navigation-item state="app.test" label="Test"></navigation-item>
+			<navigation-item state="app.gpio" label="Gpio"></navigation-item>
+			<navigation-item state="app.cam" label="Cam"></navigation-item>
+		</navigation-container>
+
 	</div>
 </nav>
 
