@@ -3,7 +3,7 @@ angular.module('app.bootstrap')
         return {
             restrict: 'E',
             replace: true,
-            template: '<div ng-class="{open: !collapsed}" id="navbar" class="navbar-collapse slide-down"><ul class="nav navbar-nav" ng-transclude></ul></div>',
+            template: '<div ng-class="{open: !collapsed}" id="navbar" class="navbar-collapse slide-down collapse"><ul class="nav navbar-nav" ng-transclude></ul></div>',
             scope: {
                 collapsed: '=collapsed'
             },
