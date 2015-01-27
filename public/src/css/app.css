@@ -5276,3 +5276,14 @@ button.close {
     display: none !important;
   }
 }
+.slide-down {
+  -webkit-transition: all 0.35s ease-in-out;
+  -o-transition: all 0.35s ease-in-out;
+  transition: all 0.35s ease-in-out;
+  display: block;
+  overflow: hidden;
+  max-height: 0;
+}
+.slide-down.open {
+  max-height: 999px;
+}
