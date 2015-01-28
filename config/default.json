@@ -4,6 +4,10 @@
 		"mongodb": "mongodb://localhost/testapp",
 		"secret": "thisIsASecret!"
 	},
+	"token": {
+	  "secret": "thisIsASecret!",
+	  "expires": 5
+	},
 	"weather": {
 		"key": ".frFFHX1sj"
 	}

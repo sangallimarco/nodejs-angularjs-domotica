@@ -1,7 +1,7 @@
 angular.module('app.auth')
-.service('authService', function($rootScope, authApi, $localStorage, $state, jwtHelper){
+    .service('authService', function ($rootScope, authApi, $localStorage, $state, jwtHelper) {
 
-        this.login = function(name, password) {
+        this.login = function (name, password) {
 
             var user = new authApi();
             user.name = name;
@@ -9,7 +9,7 @@ angular.module('app.auth')
 
             var promise = user.$save();
             promise.then(
-                function(res) {
+                function (res) {
                     $localStorage.token = res.token;
                     $rootScope.$broadcast('$authChanged', res);
                     return res;
@@ -20,7 +20,7 @@ angular.module('app.auth')
         };
 
         // used from APIs
-        this.getToken = function(){
+        this.getToken = function () {
             if (!$localStorage.token) {
                 this.logout();
                 return null;
@@ -28,22 +28,25 @@ angular.module('app.auth')
             return $localStorage.token;
         };
 
-        this.getUser = function(){
+        this.getUser = function () {
             if (!$localStorage.token) {
                 this.logout();
                 return null;
             }
-            return jwtHelper.decodeToken($localStorage.token);
+            return angular.extend(
+                jwtHelper.decodeToken($localStorage.token),
+                {expiration: jwtHelper.getTokenExpirationDate($localStorage.token)}
+            );
         };
 
         // test if a hash is already stored or is invalid
-        this.check = function(response){
+        this.check = function (response) {
             if (!this.getToken() || response.status === 401) {
                 this.logout();
             }
         };
 
-        this.logout = function(){
+        this.logout = function () {
             delete $localStorage.token;
             $state.go('app.auth');
         };

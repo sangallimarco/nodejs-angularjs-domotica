@@ -9,7 +9,7 @@ pongular.module('app.auth')
             interceptor: function () {
                 return $expressJwt(
                     {
-                        secret: $config.get('app.secret')
+                        secret: $config.get('token.secret')
                     }
                 );
             },
@@ -45,9 +45,9 @@ pongular.module('app.auth')
                                                     username: data.name,
                                                     hash: data.hash
                                                 },
-                                                $config.get('app.secret'),
+                                                $config.get('token.secret'),
                                                 {
-                                                    expiresInMinutes: 2*60
+                                                    expiresInMinutes: $config.get('token.expires')
                                                 }
                                             );
                         deferred.resolve({token: token});
