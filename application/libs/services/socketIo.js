@@ -9,7 +9,7 @@ pongular.module('app.libs')
 			create: function (server) {
 				ioSocket = $socket(server);
 				ioSocket.use($socketJwt.authorize({
-					secret: $config.get('tocken.secret'),
+					secret: $config.get('token.secret'),
 					handshake: true
 				}));
 
