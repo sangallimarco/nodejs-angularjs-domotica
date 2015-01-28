@@ -1,19 +1,18 @@
 {
-	"app": {
-		"port": 5000,
-		"mongodb": "mongodb://localhost/testapp",
-
-	},
-  	"token": {
-	  	"secret": "thisIsASecret!",
-	  	"expires": 720
-	},
-	"weather": {
-		"key": ".frFFHX1sj"
-	},
-	"cam": {
-		"file": "/tmp/cam.jpg",
-		"quality": 50,
-		"timelapse": 1000
-	}
+  "app": {
+    "port": 5000,
+    "mongodb": "mongodb://localhost/testapp"
+  },
+  "token": {
+    "secret": "thisIsASecret!",
+    "expires": 720
+  },
+  "weather": {
+    "key": ".frFFHX1sj"
+  },
+  "cam": {
+    "file": "/tmp/cam.jpg",
+    "quality": 50,
+    "timelapse": 1000
+  }
 }
