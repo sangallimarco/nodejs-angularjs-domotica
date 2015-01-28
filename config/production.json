@@ -2,7 +2,11 @@
 	"app": {
 		"port": 5000,
 		"mongodb": "mongodb://localhost/testapp",
-		"secret": "thisIsASecret!"
+
+	},
+  	"token": {
+	  	"secret": "thisIsASecret!",
+	  	"expires": 720
 	},
 	"weather": {
 		"key": ".frFFHX1sj"

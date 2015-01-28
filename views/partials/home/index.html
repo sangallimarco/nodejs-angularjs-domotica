@@ -1,2 +1,2 @@
-<div>Home page, {{title}}<div>
-<div ng-if="user">Hello {{user.name}}! now you can use protected modules</div>
+<div ng-if="user"><h2>Hello {{user.username}}!</h2> now you can use protected modules!!!<br>your token will expire {{user.expiration}}</div>
+<div ng-if="!user">No Access token Found</div>
