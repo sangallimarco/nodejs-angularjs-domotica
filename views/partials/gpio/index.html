@@ -3,6 +3,12 @@
 	<div ng-show="error" class="alert alert-danger">{{error}}</div>
 
 	<div class="col-xs-24" ng-repeat="(pin, data) in switches">
+		<h2>Temperature</h2>
+		<h4>{{temp}} C</h4>
+	</div>
+
+	<div class="col-xs-24" ng-repeat="(pin, data) in switches">
+		<h2>Switches</h2>
 		<switch-button
 			label="{{data.label}}"
 			pin="{{pin}}"
