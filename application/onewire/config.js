@@ -5,7 +5,7 @@ pongular.module('app.onewire', [])
 
         // listen for pins changes
         OnewireService.on('change', function(ret){
-            SocketIo.get().emit('onewire.new', {value: ret});
+            SocketIo.get().emit('onewire.changed', {value: ret});
         });
 
         return $express.Router()

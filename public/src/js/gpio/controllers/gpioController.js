@@ -28,4 +28,7 @@ angular.module('app.gpio')
 		socketIoFactory.on('gpio.changed', function (obj) {
 			$scope.switches[obj.pin].status = obj.status;
 		});
+		socketIoFactory.on('onewire.changed', function (obj) {
+			$scope.temp = obj.value;
+		});
 	});
