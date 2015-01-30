@@ -70,6 +70,9 @@ pongular.module('app.libs')
 	return require("socketio-jwt");
 })
 
+.factory('$util', function () {
+	return require('util');
+})
 
 .factory('$pongular', function() {
 	return pongular;

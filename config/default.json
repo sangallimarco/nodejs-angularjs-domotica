@@ -11,11 +11,12 @@
     "key": ".frFFHX1sj"
   },
   "cam": {
+    "dummy": true,
     "file": "/tmp/cam.jpg",
     "quality": 50,
     "timelapse": 1000
   },
   "onewire": {
-    "temp": "28-0414643fa9ff"
+    "temp": "/tmp/temp"
   }
 }

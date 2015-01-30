@@ -4,11 +4,12 @@ pongular.module('app.cam')
 .factory('CamService',
 	function($fs, $config, $childProcess, SocketIo, $raspicam) {
 		var file = $config.get('cam.file'),
+			dummyMode = $config.get('cam.dummy');
 			proc = null;
 
 		return {
 			start: function () {
-				if (!proc) {
+				if (!proc && !dummyMode) {
 					proc = new $raspicam({
 						output: file,
 						mode: 'timelapse',
@@ -33,7 +34,7 @@ pongular.module('app.cam')
   				}
 			},
 			stop: function () {
-				if (proc) {
+				if (proc && !dummyMode) {
 					proc.stop();
 					prod = null;
 				}
