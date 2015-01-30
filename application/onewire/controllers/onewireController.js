@@ -2,11 +2,11 @@ var pongular = require('pongular').pongular;
 
 pongular.module('app.onewire')
     .factory('OnewireCtrl',
-    function(Onewire) {
+    function(OnewireService) {
 
         return {
             get: function(req, res){
-                Onewire.read().then(
+                OnewireService.read().then(
                     function (value) {
                         var data = {
                             value: value,
