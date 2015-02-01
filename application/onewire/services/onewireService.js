@@ -2,7 +2,7 @@ var pongular = require('pongular').pongular;
 
 pongular.module('app.onewire')
     .factory('OnewireService',
-    function ($http, $q, $fs, $config, $events, $util) {
+    function ($http, $q, $fs, $config, $events, $util, TempModel) {
         var self = this,
             pollFrequency = 5000,
             sensor = $config.get('onewire.temp');
@@ -44,6 +44,17 @@ pongular.module('app.onewire')
                             function (ret) {
                                 if (ret !== self.temperature) {
                                     self.temperature = ret;
+
+                                    // log to DB
+                                    TempModel.create(
+                                        {
+                                            value: Number(ret)
+                                        },
+                                        function (err) {
+
+                                        }
+                                    );
+
                                     self.emit('change', ret);
                                 }
                             }
