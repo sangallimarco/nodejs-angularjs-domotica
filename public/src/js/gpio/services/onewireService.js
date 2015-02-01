@@ -16,4 +16,8 @@ angular.module('app.gpio')
             return promise;
         };
 
+        this.formatTemp = function(value) {
+            return (value / 1000).toFixed(1);
+        };
+
     });

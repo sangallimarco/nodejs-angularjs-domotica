@@ -20,7 +20,7 @@ angular.module('app.gpio')
 		 */
 		onewireService.get().then(
 			function (ret) {
-				$scope.temp = ret.value;
+				$scope.temp = onewireService.formatTemp(ret.value);
 			}
 		);
 
@@ -29,6 +29,6 @@ angular.module('app.gpio')
 			$scope.switches[obj.pin].status = obj.status;
 		});
 		socketIoFactory.on('onewire.changed', function (obj) {
-			$scope.temp = obj.value;
+			$scope.temp = onewireService.formatTemp(obj.value);
 		});
 	});

@@ -31,7 +31,7 @@ pongular.module('app.onewire')
                         deferred.reject('Error While Reading');
                     }
 
-                    var temp = (parseInt(matches[1]) / 1000).toFixed(1);
+                    var temp = parseInt(matches[1], 10);
                     deferred.resolve(temp);
                 });
                 return deferred.promise;
@@ -48,7 +48,7 @@ pongular.module('app.onewire')
                                     // log to DB
                                     TempModel.create(
                                         {
-                                            value: Number(ret)
+                                            value: ret
                                         },
                                         function (err) {
 
