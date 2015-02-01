@@ -38,10 +38,11 @@ angular.module('app.gpio')
             $scope.switches[obj.pin].status = obj.status;
         });
         socketIoFactory.on('onewire.changed', function (obj) {
-            $scope.temp = onewireService.formatTemp(obj.value);
+            var v = onewireService.formatTemp(obj.value);
 
+            $scope.temp = v;
             //inject into history
             $scope.history.labels.unshift(new Date().toISOString());
-            $scope.history.values[0].unshift(onewireService.formatTemp(obj.value));
+            $scope.history.values[0].unshift(v);
         });
     });
