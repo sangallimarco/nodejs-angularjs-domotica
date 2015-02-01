@@ -9,13 +9,18 @@ angular.module('app.bootstrap')
             },
             transclude: true,
             link: function (scope, element, attrs) {
+                var fx = new Audio('/public/sounds/alert.mp3');
 
                 scope.updated = false;
 
                 scope.$watch('bindModel', function (val) {
-                    if (!scope.updated) {
+                    if (!scope.updated && val) {
                         scope.updated = true;
 
+                        //play sound
+                        fx.play();
+
+                        // reset
                         $timeout(function () {
                             scope.updated = false;
                         }, 1000);
