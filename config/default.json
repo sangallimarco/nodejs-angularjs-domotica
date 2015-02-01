@@ -5,7 +5,7 @@
   },
   "token": {
     "secret": "thisIsASecret!",
-    "expires": 5
+    "expires": 15
   },
   "weather": {
     "key": ".frFFHX1sj"

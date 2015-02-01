@@ -5276,6 +5276,16 @@ button.close {
     display: none !important;
   }
 }
+.watcher {
+  -webkit-transition: all 0.2s ease-in;
+  -moz-transition: all 0.2s ease-in;
+  -o-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in;
+  display: block;
+}
+.watcher.on {
+  color: #f39c12;
+}
 .switch {
   background: #ecf0f1;
   border: 1px solid #ecf0f1;
