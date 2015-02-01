@@ -5,6 +5,13 @@ pongular.module('app.onewire')
     function(OnewireService) {
 
         return {
+            history: function(req, res){
+                OnewireService.getAll(10).then(
+                    function(result) {
+                        res.status(200).json(result);
+                    }
+                );
+            },
             get: function(req, res){
                 OnewireService.read().then(
                     function (value) {

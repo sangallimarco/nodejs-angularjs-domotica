@@ -9,6 +9,7 @@ pongular.module('app.onewire', [])
         });
 
         return $express.Router()
+            .get('/api/temp/all', OnewireCtrl.history)
             .get('/api/temp', OnewireCtrl.get)
             ;
     }

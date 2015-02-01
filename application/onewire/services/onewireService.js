@@ -64,6 +64,14 @@ pongular.module('app.onewire')
                 );
             };
 
+            self.getAll = function (limit) {
+                var promise = TempModel.find()
+                    .sort({created: -1})
+                    .limit(limit)
+                    .exec();
+                return promise;
+            };
+
             $events.call(self);
         }
 

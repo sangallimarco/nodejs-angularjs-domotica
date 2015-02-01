@@ -1,34 +1,47 @@
 angular.module('app.gpio')
-.controller('gpioController', function($scope, $log, gpioService, onewireService, socketIoFactory) {
-		$scope.title = 'Loaded!';
-		$scope.temp = '--';
+    .controller('gpioController', function ($scope, $log, gpioService, onewireService, socketIoFactory) {
+        $scope.title = 'Loaded!';
+        $scope.temp = '--';
+        $scope.history = {
+            labels: [],
+            values: [],
+            series: ['T']
+        };
 
-		// init switches
-		$scope.switches = {};
-		gpioService.initPin($scope.switches, 11, 'Pin 11');
-		gpioService.initPin($scope.switches, 12, 'Pin 12');
+        // init switches
+        $scope.switches = {};
+        gpioService.initPin($scope.switches, 11, 'Pin 11');
+        gpioService.initPin($scope.switches, 12, 'Pin 12');
 
-		$scope.error = null;
+        $scope.error = null;
 
-		/**
-		 * Init pins
-		 */
-		gpioService.initStatus($scope.switches);
+        /**
+         * Init pins
+         */
+        gpioService.initStatus($scope.switches);
 
-		/**
-		 * Get temperature
-		 */
-		onewireService.get().then(
-			function (ret) {
-				$scope.temp = onewireService.formatTemp(ret.value);
-			}
-		);
+        /**
+         * Get temperature
+         */
+        onewireService.history().then(
+            function (ret) {
+                $scope.temp = onewireService.formatTemp(ret[0].value);
 
-		//socket.io
-		socketIoFactory.on('gpio.changed', function (obj) {
-			$scope.switches[obj.pin].status = obj.status;
-		});
-		socketIoFactory.on('onewire.changed', function (obj) {
-			$scope.temp = onewireService.formatTemp(obj.value);
-		});
-	});
+                var data = onewireService.buildChartData(ret);
+                $scope.history.labels = data.labels;
+                $scope.history.values = [data.values];
+            }
+        );
+
+        //socket.io
+        socketIoFactory.on('gpio.changed', function (obj) {
+            $scope.switches[obj.pin].status = obj.status;
+        });
+        socketIoFactory.on('onewire.changed', function (obj) {
+            $scope.temp = onewireService.formatTemp(obj.value);
+
+            //inject into history
+            $scope.history.labels.unshift(new Date().toISOString());
+            $scope.history.values[0].unshift(onewireService.formatTemp(obj.value));
+        });
+    });
