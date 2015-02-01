@@ -16,6 +16,8 @@ angular.module('app.gpio')
 			},
 			link: function (scope, element, attrs) {
 
+				var fx = new Audio('/public/sounds/switch.mp3');
+
 				scope.toggle = function () {
 					var ostatus = scope.status;
 					scope.status = !scope.status;
@@ -32,6 +34,11 @@ angular.module('app.gpio')
 					);
 				};
 
+				scope.$watch('status', function(val, oldval){
+					if (val !== oldval && val !== undefined) {
+						fx.play();
+					}
+				});
 			}
 		};
 	});
