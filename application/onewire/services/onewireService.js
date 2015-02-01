@@ -4,7 +4,7 @@ pongular.module('app.onewire')
     .factory('OnewireService',
     function ($http, $q, $fs, $config, $events, $util) {
         var self = this,
-            pollFrequency = 2000,
+            pollFrequency = 5000,
             sensor = $config.get('onewire.temp');
 
 
@@ -31,7 +31,7 @@ pongular.module('app.onewire')
                         deferred.reject('Error While Reading');
                     }
 
-                    var temp = (parseInt(matches[1]) / 1000).toFixed(2);
+                    var temp = (parseInt(matches[1]) / 1000).toFixed(1);
                     deferred.resolve(temp);
                 });
                 return deferred.promise;
