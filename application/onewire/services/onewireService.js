@@ -4,7 +4,7 @@ pongular.module('app.onewire')
     .factory('OnewireService',
     function($http, $q, $fs, $config, $events, $util) {
         var self = this,
-            pollFrequency = 1000,
+            pollFrequency = 2000,
             sensor = $config.get('onewire.temp');
 
 
@@ -34,7 +34,7 @@ pongular.module('app.onewire')
             };
 
             self.init = function () {
-                $fs.watchFile(
+                $fs.watch(
                     sensor,
                     {
                         persistent: true,
