@@ -2,11 +2,6 @@ angular.module('app.gpio')
     .controller('gpioController', function ($scope, $log, gpioService, onewireService, socketIoFactory) {
         $scope.title = 'Loaded!';
         $scope.temp = '--';
-        $scope.history = {
-            labels: [],
-            values: [],
-            series: ['T']
-        };
 
         // init switches
         $scope.switches = {};
@@ -23,13 +18,9 @@ angular.module('app.gpio')
         /**
          * Get temperature
          */
-        onewireService.history().then(
-            function (ret) {
-                $scope.temp = onewireService.formatTemp(ret[0].value);
-
-                var data = onewireService.buildChartData(ret);
-                $scope.history.labels = data.labels;
-                $scope.history.values = [data.values];
+        onewireService.get().then(
+            function (obj) {
+                $scope.temp = onewireService.formatTemp(obj.value);
             }
         );
 
@@ -38,11 +29,6 @@ angular.module('app.gpio')
             $scope.switches[obj.pin].status = obj.status;
         });
         socketIoFactory.on('onewire.changed', function (obj) {
-            var v = onewireService.formatTemp(obj.value);
-
-            $scope.temp = v;
-            //inject into history
-            $scope.history.labels.unshift(new Date().toISOString());
-            $scope.history.values[0].unshift(v);
+            $scope.temp = onewireService.formatTemp(obj.value);
         });
     });

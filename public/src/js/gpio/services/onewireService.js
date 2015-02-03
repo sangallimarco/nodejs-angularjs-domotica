@@ -17,8 +17,9 @@ angular.module('app.gpio')
             return promise;
         };
 
-        self.history = function (pin) {
-            var promise = onewireApi.query({id: 'all'})
+        self.history = function (filters) {
+            filters = angular.extend({id: 'all'}, filters);
+            var promise = onewireApi.query(filters)
                 .$promise
                 .then(
                 function (res) {
