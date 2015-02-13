@@ -65,11 +65,39 @@ pongular.module('app.onewire')
             };
 
             self.getAll = function (limit) {
-                var promise = TempModel.find()
-                    .sort({created: -1})
-                    .limit(limit)
-                    .exec();
-                return promise;
+                var deferred = $q.defer();
+                TempModel.aggregate(
+                    [
+                        { $project: {
+                                "y":{"$year":"$created"},
+                                "m":{"$month":"$created"},
+                                "d":{"$dayOfMonth":"$created"},
+                                "h":{"$hour":"$created"},
+                                value: '$value'
+                            }
+                        },
+                        { $group: {
+                                _id: {"year":"$y","month":"$m","day":"$d","hour":"$h"},
+                                cnt: {$avg:'$value'}
+                            }
+                        } ,
+                        { $sort:{
+                                '_id.year': -1,
+                                '_id.mont':-1,
+                                '_id.day':-1,
+                                '_id.hour':-1
+                            }
+                        }
+                    ],
+                    function(err, res){
+                        if (err) {
+                            deferred.reject(res);
+                        } else {
+                            deferred.resolve(res);
+                        }
+                    }
+                );
+                return deferred.promise;
             };
 
             $events.call(self);
