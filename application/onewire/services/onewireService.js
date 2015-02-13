@@ -68,25 +68,26 @@ pongular.module('app.onewire')
                 var deferred = $q.defer();
                 TempModel.aggregate(
                     [
-                        { $project: {
-                                "y":{"$year":"$created"},
+                        {
+                            $group: {
+                                _id: {"y":{"$year":"$created"},
                                 "m":{"$month":"$created"},
                                 "d":{"$dayOfMonth":"$created"},
-                                "h":{"$hour":"$created"},
-                                value: '$value'
-                            }
-                        },
-                        { $group: {
-                                _id: {"year":"$y","month":"$m","day":"$d","hour":"$h"},
-                                cnt: {$avg:'$value'}
+                                "h":{"$hour":"$created"},  },
+                                value: {$avg:'$value'},
+                                created : { $first : '$created' }
                             }
                         } ,
-                        { $sort:{
-                                '_id.year': -1,
-                                '_id.mont':-1,
-                                '_id.day':-1,
-                                '_id.hour':-1
+                        {
+                            $sort:{
+                                '_id.y': -1,
+                                '_id.m':-1,
+                                '_id.d':-1,
+                                '_id.h':-1
                             }
+                        },
+                        {
+                            $limit : 50 
                         }
                     ],
                     function(err, res){
