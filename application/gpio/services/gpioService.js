@@ -45,6 +45,10 @@ pongular.module('app.gpio')
 			return available.output.indexOf(pin) !== -1;
 		}
 
+		function hasStatusChanged(pin, status) {
+			return pins[pin].status !== status;
+		}
+
 		/**
 		 * Factory
 		 */
@@ -79,7 +83,7 @@ pongular.module('app.gpio')
 			set: function (pin, status) {
 				var deferred = $q.defer();
 
-				if (validatePin(pin) && pins[pin].status !== status) {
+				if (validatePin(pin) && hasStatusChanged(pin, status)) {
 					usePin(pin, $gpio.DIR_OUT,
 						function(err) {
 							if (err) {
