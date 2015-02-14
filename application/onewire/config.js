@@ -3,14 +3,14 @@ pongular.module('app.onewire', [])
     .factory('OnewireRouter',
     function($express, OnewireCtrl, OnewireService, SocketIo, GpioService, $config) {
 
-        var gpioPin = $config.get('onewire.gpio');
+        var pin = $config.get('onewire.gpio');
 
         // listen for temp changes
         OnewireService.on('change', function(ret){
 
             var status = OnewireService.getGpioStatus();
 
-            GpioService.set(gpioPin, status).then(
+            GpioService.set(pin, status).then(
                 function (ret) {
                     var data = {
                         pin: pin,
