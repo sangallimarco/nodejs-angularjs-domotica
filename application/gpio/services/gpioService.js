@@ -79,7 +79,7 @@ pongular.module('app.gpio')
 			set: function (pin, status) {
 				var deferred = $q.defer();
 
-				if (validatePin(pin)) {
+				if (validatePin(pin) && pins[pin].status !== status) {
 					usePin(pin, $gpio.DIR_OUT,
 						function(err) {
 							if (err) {
