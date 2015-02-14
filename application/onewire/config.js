@@ -9,20 +9,21 @@ pongular.module('app.onewire', [])
         OnewireService.on('change', function(ret){
 
             var status = OnewireService.getGpioStatus();
+            if (status !== undefined) {
+                GpioService.set(pin, status).then(
+                    function (ret) {
+                        var data = {
+                            pin: pin,
+                            status: status
+                        };
 
-            GpioService.set(pin, status).then(
-                function (ret) {
-                    var data = {
-                        pin: pin,
-                        status: status
-                    };
-
-                    //Socket.io send immediately
-                    SocketIo.get().emit('gpio.changed', data);
-                },
-                function (ret) {
-                }
-            );
+                        //Socket.io send immediately
+                        SocketIo.get().emit('gpio.changed', data);
+                    },
+                    function (ret) {
+                    }
+                );
+            }
 
             SocketIo.get().emit('onewire.changed', {value: ret});
         });

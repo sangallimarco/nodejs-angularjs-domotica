@@ -23,6 +23,7 @@ pongular.module('app.onewire')
                 } else if (self.temperature > maxTemp) {
                     return false;
                 }
+                return undefined;
             };
 
             /**
