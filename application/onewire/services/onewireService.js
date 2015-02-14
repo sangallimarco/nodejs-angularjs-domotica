@@ -5,7 +5,10 @@ pongular.module('app.onewire')
     function ($http, $q, $fs, $config, $events, $util, TempModel) {
         var self = this,
             pollFrequency = 5000,
-            sensor = $config.get('onewire.temp');
+            sensor = $config.get('onewire.temp'),
+            minTemp = $config.get('onewire.min_temp'),
+            maxTemp = $config.get('onewire.max_temp')
+            ;
 
 
         function Onewire() {
@@ -13,6 +16,14 @@ pongular.module('app.onewire')
             var self = this;
 
             self.temperature = 0;
+
+            self.getGpioStatus = function () {
+                if (self.temperature < minTemp) {
+                    return true;
+                } else if (self.temperature > maxTemp) {
+                    return false;
+                }
+            };
 
             /**
              * read value

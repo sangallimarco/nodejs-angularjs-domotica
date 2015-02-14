@@ -1,10 +1,29 @@
 var pongular = require('pongular').pongular;
 pongular.module('app.onewire', [])
     .factory('OnewireRouter',
-    function($express, OnewireCtrl, OnewireService, SocketIo) {
+    function($express, OnewireCtrl, OnewireService, SocketIo, GpioService, $config) {
 
-        // listen for pins changes
+        var gpioPin = $config.get('onewire.gpio');
+
+        // listen for temp changes
         OnewireService.on('change', function(ret){
+
+            var status = OnewireService.getGpioStatus();
+
+            GpioService.set(gpioPin, status).then(
+                function (ret) {
+                    var data = {
+                        pin: pin,
+                        status: status
+                    };
+
+                    //Socket.io send immediately
+                    SocketIo.get().emit('gpio.changed', data);
+                },
+                function (ret) {
+                }
+            );
+
             SocketIo.get().emit('onewire.changed', {value: ret});
         });
 

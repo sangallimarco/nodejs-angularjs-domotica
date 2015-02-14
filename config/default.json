@@ -17,6 +17,9 @@
     "timelapse": 1000
   },
   "onewire": {
-    "temp": "/tmp/temp"
+    "temp": "/tmp/temp",
+    "min_temp": 19000,
+    "max_temp": 21000,
+    "gpio": 12
   }
 }

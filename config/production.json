@@ -17,6 +17,9 @@
     "timelapse": 1000
   },
   "onewire": {
-    "temp": "/sys/bus/w1/devices/28-0414643fa9ff/w1_slave"
+    "temp": "/sys/bus/w1/devices/28-0414643fa9ff/w1_slave",
+    "min_temp": 19000,
+    "max_temp": 21000,
+    "gpio": 12
   }
 }
