@@ -6,11 +6,18 @@ pongular.module('app.onewire')
 
         return {
             history: function(req, res){
-                OnewireService.getAll(10).then(
-                    function(result) {
-                        res.status(200).json(result);
-                    }
-                );
+                var from = parseInt(req.query.from) || new Date().getTime() - 3600000,
+                    limit = parseInt(req.query.limit) || 100
+                ;
+
+                OnewireService.getAll(
+                        new Date(from),
+                        limit
+                    ).then(
+                        function(result) {
+                            res.status(200).json(result);
+                        }
+                    );
             },
             get: function(req, res){
                 OnewireService.read().then(

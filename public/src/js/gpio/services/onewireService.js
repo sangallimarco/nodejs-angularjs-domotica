@@ -17,9 +17,14 @@ angular.module('app.gpio')
             return promise;
         };
 
-        self.history = function (filters) {
-            filters = angular.extend({id: 'all'}, filters);
-            var promise = onewireApi.query(filters)
+        self.history = function (from, limit) {
+            var promise = onewireApi.query(
+                {
+                    id: 'all',
+                    from: from.getTime(),
+                    limit: limit
+                }
+                )
                 .$promise
                 .then(
                 function (res) {

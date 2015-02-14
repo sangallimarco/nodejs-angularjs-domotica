@@ -64,30 +64,39 @@ pongular.module('app.onewire')
                 );
             };
 
-            self.getAll = function (limit) {
+            self.getAll = function (from, limit) {
                 var deferred = $q.defer();
                 TempModel.aggregate(
                     [
                         {
+                            $match: {
+                                created: {
+                                    $gte: from
+                                }
+                            }
+                        },
+                        {
                             $group: {
-                                _id: {"y":{"$year":"$created"},
-                                "m":{"$month":"$created"},
-                                "d":{"$dayOfMonth":"$created"},
-                                "h":{"$hour":"$created"},  },
+                                _id: {
+                                    y: {$year: "$created"},
+                                    m: {$month: "$created"},
+                                    d: {$dayOfMonth: "$created"},
+                                    h: {$hour: "$created"}
+                                },
                                 value: {$avg:'$value'},
                                 created : { $first : '$created' }
                             }
                         } ,
                         {
                             $sort:{
-                                '_id.y': -1,
-                                '_id.m':-1,
-                                '_id.d':-1,
-                                '_id.h':-1
+                                '_id.y': 1,
+                                '_id.m': 1,
+                                '_id.d': 1,
+                                '_id.h': 1
                             }
                         },
                         {
-                            $limit : 50 
+                            $limit : limit
                         }
                     ],
                     function(err, res){
