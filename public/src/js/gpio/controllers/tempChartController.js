@@ -10,7 +10,7 @@ angular.module('app.gpio')
         $scope.filters = {
             limit: 500,
             from: new Date(
-                new Date().getTime() - (1 * 24 * 60 * 60 * 1000)
+                new Date().getTime() - (7 * 24 * 60 * 60 * 1000)
             )
         };
 
@@ -25,12 +25,12 @@ angular.module('app.gpio')
             }
         );
 
-        socketIoFactory.on('onewire.changed', function (obj) {
-            var v = onewireService.formatTemp(obj.value);
-            //inject into history
-            if ($scope.history.values.length > 0) {
-                $scope.history.labels.push(new Date().toISOString());
-                $scope.history.values[0].push(v);
-            }
-        });
+        // socketIoFactory.on('onewire.changed', function (obj) {
+        //     var v = onewireService.formatTemp(obj.value);
+        //     //inject into history
+        //     if ($scope.history.values.length > 0) {
+        //         $scope.history.labels.push(new Date().toISOString());
+        //         $scope.history.values[0].push(v);
+        //     }
+        // });
     });
