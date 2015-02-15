@@ -101,10 +101,8 @@ pongular.module('app.onewire')
                             }
                         } ,
                         {
-                            $sort:{
-                                '_id.y': 1,
-                                '_id.d': 1,
-                                '_id.h': 1
+                            $sort: {
+                                created: 1
                             }
                         },
                         {
