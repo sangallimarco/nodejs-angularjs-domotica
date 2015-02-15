@@ -8,9 +8,9 @@ angular.module('app.gpio')
 
         // filters
         $scope.filters = {
-            limit: 500,
+            limit: 1000,
             from: new Date(
-                new Date().getTime() - (3 * 24 * 60 * 60 * 1000)
+                new Date().getTime() - (2 * 24 * 60 * 60 * 1000)
             ),
             to: new Date()
         };
