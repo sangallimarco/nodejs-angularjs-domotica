@@ -10,20 +10,24 @@ angular.module('app.gpio')
         $scope.filters = {
             limit: 500,
             from: new Date(
-                new Date().getTime() - (7 * 24 * 60 * 60 * 1000)
-            )
+                new Date().getTime() - (3 * 24 * 60 * 60 * 1000)
+            ),
+            to: new Date()
         };
 
         /**
          * Get temperature
          */
-        onewireService.history($scope.filters.from, $scope.filters.limit).then(
-            function (ret) {
-                var data = onewireService.buildChartData(ret);
-                $scope.history.labels = data.labels;
-                $scope.history.values = [data.values];
-            }
-        );
+        $scope.search = function () {
+            onewireService.history($scope.filters.from, $scope.filters.to, $scope.filters.limit).then(
+                function (ret) {
+                    var data = onewireService.buildChartData(ret);
+                    $scope.history.labels = data.labels;
+                    $scope.history.values = [data.values];
+                }
+            );
+        };
+        $scope.search();
 
         // socketIoFactory.on('onewire.changed', function (obj) {
         //     var v = onewireService.formatTemp(obj.value);

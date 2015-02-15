@@ -76,14 +76,16 @@ pongular.module('app.onewire')
                 );
             };
 
-            self.getAll = function (from, limit) {
+            self.getAll = function (from, to, limit) {
                 var deferred = $q.defer();
                 TempModel.aggregate(
                     [
                         {
                             $match: {
                                 created: {
-                                    $gte: from
+                                    $gte: from,
+                                    $lte: to
+
                                 }
                             }
                         },
@@ -101,10 +103,10 @@ pongular.module('app.onewire')
                         } ,
                         {
                             $sort:{
-                                '_id.y': 1,
-                                '_id.m': 1,
-                                '_id.d': 1,
-                                '_id.h': 1
+                                '_id.y': -1,
+                                '_id.m': -1,
+                                '_id.d': -1,
+                                '_id.h': -1
                             }
                         },
                         {

@@ -17,14 +17,15 @@ angular.module('app.gpio')
             return promise;
         };
 
-        self.history = function (from, limit) {
+        self.history = function (from, to, limit) {
             var promise = onewireApi.query(
                 {
                     id: 'all',
                     from: from.getTime(),
+                    to: to.getTime(),
                     limit: limit
                 }
-                )
+            )
                 .$promise
                 .then(
                 function (res) {
@@ -44,7 +45,11 @@ angular.module('app.gpio')
                 values: []
             };
             angular.forEach(data, function (obj) {
-                result.labels.push(obj.created);
+                var d = new Date(obj.created),
+                    formattedDate = d.toLocaleDateString() + ' ' + d.getUTCHours()
+                    ;
+
+                result.labels.push(formattedDate);
                 result.values.push(self.formatTemp(obj.value));
             });
 

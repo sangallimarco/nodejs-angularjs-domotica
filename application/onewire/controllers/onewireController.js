@@ -7,11 +7,13 @@ pongular.module('app.onewire')
         return {
             history: function(req, res){
                 var from = parseInt(req.query.from) || new Date().getTime() - 3600000,
+                    to = parseInt(req.query.to) || new Date().getTime(),
                     limit = parseInt(req.query.limit) || 100
                 ;
 
                 OnewireService.getAll(
                         new Date(from),
+                        new Date(to),
                         limit
                     ).then(
                         function(result) {
