@@ -93,8 +93,7 @@ pongular.module('app.onewire')
                             $group: {
                                 _id: {
                                     y: {$year: "$created"},
-                                    m: {$month: "$created"},
-                                    d: {$dayOfMonth: "$created"},
+                                    d: {$dayOfYear: "$created"},
                                     h: {$hour: "$created"}
                                 },
                                 value: {$avg:'$value'},
@@ -104,7 +103,6 @@ pongular.module('app.onewire')
                         {
                             $sort:{
                                 '_id.y': 1,
-                                '_id.m': 1,
                                 '_id.d': 1,
                                 '_id.h': 1
                             }
