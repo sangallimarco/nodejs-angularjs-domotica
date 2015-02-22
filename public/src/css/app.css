@@ -5381,7 +5381,11 @@ button.close {
     min-height: 99999px;
     background: #2c3e50;
     left: 0;
+    width: 120px;
     transform: translateX(-120px);
+  }
+  .slide-down > ul {
+    margin-left: 5px;
   }
   .slide-down.open {
     transform: translateX(0px);

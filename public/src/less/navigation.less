@@ -2,12 +2,17 @@
     .slide-down {
         .transition(all .35s ease-in-out);
 
+        & > ul {
+            margin-left: @padding-xs-horizontal;
+        }
+
         display: block;
         overflow: hidden;
         position: fixed;
         min-height: 99999px;
         background: @navbar-default-bg;
         left: 0;
+        width: @navbar-height * 2;
         transform: translateX(-(@navbar-height * 2));
 
         &.open {
