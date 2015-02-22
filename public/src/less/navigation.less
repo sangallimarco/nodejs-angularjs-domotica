@@ -1,21 +1,28 @@
-.slide-down {
-    .transition(all .35s ease-in-out);
-    display: block;
-    overflow: hidden;
-    max-height: 0;
+@media (max-width: @screen-sm) {
+    .slide-down {
+        .transition(all .35s ease-in-out);
 
-    &.open {
-        max-height: 999px;
+        display: block;
+        overflow: hidden;
+        position: fixed;
+        min-height: 99999px;
+        background: @navbar-default-bg;
+        left: 0;
+        transform: translateX(-(@navbar-height * 2));
+
+        &.open {
+            transform: translateX(0px);
+        }
     }
-}
 
 
-// media query only for mobile!!!!!!!!
-.canvas {
-    .transition(all .35s ease-in-out);
-    transform: translateX(0px);
+    // media query only for mobile!!!!!!!!
+    .canvas {
+        .transition(all .35s ease-in-out);
+        transform: translateX(0px);
 
-    &.open {
-        transform: translateX(100px);
+        &.open {
+            transform: translateX(@navbar-height * 2);
+        }
     }
 }

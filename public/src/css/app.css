@@ -5370,23 +5370,29 @@ button.close {
   left: 10px;
   position: relative;
 }
-.slide-down {
-  -webkit-transition: all 0.35s ease-in-out;
-  -o-transition: all 0.35s ease-in-out;
-  transition: all 0.35s ease-in-out;
-  display: block;
-  overflow: hidden;
-  max-height: 0;
-}
-.slide-down.open {
-  max-height: 999px;
-}
-.canvas {
-  -webkit-transition: all 0.35s ease-in-out;
-  -o-transition: all 0.35s ease-in-out;
-  transition: all 0.35s ease-in-out;
-  transform: translateX(0px);
-}
-.canvas.open {
-  transform: translateX(100px);
+@media (max-width: 768px) {
+  .slide-down {
+    -webkit-transition: all 0.35s ease-in-out;
+    -o-transition: all 0.35s ease-in-out;
+    transition: all 0.35s ease-in-out;
+    display: block;
+    overflow: hidden;
+    position: fixed;
+    min-height: 99999px;
+    background: #2c3e50;
+    left: 0;
+    transform: translateX(-120px);
+  }
+  .slide-down.open {
+    transform: translateX(0px);
+  }
+  .canvas {
+    -webkit-transition: all 0.35s ease-in-out;
+    -o-transition: all 0.35s ease-in-out;
+    transition: all 0.35s ease-in-out;
+    transform: translateX(0px);
+  }
+  .canvas.open {
+    transform: translateX(120px);
+  }
 }
