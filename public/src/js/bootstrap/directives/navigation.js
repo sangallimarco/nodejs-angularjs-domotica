@@ -13,15 +13,19 @@ angular.module('app.bootstrap')
 
                 self.toggle = function (status) {
                     // use status to force it!!!
-                    $scope.collapsed = !$scope.collapsed;
+                    $scope.collapsed = status !== undefined ? status : !$scope.collapsed;
 
                     $rootScope.$broadcast('menuToggle',{collapsed: $scope.collapsed});
 
                 };
 
-                $scope.$on('collapsed', function(){
-                    self.toggle();
-                });
+                $scope.$watch('collapsed',
+                    function(newValue, oldValue){
+                        if (newValue !== undefined) {
+                            self.toggle(newValue);
+                        }
+                    }
+                );
             }
         };
     })
@@ -39,7 +43,7 @@ angular.module('app.bootstrap')
                 var navigation = ctrls[0];
 
                 scope.collapse = function () {
-                    navigation.toggle(false);
+                    navigation.toggle(true);
 
                 };
             }
