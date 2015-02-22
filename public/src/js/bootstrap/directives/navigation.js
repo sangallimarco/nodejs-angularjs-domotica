@@ -1,8 +1,25 @@
 angular.module('app.bootstrap')
+.factory('NavigationManager', function(){
+    function factory(){
+        this.listeners = [];
+
+        this.onChange = function(listener) {
+            this.listeners.push(listener);
+
+        };
+        this.setValue = function(value) {
+            angular.forEach(this.listeners, function(listener){
+                listener(value);
+            })
+        }
+    }
+
+    return new factory();
+})
 /**
  * Page canvas
  */
-.directive('navigationCanvas', function () {
+.directive('navigationCanvas', function (NavigationManager) {
     return {
         restrict: 'E',
         replace: true,
@@ -11,9 +28,9 @@ angular.module('app.bootstrap')
         link: function (scope, element, attrs) {
             scope.show = false;
 
-            scope.$on('menuToggle',
-                function(event, data){
-                    scope.show = data.status;
+            NavigationManager.onChange(
+                function(value){
+                    scope.show = value;
                 }
             );
         }
@@ -23,7 +40,7 @@ angular.module('app.bootstrap')
  * Navigation container
  * bind variable to show/hide menu
  */
-.directive('navigationContainer', function () {
+.directive('navigationContainer', function (NavigationManager) {
     return {
         restrict: 'E',
         replace: true,
@@ -34,15 +51,15 @@ angular.module('app.bootstrap')
         transclude: true,
         link: function (scope, element, attrs) {
 
-            scope.$on('menuToggle',
-                function(event, data){
-                    scope.show = data.status;
+            NavigationManager.onChange(
+                function(value){
+                    scope.show = value;
                 }
             );
 
             // watch variable
             scope.$watch('show', function(value){
-                scope.$emit('menuToggle', {status: value});
+                NavigationManager.setValue(value);
             });
         }
     };
@@ -51,7 +68,7 @@ angular.module('app.bootstrap')
  * Navigation Item
  * Force menu to close once selected
  */
-.directive('navigationItem', function () {
+.directive('navigationItem', function (NavigationManager) {
     return {
         restrict: 'E',
         replace: true,
@@ -63,7 +80,7 @@ angular.module('app.bootstrap')
         link: function (scope, element, attrs) {
 
             scope.collapse = function () {
-                scope.$emit('menuToggle', {status: false});
+                NavigationManager.setValue(false);
             };
         }
     };
