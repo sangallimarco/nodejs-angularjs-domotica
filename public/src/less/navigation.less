@@ -9,14 +9,14 @@
         display: block;
         overflow: hidden;
         position: fixed;
+        left: 0;
         min-height: 99999px;
         background: @navbar-default-bg;
-        left: 0;
         width: @navbar-height * 2;
-        transform: translateX(-(@navbar-height * 2));
+        .translate(-(@navbar-height * 2), 0);
 
         &.open {
-            transform: translateX(0px);
+            .translate(0, 0);
         }
     }
 
@@ -24,10 +24,10 @@
     // media query only for mobile!!!!!!!!
     .canvas {
         .transition(all .35s ease-in-out);
-        transform: translateX(0px);
+        .translate(0, 0);
 
         &.open {
-            transform: translateX(@navbar-height * 2);
+            .translate(@navbar-height * 2, 0);
         }
     }
 }
