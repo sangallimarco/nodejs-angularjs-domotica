@@ -1,13 +1,16 @@
 @media (max-width: @screen-sm) {
-    .slide-down {
+    .slide-right {
         .transition(all .35s ease-in-out);
+
         display: block;
         overflow: hidden;
         position: fixed;
         top: 0;
+        // move off canvas
         left: -(@navbar-height * 2);
-        border-right: 1px solid @gray-darker;
         margin-left: 0 !important;
+
+        // @TODO refactor this
         min-height: 99999px;
         background: @gray-dark;
         width: @navbar-height * 2;
@@ -15,14 +18,9 @@
         &.open {
             // .translate(0, 0);
         }
-
-        & > ul {
-            margin-left: @padding-xs-horizontal;
-        }
     }
 
-
-    // media query only for mobile!!!!!!!!
+    // page canvas to move
     .canvas {
         .transition(all .35s ease-in-out);
         .translate(0, 0);
