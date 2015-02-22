@@ -1,5 +1,5 @@
 angular.module('app.bootstrap')
-    .directive('navigationContainer', function () {
+    .directive('navigationContainer', function ($rootScope) {
         return {
             restrict: 'E',
             replace: true,
@@ -9,9 +9,19 @@ angular.module('app.bootstrap')
             },
             transclude: true,
             controller: function ($scope, $element, $attrs) {
-                this.collapse = function () {
-                    $scope.collapsed = true;
+                var self = this;
+
+                self.toggle = function (status) {
+                    // use status to force it!!!
+                    $scope.collapsed = !$scope.collapsed;
+
+                    $rootScope.$broadcast('menuToggle',{collapsed: $scope.collapsed});
+
                 };
+
+                $scope.$on('collapsed', function(){
+                    self.toggle();
+                });
             }
         };
     })
@@ -29,8 +39,24 @@ angular.module('app.bootstrap')
                 var navigation = ctrls[0];
 
                 scope.collapse = function () {
-                    navigation.collapse();
+                    navigation.toggle(false);
+
                 };
+            }
+        };
+    })
+    .directive('navigationCanvas', function ($rootScope) {
+        return {
+            restrict: 'E',
+            replace: true,
+            transclude: true,
+            template: '<div class="canvas" ng-class="{open: !collapsed}" ng-transclude></div>',
+            link: function (scope, element, attrs) {
+                scope.collapsed = true;
+
+                $rootScope.$on('menuToggle', function(event, data){
+                    scope.collapsed = data.collapsed;
+                });
             }
         };
     });
