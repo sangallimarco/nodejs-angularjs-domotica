@@ -5378,23 +5378,16 @@ button.close {
     display: block;
     overflow: hidden;
     position: fixed;
-    left: 0;
+    top: 0;
+    left: -120px;
+    border-right: 1px solid #222222;
+    margin-left: 0 !important;
     min-height: 99999px;
-    background: #2c3e50;
+    background: #7b8a8b;
     width: 120px;
-    -webkit-transform: translate(-120px, 0);
-    -ms-transform: translate(-120px, 0);
-    -o-transform: translate(-120px, 0);
-    transform: translate(-120px, 0);
   }
   .slide-down > ul {
     margin-left: 5px;
-  }
-  .slide-down.open {
-    -webkit-transform: translate(0, 0);
-    -ms-transform: translate(0, 0);
-    -o-transform: translate(0, 0);
-    transform: translate(0, 0);
   }
   .canvas {
     -webkit-transition: all 0.35s ease-in-out;

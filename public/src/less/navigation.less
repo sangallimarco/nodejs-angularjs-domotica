@@ -1,22 +1,23 @@
 @media (max-width: @screen-sm) {
     .slide-down {
         .transition(all .35s ease-in-out);
-
-        & > ul {
-            margin-left: @padding-xs-horizontal;
-        }
-
         display: block;
         overflow: hidden;
         position: fixed;
-        left: 0;
+        top: 0;
+        left: -(@navbar-height * 2);
+        border-right: 1px solid @gray-darker;
+        margin-left: 0 !important;
         min-height: 99999px;
-        background: @navbar-default-bg;
+        background: @gray-dark;
         width: @navbar-height * 2;
-        .translate(-(@navbar-height * 2), 0);
 
         &.open {
-            .translate(0, 0);
+            // .translate(0, 0);
+        }
+
+        & > ul {
+            margin-left: @padding-xs-horizontal;
         }
     }
 

@@ -3,9 +3,9 @@ angular.module('app.bootstrap')
         return {
             restrict: 'E',
             replace: true,
-            template: '<div ng-class="{open: !collapsed}" id="navbar" class="navbar-collapse slide-down collapse"><ul class="nav navbar-nav" ng-transclude></ul></div>',
+            template: '<div ng-class="{open: !show}" id="navbar" class="navbar-collapse slide-down collapse"><ul class="nav navbar-nav" ng-transclude></ul></div>',
             scope: {
-                collapsed: '=collapsed'
+                show: '='
             },
             transclude: true,
             controller: function ($scope, $element, $attrs) {
@@ -13,13 +13,13 @@ angular.module('app.bootstrap')
 
                 self.toggle = function (status) {
                     // use status to force it!!!
-                    $scope.collapsed = status !== undefined ? status : !$scope.collapsed;
+                    $scope.show = status !== undefined ? status : !$scope.show;
 
-                    $rootScope.$broadcast('menuToggle',{collapsed: $scope.collapsed});
+                    $rootScope.$broadcast('menuToggle',{show: $scope.show});
 
                 };
 
-                $scope.$watch('collapsed',
+                $scope.$watch('show',
                     function(newValue, oldValue){
                         if (newValue !== undefined) {
                             self.toggle(newValue);
@@ -43,7 +43,7 @@ angular.module('app.bootstrap')
                 var navigation = ctrls[0];
 
                 scope.collapse = function () {
-                    navigation.toggle(true);
+                    navigation.toggle(false);
 
                 };
             }
@@ -54,12 +54,12 @@ angular.module('app.bootstrap')
             restrict: 'E',
             replace: true,
             transclude: true,
-            template: '<div class="canvas" ng-class="{open: !collapsed}" ng-transclude></div>',
+            template: '<div class="canvas" ng-class="{open: show}" ng-transclude></div>',
             link: function (scope, element, attrs) {
                 scope.collapsed = true;
 
                 $rootScope.$on('menuToggle', function(event, data){
-                    scope.collapsed = data.collapsed;
+                    scope.show = data.show;
                 });
             }
         };
