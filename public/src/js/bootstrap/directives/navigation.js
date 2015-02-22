@@ -53,7 +53,10 @@ angular.module('app.bootstrap')
 
             NavigationManager.onChange(
                 function(value){
-                    scope.show = value;
+                    // prevent digest
+                    if (scope.show !== value) {
+                        scope.show = value;
+                    }
                 }
             );
 
