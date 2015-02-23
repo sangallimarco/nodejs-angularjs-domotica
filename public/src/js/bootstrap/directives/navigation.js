@@ -10,8 +10,8 @@ angular.module('app.bootstrap')
         this.setValue = function(value) {
             angular.forEach(this.listeners, function(listener){
                 listener(value);
-            })
-        }
+            });
+        };
     }
 
     return new factory();
