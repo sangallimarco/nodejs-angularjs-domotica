@@ -19,7 +19,9 @@ module.exports = function (grunt) {
 					'public/bower_components/angular-socket-io/socket.js',
 					'public/bower_components/angular-jwt/dist/angular-jwt.js',
 					'public/bower_components/Chart.js/Chart.js',
-					'public/bower_components/angular-chart.js/angular-chart.js'
+					'public/bower_components/angular-chart.js/angular-chart.js',
+					'public/bower_components/moment/moment.js',
+					'public/bower_components/angular-moment/angular-moment.js'
 		].concat(srcJs);
 
 	// Project configuration.

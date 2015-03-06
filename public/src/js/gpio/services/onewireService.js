@@ -1,5 +1,5 @@
 angular.module('app.gpio')
-    .service('onewireService', function ($log, onewireApi, authService, $q) {
+    .service('onewireService', function ($log, onewireApi, authService, $q, moment) {
         var self = this;
 
         self.get = function (pin) {
@@ -45,12 +45,12 @@ angular.module('app.gpio')
                 values: []
             };
             angular.forEach(data, function (obj) {
-                var d = new Date(obj.created),
-                    formattedDate = d.toLocaleDateString() + ' ' + d.getUTCHours()
-                    ;
-
-                result.labels.push(formattedDate);
-                result.values.push(self.formatTemp(obj.value));
+                result.labels.push(
+                    moment(obj.created).format('DD/MM-HH')
+                );
+                result.values.push(
+                    self.formatTemp(obj.value)
+                );
             });
 
             return result;
