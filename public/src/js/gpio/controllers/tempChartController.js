@@ -1,5 +1,5 @@
 angular.module('app.gpio')
-    .controller('tempChartController', function ($scope, $log, onewireService, socketIoFactory) {
+    .controller('tempChartController', function ($scope, $log, onewireService, socketIoFactory, moment) {
         $scope.history = {
             labels: [],
             values: [],
@@ -9,10 +9,8 @@ angular.module('app.gpio')
         // filters
         $scope.filters = {
             limit: 1000,
-            from: new Date(
-                new Date().getTime() - (2 * 24 * 60 * 60 * 1000)
-            ),
-            to: new Date()
+            from: moment().startOf('hour').subtract(1, 'day').toDate(),
+            to: moment().startOf('hour').toDate()
         };
 
         /**
