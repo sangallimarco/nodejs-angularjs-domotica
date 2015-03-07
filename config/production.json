@@ -12,7 +12,7 @@
   },
   "cam": {
     "dummy": false,
-    "file": "/tmp/cam.jpg",
+    "file": "/tmp/images/cam.jpg",
     "quality": 50,
     "timelapse": 1000
   },
