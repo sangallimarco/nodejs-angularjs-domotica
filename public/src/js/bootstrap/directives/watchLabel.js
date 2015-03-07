@@ -9,7 +9,7 @@ angular.module('app.bootstrap')
             },
             transclude: true,
             link: function (scope, element, attrs) {
-                var fx = new Audio('/public/sounds/alert.mp3');
+                // var fx = new Audio('/public/sounds/alert.mp3');
 
                 scope.updated = false;
 
@@ -18,7 +18,7 @@ angular.module('app.bootstrap')
                         scope.updated = true;
 
                         //play sound
-                        fx.play();
+                        // fx.play();
 
                         // reset
                         $timeout(function () {
