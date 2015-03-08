@@ -8,7 +8,7 @@
     "expires": 10080
   },
   "weather": {
-    "key": ".frFFHX1sj"
+    "url": "http://api.openweathermap.org/data/2.5/weather?APPID=7cfa18f0f8bf7d3fbd06634e3bcce680&q=%s"
   },
   "cam": {
     "dummy": false,

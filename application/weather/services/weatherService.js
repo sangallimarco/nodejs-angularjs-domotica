@@ -1,8 +1,8 @@
 var pongular = require('pongular').pongular;
 
 pongular.module('app.weather')
-.service('WeatherService', 
-	function($http, WeatherModel, $q, $config) {
+.service('WeatherService',
+	function($http, WeatherModel, $q, $config, $util) {
 		var scope = this;
 
 		scope.data = {};
@@ -14,9 +14,10 @@ pongular.module('app.weather')
 		 */
 		scope.getData =  function(postcode) {
 			var scope = this,
+				url = $util.format($config.get('weather.url'), postcode),
 				deferred = $q.defer();
-			
-			$http.get('http://www.myweather2.com/developer/forecast.ashx?uac=' + $config.get('weather.key') + '&query=' + postcode + '&output=json', function(response){
+
+			$http.get(url, function(response){
 				var str = '';
 
 				response.on('data', function (chunk) {
@@ -32,7 +33,7 @@ pongular.module('app.weather')
 
 			return deferred.promise;
 		};
-		
+
 		/**
 		 * Save to db
 		 * @param Object d
@@ -45,12 +46,12 @@ pongular.module('app.weather')
 				};
 
 			//save data
-			if (temp.weather) {
-				var current = temp.weather.curren_weather[0];
+			if (temp.main) {
+				var current = temp.main;
 
 				data = {
 					humidity: current.humidity,
-					temp: current.temp,
+					temp: (current.temp - 273.15).toFixed(1),
 					created: new Date()
 				};
 
@@ -61,13 +62,13 @@ pongular.module('app.weather')
 							console.log(err);
 						}
 					}
-				); 
+				);
 				return data;
 			}
 
 			return {};
 		};
-		
+
 		/**
 		 * Get all
 		 * @return {Q} [promise]

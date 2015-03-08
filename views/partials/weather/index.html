@@ -32,7 +32,7 @@
 			<th>Temp</th>
 		</tr>
 		<tr ng-repeat="item in items">
-			<td>{{item.created}}</td>
+			<td>{{item.created | amCalendar}}</td>
 			<td>{{item.humidity}}</td>
 			<td>{{item.temp}}</td>
 		</tr>
