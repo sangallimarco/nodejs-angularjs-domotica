@@ -8,7 +8,7 @@
     "expires": 150
   },
   "weather": {
-    "url": "https://api.forecast.io/forecast/dbc03034b28dc9a934d3725985f7b8c0/51.495352,-0.2672948"
+    "url": "https://api.forecast.io/forecast/XXXXXXXXXX/51.495352,-0.2672948"
   },
   "cam": {
     "dummy": true,
