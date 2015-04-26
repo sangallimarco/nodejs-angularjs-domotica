@@ -8,7 +8,7 @@
     "expires": 10080
   },
   "weather": {
-    "url": "http://api.openweathermap.org/data/2.5/weather?APPID=7cfa18f0f8bf7d3fbd06634e3bcce680&q=%s"
+    "url": "https://api.forecast.io/forecast/dbc03034b28dc9a934d3725985f7b8c0/51.495352,-0.2672948"
   },
   "cam": {
     "dummy": false,

@@ -2,7 +2,7 @@ angular.module('app.weather')
 .service('weatherService', function($log, weatherApi, authService, $q){
 
 		this.getWeather = function(postcode) {
-			var promise = weatherApi.getCurrent({postcode: postcode})
+			var promise = weatherApi.getCurrent()
 			.$promise
 			.then(
 				function (res) {

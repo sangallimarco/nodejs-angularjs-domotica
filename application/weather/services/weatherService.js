@@ -2,7 +2,7 @@ var pongular = require('pongular').pongular;
 
 pongular.module('app.weather')
 .service('WeatherService',
-	function($http, WeatherModel, $q, $config, $util) {
+	function($request, WeatherModel, $q, $config, $util) {
 		var scope = this;
 
 		scope.data = {};
@@ -12,22 +12,17 @@ pongular.module('app.weather')
 		 * @param  String postcode
 		 * @return $q
 		 */
-		scope.getData =  function(postcode) {
+		scope.getData =  function() {
 			var scope = this,
-				url = $util.format($config.get('weather.url'), postcode),
+				url = $config.get('weather.url');
 				deferred = $q.defer();
 
-			$http.get(url, function(response){
-				var str = '';
-
-				response.on('data', function (chunk) {
-					str += chunk;
-				});
-
-				response.on('end', function () {
-					var data = scope.setData(str);
+			$request(url, function (error, response, body) {
+				if (!error && response.statusCode == 200) {
+					var data = scope.setData(body);
 					deferred.resolve(data);
-				});
+				}
+
 			})
 			.end();
 
@@ -46,12 +41,11 @@ pongular.module('app.weather')
 				};
 
 			//save data
-			if (temp.main) {
-				var current = temp.main;
-
+			// https://api.forecast.io/forecast/dbc03034b28dc9a934d3725985f7b8c0/51.495352,-0.2672948
+			if (temp.currently) {
 				data = {
-					humidity: current.humidity,
-					temp: (current.temp - 273.15).toFixed(1),
+					humidity: temp.currently.humidity * 100,
+					temp: ((temp.currently.temperature - 32) * (5 / 9)).toFixed(1),
 					created: new Date()
 				};
 

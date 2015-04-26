@@ -14,6 +14,10 @@ pongular.module('app.libs')
 	return require('http');
 })
 
+.factory('$request', function() {
+	return require('request');
+})
+
 .factory('$bodyParser', function() {
 	return require('body-parser');
 })
