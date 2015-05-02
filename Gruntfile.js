@@ -12,12 +12,16 @@ module.exports = function (grunt) {
 		],
 		fileList = [
 					'public/bower_components/angular/angular.js',
-					'public/bower_components/ngstorage/ngstorage.js',
+					'public/bower_components/ngstorage/ngStorage.js',
 					'public/bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
 					'public/bower_components/angular-ui-router/release/angular-ui-router.js',
 					'public/bower_components/angular-resource/angular-resource.js',
 					'public/bower_components/angular-socket-io/socket.js',
 					'public/bower_components/angular-jwt/dist/angular-jwt.js',
+					'public/bower_components/Chart.js/Chart.js',
+					'public/bower_components/angular-chart.js/angular-chart.js',
+					'public/bower_components/moment/moment.js',
+					'public/bower_components/angular-moment/angular-moment.js'
 		].concat(srcJs);
 
 	// Project configuration.

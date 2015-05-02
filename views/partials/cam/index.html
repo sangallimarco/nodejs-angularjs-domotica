@@ -1,0 +1,11 @@
+<div class="row">
+
+	<div class="col-xs-12">
+		<button class="btn btn-primary" ng-click="downloadImage()">Download Image</button>
+	</div>
+
+	<img class="col-xs-12 img-responsive" ng-src="{{src}}"/>
+	<div class="carousel-caption">
+		{{timestamp | date:'yyyy-MM-dd HH:mm:ss Z'}}
+	</div>
+</div>

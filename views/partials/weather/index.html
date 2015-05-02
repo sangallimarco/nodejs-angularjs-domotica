@@ -1,22 +1,6 @@
 <!-- add item -->
 <div class="row">
-	<form name="form">
-		<form-group class="col-xs-4" label="Name">
-			<input 
-				class="form-control" 
-				type="text" 
-				id="postcode"				
-				name="postcode" 
-				ng-model="input.postcode"
-				required
-				ng-minlength="4"
-			/>
-		</form-group>
-	</form>
-
-	<div class="col-xs-2">
-		<button class="btn btn-primary" ng-click="getWeather()">GET</button>
-	</div>
+	<button class="btn btn-primary btn-block" ng-click="getWeather()"><i class="glyphicon glyphicon-saved"></i></button>
 </div>
 
 <div class="row">
@@ -32,7 +16,7 @@
 			<th>Temp</th>
 		</tr>
 		<tr ng-repeat="item in items">
-			<td>{{item.created}}</td>
+			<td>{{item.created | amCalendar}}</td>
 			<td>{{item.humidity}}</td>
 			<td>{{item.temp}}</td>
 		</tr>

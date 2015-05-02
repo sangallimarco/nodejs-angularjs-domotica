@@ -12,15 +12,16 @@ angular.module('app.weather')
 		};
 
 		$scope.getWeather = function(){
-			if ($scope.form.$valid) {
-				weatherService.getWeather($scope.input.postcode)
+			// if ($scope.form.$valid) {
+				// weatherService.getWeather($scope.input.postcode)
+				weatherService.getWeather()
 				.then(
 					function(res) {
 						//replace data object
 						$scope.data = res;
 					}
 				);
-			}
+			// }
 		};
 
 		weatherService.getAll()
@@ -29,9 +30,9 @@ angular.module('app.weather')
 				$scope.items = res;
 
 				// search if postcode #/app/weather/w45eq
-				if ($scope.input !== '') {
-					$scope.getWeather();
-				}
+				// if ($scope.input !== '') {
+				// 	$scope.getWeather();
+				// }
 			}
 		);
 

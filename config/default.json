@@ -1,14 +1,25 @@
 {
-	"app": {
-		"port": 8000,
-		"mongodb": "mongodb://localhost/testapp",
-		"secret": "thisIsASecret!"
-	},
-	"token": {
-	  "secret": "thisIsASecret!",
-	  "expires": 5
-	},
-	"weather": {
-		"key": ".frFFHX1sj"
-	}
+  "app": {
+    "port": 8000,
+    "mongodb": "mongodb://localhost/testapp"
+  },
+  "token": {
+    "secret": "thisIsASecret!",
+    "expires": 150
+  },
+  "weather": {
+    "url": "https://api.forecast.io/forecast/XXXXXXXXXX/51.495352,-0.2672948"
+  },
+  "cam": {
+    "dummy": true,
+    "file": "/tmp/cam.jpg",
+    "quality": 50,
+    "timelapse": 1000
+  },
+  "onewire": {
+    "temp": "/tmp/temp",
+    "min_temp": 19000,
+    "max_temp": 21000,
+    "gpio": 12
+  }
 }

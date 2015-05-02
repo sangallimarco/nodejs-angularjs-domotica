@@ -1,29 +1,36 @@
-<!-- Fixed navbar -->
-<nav class="navbar navbar-default" role="navigation">
-	<div class="container">
+<navigation-canvas>
+	<!-- Fixed navbar -->
+	<nav class="navbar navbar-default" role="navigation">
+		<div class="container">
 
-		<div class="navbar-header">
-			<button
-				type="button"
-				ng-click="toggle()"
-				class="navbar-toggle collapsed"
-				aria-expanded="false"
-				aria-controls="navbar">
-				<span class="sr-only">Toggle navigation</span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" href="#">NodeJs + AngularJs</a>
+			<div class="navbar-header">
+				<button
+					type="button"
+					ng-click="showNav = true"
+					class="navbar-toggle collapsed"
+					aria-expanded="false"
+					aria-controls="navbar">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">NodeJs + AngularJs</a>
+			</div>
+
+			<navigation-container show="showNav">
+				<navigation-item state="app.home" label="Home"></navigation-item>
+				<navigation-item state="app.weather" label="Weather"></navigation-item>
+				<navigation-item state="app.test" label="Test"></navigation-item>
+				<navigation-item state="app.gpio" label="Gpio"></navigation-item>
+				<navigation-item state="app.history" label="History"></navigation-item>
+				<navigation-item state="app.cam" label="Cam"></navigation-item>
+			</navigation-container>
+
 		</div>
+	</nav>
 
-		<navigation-container collapsed="showNav">
-			<navigation-item state="app.home" label="Home"></navigation-item>
-			<navigation-item state="app.weather" label="Weather"></navigation-item>
-			<navigation-item state="app.test" label="Test"></navigation-item>
-		</navigation-container>
-	</div>
-</nav>
+	<!-- state app.x -->
 
-<!-- state app.x -->
-<div class="container" ui-view></div>
+	<div class="container" ui-view></div>
+</navigation-canvas>

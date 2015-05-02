@@ -14,6 +14,10 @@ pongular.module('app.libs')
 	return require('http');
 })
 
+.factory('$request', function() {
+	return require('request');
+})
+
 .factory('$bodyParser', function() {
 	return require('body-parser');
 })
@@ -34,8 +38,28 @@ pongular.module('app.libs')
 	return require('q');
 })
 
+.factory('$fs', function() {
+	return require('fs');
+})
+
 .factory('$config', function() {
 	return require('config');
+})
+
+.factory('$raspicam', function() {
+	return require('raspicam');
+})
+
+.factory('$childProcess', function() {
+	return require('child_process');
+})
+
+.factory('$gpio', function() {
+	return require('rpi-gpio');
+})
+
+.factory('$events', function() {
+	return require("events").EventEmitter;
 })
 
 .factory('$expressJwt', function() {
@@ -50,6 +74,9 @@ pongular.module('app.libs')
 	return require("socketio-jwt");
 })
 
+.factory('$util', function () {
+	return require('util');
+})
 
 .factory('$pongular', function() {
 	return pongular;
