@@ -5,18 +5,26 @@
 </div>
 
 <div class="row">
-	<div class="col-xs-12">
+	<!-- <div class="col-xs-12">
 		<h2>Playlists</h2>
 	</div>
 	<div class="col-xs-12" ng-repeat="item in items">
 		{{item}}
-	</div>
+	</div> -->
 
-	<div class="col-xs-12">
+	<div class="col-xs-12 player">
 		<canvas id="doughnut" class="chart chart-doughnut" data="player.volumeKnob" labels="player.volumeLabels"></canvas>
 		<div class="controls">
 			{{player.status}}
-			<button ng-click="toggle()">Toggle</button>
+			<div class="toggle">
+				<i class="glyphicon {{player.state === 'play' ? 'glyphicon-play' : 'glyphicon-stop'}}" ng-click="toggle()"></i>
+			</div>
+			<div class="plus">
+				<i class="glyphicon glyphicon-plus " ng-click="setVolume(1)"></i>
+			</div>
+			<div class="minus">
+				<i class="glyphicon glyphicon-minus " ng-click="setVolume(-1)"></i>
+			</div>
 		</div>
 	</div>
 

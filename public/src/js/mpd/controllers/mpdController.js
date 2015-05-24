@@ -10,6 +10,7 @@ angular.module('app.mpd')
             volumeKnob: [50, 50]
         };
 
+
         /**
          * Get Playlist
          */
@@ -31,10 +32,17 @@ angular.module('app.mpd')
         $scope.init();
 
         // controls
-        $scope.setState = function () {
-            mpdService.setState($scope.player.state).then(
-                function () {
+        $scope.toggle = function () {
+            mpdService.toggleState($scope.player.state).then(
+                function (data) {
+                    $scope.player.state = data.value;
+                }
+            );
+        };
 
+        $scope.setVolume =  function (direction) {
+            mpdService.setVolume($scope.player.volume, direction).then(
+                function (data) {
                 }
             );
         };
@@ -42,7 +50,7 @@ angular.module('app.mpd')
 
         //socket.io
         socketIoFactory.on('mpd.changed', function (obj) {
-
+            $scope.init();
         });
     }
 );

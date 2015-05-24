@@ -57,7 +57,21 @@ angular.module('app.mpd')
 		};
 
 		this.setVolume = function(value) {
-			return this.setCommand('volume', value);
+			return this.setCommand('setvol', value);
+		};
+
+		this.changeVolume = function(value, direction) {
+			// increase 10%
+			value = parseInt(value) + (direction * 10);
+
+			if (value < 0) {
+				value = 0;
+			}
+			if (value > 100) {
+				value = 100;
+			}
+
+			return this.setVolume('volume', value);
 		};
 
 		this.getStatus =  function() {
@@ -65,10 +79,24 @@ angular.module('app.mpd')
 			// return this.getCommand('state');
 		};
 
+		this.toggleState = function (value) {
+			if (value === 'stop') {
+				value = 'play';
+			} else {
+				value = 'stop';
+			}
+
+			return this.setState(value);
+		};
+
 		this.setState = function(value) {
 			//set filter here
 			if (value === 'play' || value === 'stop') {
-				return this.setCommand(value, null);
+				return this.setCommand(value, null).then(
+					function (ret) {
+						return {value: value};
+					}
+				);
 			} else {
 				return $q.reject();
 			}
