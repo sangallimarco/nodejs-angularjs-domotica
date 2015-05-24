@@ -40,8 +40,8 @@ angular.module('app.mpd')
             );
         };
 
-        $scope.setVolume =  function (direction) {
-            mpdService.setVolume($scope.player.volume, direction).then(
+        $scope.changeVolume =  function (direction) {
+            mpdService.changeVolume($scope.player.volume, direction).then(
                 function (data) {
                 }
             );

@@ -62,7 +62,7 @@ angular.module('app.mpd')
 
 		this.changeVolume = function(value, direction) {
 			// increase 10%
-			value = parseInt(value) + (direction * 10);
+			value = parseInt(value) + (direction * 5);
 
 			if (value < 0) {
 				value = 0;
@@ -71,7 +71,7 @@ angular.module('app.mpd')
 				value = 100;
 			}
 
-			return this.setVolume('volume', value);
+			return this.setVolume(value);
 		};
 
 		this.getStatus =  function() {
