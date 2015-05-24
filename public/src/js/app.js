@@ -11,10 +11,11 @@ angular.module('app',
 		'app.bootstrap',
 		'app.navigation',
 		'app.home',
-		'app.test',
+		// 'app.test',
 		'app.weather',
 		'app.gpio',
-		'app.cam'
+		'app.cam',
+		'app.mpd'
 	]
 )
 .config(function ($compileProvider, $logProvider, $stateProvider, $urlRouterProvider, $httpProvider) {

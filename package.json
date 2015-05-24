@@ -13,6 +13,7 @@
     "express-jwt": "^1.0.0",
     "jsonwebtoken": "^3.2.2",
     "mongoose": "~3.6.13",
+    "mpd": "^1.3.0",
     "node-config": "0.0.2",
     "passport": "^0.2.1",
     "pongular": "0.0.5",

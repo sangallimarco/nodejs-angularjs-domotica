@@ -1,6 +1,7 @@
-var pongular = require('pongular').pongular;
+'use strict';
 
-pongular.module('app.libs')
+require('pongular')
+.pongular.module('app.libs')
 
 .factory('$mongoose', function() {
 	return require('mongoose');
@@ -76,6 +77,10 @@ pongular.module('app.libs')
 
 .factory('$util', function () {
 	return require('util');
+})
+
+.factory('$mpd', function () {
+	return require('mpd');
 })
 
 .factory('$pongular', function() {
