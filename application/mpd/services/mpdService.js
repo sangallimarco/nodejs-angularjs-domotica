@@ -39,18 +39,5 @@ require('pongular')
 			return deferred.promise;
 		};
 
-		// get values from status
-		this.getCommand = function (label) {
-			return this.sendCommand('status')
-			.then(
-				function (ret) {
-					if (label) {
-						return ret[label];
-					} else {
-						return ret;
-					}
-				}
-			);
-		};
 	}
 );

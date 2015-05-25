@@ -9,7 +9,7 @@ require('pongular')
 			get: function(req, res){
 				var cmd = req.params.command;
 
-				MpdService.getCommand(cmd).then(
+				MpdService.sendCommand(cmd).then(
 					function (ret) {
 						var data = {
 							cmd: cmd,

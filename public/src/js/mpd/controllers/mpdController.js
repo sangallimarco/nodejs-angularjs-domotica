@@ -6,6 +6,7 @@ angular.module('app.mpd')
         $scope.items = [];
         $scope.player = {
             state : 'play',
+            currentSong: {},
             volumeLabels: ['<', '>'],
             volumeKnob: [50, 50]
         };
@@ -15,18 +16,21 @@ angular.module('app.mpd')
          * Get Playlist
          */
         $scope.init = function () {
-            // mpdService.getPlaylists().then(
-            //     function (data) {
-            //         $scope.items = items;
-            //     }
-            // );
+            // get song
+            mpdService.getCurrentSong().then(
+                function (data) {
+                    $scope.player.currentSong = data.value;
+                }
+            );
 
+            //ge status
             mpdService.getStatus().then(
                 function (data) {
                     angular.extend($scope.player, data.value);
                     $scope.player.volumeKnob = mpdService.getVolumeControl(data.value.volume);
                 }
             );
+
 
         };
         $scope.init();
@@ -42,6 +46,20 @@ angular.module('app.mpd')
 
         $scope.changeVolume =  function (direction) {
             mpdService.changeVolume($scope.player.volume, direction).then(
+                function (data) {
+                }
+            );
+        };
+
+        $scope.nextSong = function () {
+            mpdService.nextSong().then(
+                function (data) {
+                }
+            );
+        };
+
+        $scope.prevSong = function () {
+            mpdService.prevSong().then(
                 function (data) {
                 }
             );

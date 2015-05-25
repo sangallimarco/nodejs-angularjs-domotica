@@ -51,7 +51,7 @@ angular.module('app.mpd')
 			return [value, 100 - value];
 		};
 
-		// aliases
+		// aliases ----------------------------------------
 		this.getVolume = function() {
 			return this.getCommand('volume');
 		};
@@ -75,8 +75,11 @@ angular.module('app.mpd')
 		};
 
 		this.getStatus =  function() {
-			return this.getCommand();
-			// return this.getCommand('state');
+			return this.getCommand('status');
+		};
+
+		this.getCurrentSong =  function() {
+			return this.getCommand('currentsong');
 		};
 
 		this.toggleState = function (value) {
@@ -102,8 +105,12 @@ angular.module('app.mpd')
 			}
 		};
 
-		this.stop = function() {
-			return this.setCommand('stop', null);
+		this.nextSong = function() {
+			return this.setCommand('next');
+		};
+
+		this.prevSong = function() {
+			return this.setCommand('previous');
 		};
 
 	}
