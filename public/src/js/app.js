@@ -1,14 +1,21 @@
+'use strict';
+
 angular.module('app',
 	[
 		'ngStorage',
 		'ui.router',
 		'ui.bootstrap',
+		'chart.js',
+		'angularMoment',
 		'app.auth',
 		'app.bootstrap',
 		'app.navigation',
 		'app.home',
-		'app.test',
-		'app.weather'
+		// 'app.test',
+		'app.weather',
+		'app.gpio',
+		'app.cam',
+		'app.mpd'
 	]
 )
 .config(function ($compileProvider, $logProvider, $stateProvider, $urlRouterProvider, $httpProvider) {

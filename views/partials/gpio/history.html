@@ -1,0 +1,20 @@
+<div class="row">
+    <form-group class="col-sm-4 col-xs-4" label="From">
+        <input class="form-control" type="datetime-local" ng-model="filters.from"/>
+    </form-group>
+    <form-group class="col-sm-4 col-xs-4" label="To">
+        <input class="form-control" type="datetime-local" ng-model="filters.to"/>
+    </form-group>
+    <form-group class="col-sm-4 col-xs-4" label="Action">
+        <button class="btn btn-primary btn-block" ng-click="search()"><i class="glyphicon glyphicon-saved"></i></button>
+    </form-group>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        <h2>History</h2>
+        <canvas id="line" class="chart chart-line" data="history.values"
+                labels="history.labels" legend="true" series="history.series">
+        </canvas>
+    </div>
+</div>

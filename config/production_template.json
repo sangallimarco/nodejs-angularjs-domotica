@@ -1,0 +1,25 @@
+{
+  "app": {
+    "port": 5000,
+    "mongodb": "mongodb://localhost/testapp"
+  },
+  "token": {
+    "secret": "thisIsASecret!",
+    "expires": 10080
+  },
+  "weather": {
+    "url": "https://api.forecast.io/forecast/XXXXXXXXXXXXXXX/51.495352,-0.2672948"
+  },
+  "cam": {
+    "dummy": false,
+    "file": "/tmp/images/cam.jpg",
+    "quality": 50,
+    "timelapse": 1000
+  },
+  "onewire": {
+    "temp": "/sys/bus/w1/devices/28-0414643fa9ff/w1_slave",
+    "min_temp": 19000,
+    "max_temp": 21000,
+    "gpio": 12
+  }
+}

@@ -6,8 +6,12 @@ pongular.module('app', [
 	'app.libs',
 	'app.auth',
 	'app.home',
-	'app.test',
-	'app.weather'
+	// 'app.test',
+	'app.weather',
+	'app.gpio',
+	'app.onewire',
+	'app.cam',
+	'app.mpd'
 ])
 .uses(
 		'application/*/config.js',
@@ -16,17 +20,28 @@ pongular.module('app', [
 .factory('app',
 	function($mongoose, $bodyParser, $express, $http, $path, $compression, SocketIo, $config, Auth) {
 
-		$mongoose.connect($config.get('app.mongodb'));
+		var db = $mongoose.connect(
+			$config.get('app.mongodb'),
+		{
+			server: {
+				socketOptions: {
+					keepAlive: 1
+				}
+			}
+		}
+	);
+	db.connection.on('error',console.error.bind(console, 'connection error:'));
 
 		//use express.io
 		var app = $express(),
-			server = $http.Server(app);
+			server = $http.createServer(app);
 
 		app.use($bodyParser.urlencoded({extended: true}));
 		app.use($bodyParser.json());
 		app.set('view engine', 'ejs');
 		app.use($compression({threshold : 10}));
 		app.set('port', process.env.PORT || $config.get('app.port'));
+		app.use('/tmp/', $express.static('/tmp'));
 		app.use('/public/', $express.static($path.join(__dirname, 'public')));
 		app.use('/partials/', $express.static($path.join(__dirname, 'views/partials')));
 		app.use('/fonts/', $express.static($path.join(__dirname, 'public/bower_components/bootstrap-less/fonts')));
@@ -51,15 +66,18 @@ pongular.module('app', [
 	}
 )
 .run(
-	function(app, AuthRouter, HomeRouter, TestRouter, WeatherRouter, SocketIo) {
+	function(app, AuthRouter, HomeRouter, MpdRouter, WeatherRouter, GpioRouter, CamRouter, SocketIo, CamService, OnewireRouter) {
 
 		/**
 		 * Route middlewares
 		 */
 		app.use(AuthRouter);
 		app.use(HomeRouter);
-		app.use(TestRouter);
+		app.use(MpdRouter);
 		app.use(WeatherRouter);
+		app.use(GpioRouter);
+		app.use(CamRouter);
+		app.use(OnewireRouter);
 
 		/**
 		 * Socket.io connection
@@ -69,6 +87,11 @@ pongular.module('app', [
 				console.log('SocketIo Client connected!');
 			}
 		);
+
+		// stop camera on exit
+		app.on('exit', function() {
+			CamService.stop();
+		});
 
 	}
 );

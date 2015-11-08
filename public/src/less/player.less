@@ -1,0 +1,44 @@
+@player-icon-size: 45px;
+
+.player {
+    .glyphicon {
+        font-size: @player-icon-size - 10;
+    }
+
+    .no-top-margin {
+        margin-top: 0;
+    }
+
+    .controls{
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        z-index: 10;
+        left: 0;
+        right: 0;
+
+        .glyphicon {
+            font-size: @player-icon-size;
+            margin-left: -(@player-icon-size/2);
+            margin-top: -(@player-icon-size/2);
+        }
+
+        .toggle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+        }
+
+        .minus {
+            position: absolute;
+            top: 50%;
+            left: 10%;
+        }
+
+        .plus {
+            position: absolute;
+            top: 50%;
+            left: 90%;
+        }
+    }
+}

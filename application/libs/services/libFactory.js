@@ -1,6 +1,7 @@
-var pongular = require('pongular').pongular;
+'use strict';
 
-pongular.module('app.libs')
+require('pongular')
+.pongular.module('app.libs')
 
 .factory('$mongoose', function() {
 	return require('mongoose');
@@ -12,6 +13,10 @@ pongular.module('app.libs')
 
 .factory('$http', function() {
 	return require('http');
+})
+
+.factory('$request', function() {
+	return require('request');
 })
 
 .factory('$bodyParser', function() {
@@ -34,8 +39,28 @@ pongular.module('app.libs')
 	return require('q');
 })
 
+.factory('$fs', function() {
+	return require('fs');
+})
+
 .factory('$config', function() {
 	return require('config');
+})
+
+.factory('$raspicam', function() {
+	return require('raspicam');
+})
+
+.factory('$childProcess', function() {
+	return require('child_process');
+})
+
+.factory('$gpio', function() {
+	return require('rpi-gpio');
+})
+
+.factory('$events', function() {
+	return require("events").EventEmitter;
 })
 
 .factory('$expressJwt', function() {
@@ -50,6 +75,13 @@ pongular.module('app.libs')
 	return require("socketio-jwt");
 })
 
+.factory('$util', function () {
+	return require('util');
+})
+
+.factory('$mpd', function () {
+	return require('mpd');
+})
 
 .factory('$pongular', function() {
 	return pongular;

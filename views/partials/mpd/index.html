@@ -1,0 +1,41 @@
+<div class="row player">
+
+	<div class="col-xs-3 text-center">
+		<i class="glyphicon glyphicon-chevron-left" ng-click="prevSong()"></i>
+	</div>
+	<div class="col-xs-6 text-center">
+		<h2 class="no-top-margin">{{player.currentSong.Name | limitTo:6}}...</h2>
+	</div>
+	<div class="col-xs-3 text-center">
+		<i class="glyphicon glyphicon-chevron-right" ng-click="nextSong()"></i>
+	</div>
+
+	<div class="col-xs-12 text-center">
+		<h5>{{player.currentSong.file}}</h5>
+	</div>
+
+	<!-- <div class="col-xs-12">
+		<h2>Playlists</h2>
+	</div>
+	<div class="col-xs-12" ng-repeat="item in items">
+		{{item}}
+	</div> -->
+
+	<div class="col-xs-12">
+		<canvas id="doughnut" class="chart chart-doughnut" data="player.volumeKnob" labels="player.volumeLabels"></canvas>
+		<div class="controls">
+			{{player.status}}
+			<div class="toggle">
+				<i class="glyphicon {{player.state === 'play' ? 'glyphicon-play' : 'glyphicon-stop'}}" ng-click="toggle()"></i>
+			</div>
+			<div class="plus">
+				<i class="glyphicon glyphicon-plus " ng-click="changeVolume(1)"></i>
+			</div>
+			<div class="minus">
+				<i class="glyphicon glyphicon-minus " ng-click="changeVolume(-1)"></i>
+			</div>
+		</div>
+	</div>
+
+
+</div>
