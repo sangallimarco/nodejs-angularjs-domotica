@@ -1,9 +1,11 @@
 angular.module('app.socket')
-.factory('socketIoFactory', function (socketFactory, $rootScope, authService, $window) {
+.factory('socketIoFactory',
+	function (socketFactory, $rootScope, authService, $window) {
+		'use strict';
 
 		var socket = null,
 			events = [],
-			factory = {};
+			factory = {},
 			io = $window.io;
 
 		function connect () {
@@ -43,4 +45,5 @@ angular.module('app.socket')
 		connect();
 
 		return factory;
-	});
+	}
+);

@@ -19,8 +19,9 @@ pongular.module('app.auth')
                         res.status(401).json({
                             error: 'Invalid Token!'
                         });
+                    } else {
+                        next();
                     }
-                    return next();
                 };
             },
             login: function(name, password){

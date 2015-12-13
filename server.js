@@ -6,11 +6,12 @@ pongular.module('app', [
 	'app.libs',
 	'app.auth',
 	'app.home',
-	'app.test',
+	// 'app.test',
 	'app.weather',
 	'app.gpio',
 	'app.onewire',
-	'app.cam'
+	'app.cam',
+	'app.mpd'
 ])
 .uses(
 		'application/*/config.js',
@@ -65,14 +66,14 @@ pongular.module('app', [
 	}
 )
 .run(
-	function(app, AuthRouter, HomeRouter, TestRouter, WeatherRouter, GpioRouter, CamRouter, SocketIo, CamService, OnewireRouter) {
+	function(app, AuthRouter, HomeRouter, MpdRouter, WeatherRouter, GpioRouter, CamRouter, SocketIo, CamService, OnewireRouter) {
 
 		/**
 		 * Route middlewares
 		 */
 		app.use(AuthRouter);
 		app.use(HomeRouter);
-		app.use(TestRouter);
+		app.use(MpdRouter);
 		app.use(WeatherRouter);
 		app.use(GpioRouter);
 		app.use(CamRouter);
